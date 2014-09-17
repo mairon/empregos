@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  empresa_id: 1
+  trab_sabado: false
+  trab_domingo_feriados: false
+  trans_vale_transporte: false
+  trans_ajuda: false
+  trans_combinar: false
+  ali_vale_refeicao: false
+  ali_refeitorio_proprio: false
+  ali_ajuda: false
+  ali_combinar: false
+  trans_vale_valor: 9.99
+  trans_ajuda_valor: 9.99
+  ali_vale_valor: 9.99
+  ali_ajuda_valor: 9.99
+
+two:
+  empresa_id: 1
+  trab_sabado: false
+  trab_domingo_feriados: false
+  trans_vale_transporte: false
+  trans_ajuda: false
+  trans_combinar: false
+  ali_vale_refeicao: false
+  ali_refeitorio_proprio: false
+  ali_ajuda: false
+  ali_combinar: false
+  trans_vale_valor: 9.99
+  trans_ajuda_valor: 9.99
+  ali_vale_valor: 9.99
+  ali_ajuda_valor: 9.99

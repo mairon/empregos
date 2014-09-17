@@ -1,0 +1,261 @@
+<div class="row-fluid">
+  <div class="span12">
+    <%= form_for(empresa, :html => {:class => "form-horizontal well"}) do |f| %>
+      <% if @empresa.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@empresa.errors.count, "error") %> prohibited this empresa from being saved:</h2>
+
+          <ul>
+          <% @empresa.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <p class="f_legend">Empresa</p>
+        <table>
+          <tr>
+            <td align="right">CNPJ:</td>
+            <td><%= f.text_field :cnpj, size: 30, class: 'cnpj' %><span class="f_req">*</span></td>
+
+            <td align="right"> Razão Social:</td>
+            <td><%= f.text_field :razao_social, size: 70, maxlength: 100 %><span class="f_req">*</span></td>
+          </tr>
+          <tr>
+            <td align="right"> Ramo de Atividade:</td>
+            <td height="35"><%= f.collection_select :ramo_id, Ramo.select('id,nome').order('2'),:id, :nome,{prompt: 'Selecione o Ramo de Atividade'} %><span class="f_req">*</span>
+            </td>
+            <td align="right"> Nome Fantasia:</td>
+            <td><%= f.text_field :nome_fantasia, size: 70, maxlength: 100 %><span class="f_req">*</span></td>
+          </tr>
+          <tr>
+            <td align="right">Unidade:</td>
+            <td>
+              <%= f.radio_button :unidade, 0 %> Matriz
+              <%= f.radio_button :unidade, 1 %> Filial
+            </td>
+          </tr>
+          <tr>
+            <td colspan='4'>
+              <fieldset>
+                <legend>Localização</legend>
+                <table>
+                  <tr>
+                    <td align="right" width="115">CEP:</td>
+                    <td><%= f.text_field :cep, size: 10, class: 'cep' %><span class="f_req">*</span></td>
+                    <td align="right">Endereço:</td>
+                    <td><%= f.text_field :endereco, size: 35, maxlength: 100, placeholder: 'Ex. Rua Augusta jardin'  %><span class="f_req">*</span></td>
+                    <td align="right">Nº:</td>
+                    <td><%= f.text_field :numero, size: 5 %><span class="f_req">*</span></td>
+
+                  </tr>
+                  <tr>
+                    <td align="right">Complemento:</td>
+                    <td colspan="3"><%= f.text_field :complemento, size: 63, maxlength: 100 %></td>
+                    <td align="right" width="115">Região:</td>
+                    <td colspan="3"><%= f.text_field :regiao, size: 30, maxlength: 100, placeholder: 'Ex. vila A' %></td>
+                  </tr>
+                  <tr>
+                    <td align="right">Estado:</td>
+                    <td colspan="3">
+                      <%= f.collection_select :state_id, State.select('id,name').order('2'),:id, :name,{prompt: 'Selecione o Estado'} %><span class="f_req">*</span>
+                    </td>
+                    <td align="right">Cidade:</td>
+                    <td>
+                      <%= f.collection_select :city_id, City.select('id,name').order('2'),:id, :name,{prompt: 'Selecione a Cidade'} %><span class="f_req">*</span>
+                    </td>
+                  </tr>
+                </table>
+              </fieldset>
+            </td>
+          </tr>
+
+          <tr>
+            <td colspan='4'>
+              <fieldset>
+                <legend>Contatos</legend>
+                <table>
+                  <tr>
+                    <td width="115" align="right">Telefone 01:</td>
+                    <td><%= f.text_field :fone01, size: 20, class: 'telefone' %><span class="f_req">*</span></td>
+                    <td align="right">Ramal:</td>
+                    <td><%= f.text_field :ramal01, size: 10, maxlength: 4 %><span class="f_req">*</span></td>
+                  </tr>
+                  <tr>
+                    <td align="right">Telefone 02:</td>
+                    <td><%= f.text_field :fone02, size: 20, class: 'telefone' %></td>
+                    <td align="right">Ramal:</td>
+                    <td><%= f.text_field :ramal02, size: 10, maxlength: 4 %></td>
+                  </tr>
+                  <tr>
+                    <td align="right">Telefone 03:</td>
+                    <td><%= f.text_field :fone03, size: 20, class: 'telefone' %></td>
+                    <td align="right">Ramal:</td>
+                    <td><%= f.text_field :ramal03, size: 10, maxlength: 4 %></td>
+                  </tr>
+                </table>
+              </fieldset>
+            </td>
+          </tr>
+
+          <tr>
+            <td colspan='4'>
+              <fieldset>
+                <legend>Responsavel</legend>
+                <table>
+                  <tr>
+                    <td width="115" align="right">Nome:</td>
+                    <td><%= f.text_field :responsavel, size: 40, maxlength: 50 %><span class="f_req">*</span></td>
+                    <td align="right">Telefone:</td>
+                    <td><%= f.text_field :fone_resp, size: 20, class: 'telefone' %><span class="f_req">*</span></td>
+                    <td align="right">Ramal:</td>
+                    <td><%= f.text_field :ramal_resp, size: 10, maxlength: 4 %></td>
+                  </tr>
+
+                  <tr>
+                    <td width="115" align="right">E-mail:</td>
+                    <td>
+                      <%= f.text_field :email_receb, size: 20 %><span class="f_req">*</span>
+                      <span class="help-block">E-mail para receber os curriculos</span>
+                    </td>
+                    <td align="right">Site:</td>
+                    <td colspan='4'><%= f.text_field :site, size: 46 %></td>
+                  </tr>
+                </table>
+              </fieldset>
+            </td>
+          </tr>
+          <tr height="60">
+            <td colspan="4">
+              <br>
+              <p class="f_legend">Dados da Entrevista</p>
+            </td>
+          </tr>
+          <tr>
+            <td colspan='4'>
+              <fieldset>
+                <legend>Endereço</legend>
+                <table>
+                  <tr>
+                    <td align="right"></td>
+                    <td colspan="4">
+                      <fieldset>
+                      <legend><b>O endereço no qual o candidato deve se apresentar para a  entrevita:</b></legend>
+                      <%= f.radio_button :endero_entrevista, 0, onchange: "LocalEntrevista(0)" %> Igual ao inserido acima
+                      <%= f.radio_button :endero_entrevista, 1, onchange: "LocalEntrevista(1)" %> Outro
+                      </fieldset>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td align="right" width="115">CEP:</td>
+                    <td><%= f.text_field :entrev_cep, size: 10, class: 'cep' %><span class="f_req">*</span></td>
+                    <td align="right">Endereço:</td>
+                    <td><%= f.text_field :entrev_endereco, size: 35, maxlength: 100, placeholder: 'Ex. Rua Augusta jardin' %><span class="f_req">*</span></td>
+                    <td align="right">Nº:</td>
+                    <td><%= f.text_field :entrev_numero, size: 5 %><span class="f_req">*</span></td>
+
+                  </tr>
+                  <tr>
+                    <td align="right">Complemento:</td>
+                    <td colspan="3"><%= f.text_field :entrev_complemento, size: 63, maxlength: 100 %></td>
+                    <td align="right" width="115">Região:</td>
+                    <td colspan="3"><%= f.text_field :entrev_regiao, size: 30, maxlength: 100 %></td>
+                  </tr>
+                  <tr>
+                    <td align="right">Estado:</td>
+                    <td colspan="3">
+                      <%= f.collection_select :entrev_state_id, State.select('id,name').order('2'),:id, :name,{prompt: 'Selecione o Estado'} %><span class="f_req">*</span>
+                    </td>
+                    <td align="right">Cidade:</td>
+                    <td>
+                      <%= f.collection_select :entrev_city_id, City.select('id,name').order('2'),:id, :name,{prompt: 'Selecione a Cidade'} %><span class="f_req">*</span>
+                    </td>
+                  </tr>
+                </table>
+              </fieldset>
+            </td>
+          </tr>
+          <tr>
+            <td colspan='4'>
+              <fieldset>
+                <legend>Responsavel</legend>
+                <table>
+                  <tr>
+                    <td width="115" align="right">Nome:</td>
+                    <td><%= f.text_field :entrev_responsavel, size: 40, maxlength: 100, placeholder: 'Resposavel pela selação da vaga' %><span class="f_req">*</span></td>
+                    <td align="right">Telefone:</td>
+                    <td><%= f.text_field :entrev_fone_resp, size: 20, class: 'telefone' %><span class="f_req">*</span></td>
+                    <td align="right">Ramal:</td>
+                    <td><%= f.text_field :ramal_resp, size: 10, maxlength: 4 %></td>
+                  </tr>
+
+                  <tr>
+                    <td width="115" align="right">E-mail 01:</td>
+                    <td>
+                      <%= f.text_field :entrev_email, size: 20 %><span class="f_req">*</span>
+                      <span class="help-block">E-mail para receber os curriculos</span>
+                    </td>
+
+                    <td width="115" align="right">E-mail 02:</td>
+                    <td>
+                      <%= f.text_field :entrev_emai2, size: 20 %><span class="f_req">*</span>
+                      <span class="help-block">E-mail para receber os curriculos</span>
+                    </td>
+                  </tr>
+                </table>
+              </fieldset>
+            </td>
+          </tr>
+
+          <tr>
+            <td colspan='4'>
+                <table>
+                  <tr>
+                    <td width="115" align="right"></td>
+                    <td>Caso não  localize imediatamente o candidato adequado cadastrado no sistema, aceito avisos de novos candidatos cadastrados no sistema que estiverem no perfil solicitado através de:</td>
+                  </tr>
+
+                  <tr>
+                    <td width="115" align="right"></td>
+                    <td>
+                      <%= f.check_box :receb_noticia_email, checked: true %> E-mail
+                      <%= f.check_box :receb_noticia_sms, checked: true %> SMS
+                    </td>
+                  </tr>
+                </table>
+            </td>
+          </tr>
+        </table>
+  </div>
+  <%= f.submit "Seguir" %>
+</div>
+
+<script>
+  function LocalEntrevista(v){
+    if (v == '0'){
+      var cep         = $('#empresa_cep').val();
+      var endereco    = $('#empresa_endereco').val();
+      var complemento = $('#empresa_complemento').val();
+      var state_id    = $('#empresa_state_id').val();
+      var city_id     = $('#empresa_city_id').val();
+      var regiao      = $('#empresa_regiao').val();
+      $('#empresa_entrev_cep').val(cep);
+      $('#empresa_entrev_endereco').val(endereco)
+      $('#empresa_entrev_complemento').val(complemento)
+      $('#empresa_entrev_state_id').val(state_id)
+      $('#empresa_entrev_city_id').val(city_id)
+      $('#empresa_entrev_regiao').val(regiao)
+    }else{
+      $('#empresa_entrev_cep').val('');
+      $('#empresa_entrev_endereco').val('')
+      $('#empresa_entrev_complemento').val('')
+      $('#empresa_entrev_state_id').val('')
+      $('#empresa_entrev_city_id').val('')
+      $('#empresa_entrev_regiao').val('')
+    }
+  }
+
+</script>
+<% end %>

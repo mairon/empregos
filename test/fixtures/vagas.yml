@@ -1,0 +1,53 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  efetivo_carteira: false
+  temporario: false
+  extra: false
+  trainer: false
+  free_lancer: false
+  autonomo: false
+  representante: false
+  comerical: false
+  comercial_tipo: 1
+  periodo: 1
+  empresa_id: 1
+  cargo_id: 1
+  numero_vagas: 1
+  sexo: 1
+  pne: false
+  estado_civil: 1
+  outros_detalhes_candito: 1
+  escolaridade: 1
+  area_tecnologo: MyString
+  area_superior: MyString
+  status_escolaridade: 1
+  cursando_periodo: 1
+  experiencia: 1
+  conhecimentos_desejaveis: MyText
+
+two:
+  efetivo_carteira: false
+  temporario: false
+  extra: false
+  trainer: false
+  free_lancer: false
+  autonomo: false
+  representante: false
+  comerical: false
+  comercial_tipo: 1
+  periodo: 1
+  empresa_id: 1
+  cargo_id: 1
+  numero_vagas: 1
+  sexo: 1
+  pne: false
+  estado_civil: 1
+  outros_detalhes_candito: 1
+  escolaridade: 1
+  area_tecnologo: MyString
+  area_superior: MyString
+  status_escolaridade: 1
+  cursando_periodo: 1
+  experiencia: 1
+  conhecimentos_desejaveis: MyText

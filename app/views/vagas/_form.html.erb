@@ -1,0 +1,113 @@
+<%= form_for(@vaga) do |f| %>
+  <% if @vaga.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@vaga.errors.count, "error") %> prohibited this vaga from being saved:</h2>
+
+      <ul>
+      <% @vaga.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :efetivo_carteira %><br>
+    <%= f.check_box :efetivo_carteira %>
+  </div>
+  <div class="field">
+    <%= f.label :temporario %><br>
+    <%= f.check_box :temporario %>
+  </div>
+  <div class="field">
+    <%= f.label :extra %><br>
+    <%= f.check_box :extra %>
+  </div>
+  <div class="field">
+    <%= f.label :trainer %><br>
+    <%= f.check_box :trainer %>
+  </div>
+  <div class="field">
+    <%= f.label :free_lancer %><br>
+    <%= f.check_box :free_lancer %>
+  </div>
+  <div class="field">
+    <%= f.label :autonomo %><br>
+    <%= f.check_box :autonomo %>
+  </div>
+  <div class="field">
+    <%= f.label :representante %><br>
+    <%= f.check_box :representante %>
+  </div>
+  <div class="field">
+    <%= f.label :comerical %><br>
+    <%= f.check_box :comerical %>
+  </div>
+  <div class="field">
+    <%= f.label :comercial_tipo %><br>
+    <%= f.number_field :comercial_tipo %>
+  </div>
+  <div class="field">
+    <%= f.label :periodo %><br>
+    <%= f.number_field :periodo %>
+  </div>
+  <div class="field">
+    <%= f.label :empresa_id %><br>
+    <%= f.number_field :empresa_id %>
+  </div>
+  <div class="field">
+    <%= f.label :cargo_id %><br>
+    <%= f.number_field :cargo_id %>
+  </div>
+  <div class="field">
+    <%= f.label :numero_vagas %><br>
+    <%= f.number_field :numero_vagas %>
+  </div>
+  <div class="field">
+    <%= f.label :sexo %><br>
+    <%= f.number_field :sexo %>
+  </div>
+  <div class="field">
+    <%= f.label :pne %><br>
+    <%= f.check_box :pne %>
+  </div>
+  <div class="field">
+    <%= f.label :estado_civil %><br>
+    <%= f.number_field :estado_civil %>
+  </div>
+  <div class="field">
+    <%= f.label :outros_detalhes_candito %><br>
+    <%= f.number_field :outros_detalhes_candito %>
+  </div>
+  <div class="field">
+    <%= f.label :escolaridade %><br>
+    <%= f.number_field :escolaridade %>
+  </div>
+  <div class="field">
+    <%= f.label :area_tecnologo %><br>
+    <%= f.text_field :area_tecnologo %>
+  </div>
+  <div class="field">
+    <%= f.label :area_superior %><br>
+    <%= f.text_field :area_superior %>
+  </div>
+  <div class="field">
+    <%= f.label :status_escolaridade %><br>
+    <%= f.number_field :status_escolaridade %>
+  </div>
+  <div class="field">
+    <%= f.label :cursando_periodo %><br>
+    <%= f.number_field :cursando_periodo %>
+  </div>
+  <div class="field">
+    <%= f.label :experiencia %><br>
+    <%= f.number_field :experiencia %>
+  </div>
+  <div class="field">
+    <%= f.label :conhecimentos_desejaveis %><br>
+    <%= f.text_area :conhecimentos_desejaveis %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,69 @@
+<div class="row-fluid">
+  <div class="span12">
+
+    <%= form_for(@empresa_perfil, html:  {class: "form-horizontal"}) do |f| %>
+      <% if @empresa_perfil.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@empresa_perfil.errors.count, "error") %> prohibited this empresa_perfil from being saved:</h2>
+
+          <ul>
+          <% @empresa_perfil.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <h3 class="heading">PERFIL</h3>
+        <div class="control-group formSep">
+            <h5 class="heading">DE UMA MANEIRA GERAL, OS FUNCIONARIOS DE SUA EMPRESA PRECISAM:</h5>
+            <label class="checkbox">
+              <%= f.check_box :trab_sabado %> Trabalhar aos Sábados
+            </label>
+            <label class="checkbox">
+              <%= f.check_box :trab_domingo_feriados %> Trabalhar aos Domingos e Feriados - com folgas semanais
+            </label>
+        </div>
+
+        <div class="control-group formSep">
+          <h5 class="heading">SUA EMPRESA OFERECE:</h5>
+          <h5 class="heading">Sobre Transporte:</h5>
+          <label class="checkbox" >
+            <%= f.check_box :trans_vale_transporte, :style => "margin-top: 12px;" %> Vale Transporte no valor de R$ <%= f.text_field :trans_vale_valor %> ou,
+          </label>
+          <label class="checkbox">
+            <%= f.check_box :trans_ajuda, :style => "margin-top: 12px;" %> Ajuda de custo para transporte no valor de R$ <%= f.text_field :trans_vale_valor %>
+          </label>
+          <label class="checkbox">
+            <%= f.check_box :trans_combinar %> A Combinar.
+          </label>
+        </div>
+
+        <div class="control-group formSep">
+          <h5 class="heading">Sobre a alimentação:</h5>
+          <label class="checkbox" >
+            <%= f.check_box :ali_vale_refeicao, :style => "margin-top: 12px;" %> Vale Alimenteção no valor de R$ <%= f.text_field :ali_vale_valor %> ou,
+          </label>
+          <label class="checkbox">
+            <%= f.check_box :ali_refeitorio_proprio %> Refeitório Próprio
+          </label>
+          <label class="checkbox">
+            <%= f.check_box :ali_ajuda, :style => "margin-top: 12px;" %> Ajuda de custo para refeição no valor de R$ <%= f.text_field :ali_ajuda_valor %>
+          </label>
+          <label class="checkbox">
+            <%= f.check_box :ali_combinar %> A Combinar.
+          </label>
+        </div>
+
+        <div class="control-group formSep">
+          <h5 class="heading">Convenios:</h5>
+          <% @convenios.each do |c| %>
+            <label class="checkbox" >
+              <%= check_box_tag "empresa_perfil[convenio_ids][]", c.id, @empresa_perfil.convenios.include?(c) %> <%= c.nome %>
+            </label>
+          <% end %>
+        </div>
+
+      <div class="actions">
+        <%= f.submit class: "btn btn-gebo" %>
+      </div>
+    <% end %>

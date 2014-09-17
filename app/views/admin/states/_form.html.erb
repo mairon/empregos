@@ -1,0 +1,42 @@
+<%= form_for [:admin, @state] do |f| %>
+  <% if @state.errors.any? %>
+    <div class="alert alert-error">
+      <a class="close" data-dismiss="alert">×</a>
+      <h2><%= pluralize(@state.errors.count, "erros") %> encontrados:</h2>
+
+      <ul>
+      <% @state.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="row-fluid">
+    <div class="chat_box">
+      <div class="row-fluid">
+        <div class="well chat_content">
+            <table>
+              <tr>
+                  <td align="right">Sigla:</td>
+                  <td><%= f.text_field :acronym, :placeholder => 'Máximo 2 Caracteres', :maxlength => 2, :size => 50 %><span class="f_req">*</span></td>
+              </tr>
+              <tr>
+                  <td align="right">Nome:</td>
+                  <td><%= f.text_field :name, :placeholder => 'Máximo 50 Caracteres', :maxlength => 50 %><span class="f_req">*</span></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+                  <%= f.submit :value => " Salvar ", :disable_with => "Aguarde...", :class => "btn" %>
+                  <%= link_to 'Voltar', admin_states_path, :class => "btn" %>
+                </td>
+              </tr>
+            </table>
+
+        </div>
+      </div>
+    </div>
+</div>
+<% end %>
+

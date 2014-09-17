@@ -1,0 +1,1 @@
+Rails.application.config.assets.precompile += ['page.js', 'page.css']

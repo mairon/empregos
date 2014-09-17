@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cpfcnpj: MyString
+  password_hash: MyString
+  password_salt: MyString
+  tipo: 1
+
+two:
+  cpfcnpj: MyString
+  password_hash: MyString
+  password_salt: MyString
+  tipo: 1
