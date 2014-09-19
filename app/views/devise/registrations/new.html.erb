@@ -8,7 +8,11 @@
 		<%= f.email_field :email, autofocus: true %>
 	</p>
 
-	<%= render "candidate", f: f %>
+	<% if params[:type] == "1" %>
+		<%= render "candidate", f: f %>
+	<% elsif params[:type] == "2" %>
+		<%= render "company", f: f %>
+	<% end %>
 
 	<p>
 		<%= f.label :password %><% if @validatable %><i>(<%= @minimum_password_length %> characters minimum)</i><% end %><br>
