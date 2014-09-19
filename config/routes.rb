@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   resources :vagas
 
   get "sign_up" => "users#new", :as => "sign_up"

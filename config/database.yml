@@ -11,12 +11,12 @@ default: &default
 
 development:
   <<: *default
-  database: djirpp180o6am
+  database: limitless_forest
   pool: 5
-  username: tlnabcyomnpzdw
-  password: dU21RRCmeK0V-HPWJjRaek5ftX
-  host:   ec2-184-73-194-196.compute-1.amazonaws.com
-  port: 5433
+  username: phinfonet
+  password:
+  host: localhost
+  port: 5432
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
