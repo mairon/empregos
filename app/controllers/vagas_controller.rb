@@ -1,6 +1,6 @@
 class VagasController < ApplicationController
   before_action :set_vaga, only: [:show, :edit, :update, :destroy]
-
+  before_filter :load_resources, only: %w(new create edit update)
   # GET /vagas
   # GET /vagas.json
   def index
@@ -62,6 +62,10 @@ class VagasController < ApplicationController
   end
 
   private
+    def load_resources
+      @dias_semanas = DiasSemana.all
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_vaga
       @vaga = Vaga.find(params[:id])
@@ -69,6 +73,7 @@ class VagasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def vaga_params
-      params.require(:vaga).permit(:efetivo_carteira, :temporario, :extra, :trainer, :free_lancer, :autonomo, :representante, :comerical, :comercial_tipo, :periodo, :empresa_id, :cargo_id, :numero_vagas, :sexo, :pne, :estado_civil, :outros_detalhes_candito, :escolaridade, :area_tecnologo, :area_superior, :status_escolaridade, :cursando_periodo, :experiencia, :conhecimentos_desejaveis)
+      params[:vaga][:dias_semana_ids] ||= []
+      params.require(:vaga).permit(:efetivo_carteira, :temporario, :extra, :trainer, :free_lancer, :autonomo, :representante, :comerical, :comercial_tipo, :periodo, :empresa_id, :cargo_id, :numero_vagas, :sexo, :pne, :estado_civil, :outros_detalhes_candito, :escolaridade, :area_tecnologo, :area_superior, :status_escolaridade, :cursando_periodo, :experiencia, :conhecimentos_desejaveis, dias_semana_ids: [])
     end
 end

@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  resources :cargos
+
+  resources :cursos
+
+  resources :dias_semanas_vagas
+
+  resources :dias_semanas
+
   resources :vagas
 
   get "sign_up" => "users#new", :as => "sign_up"

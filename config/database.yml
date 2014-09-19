@@ -11,11 +11,11 @@ default: &default
 
 development:
   <<: *default
-  database: djirpp180o6am
+  database: empregos
   pool: 5
-  username: tlnabcyomnpzdw
-  password: dU21RRCmeK0V-HPWJjRaek5ftX
-  host:   ec2-184-73-194-196.compute-1.amazonaws.com
+  username: postgres
+  password: mai789789
+  host:   localhost
   port: 5433
 
 # Warning: The database defined as "test" will be erased and
@@ -27,9 +27,9 @@ test:
 
 production:
   <<: *default
-  database: djirpp180o6am
+  database: empregos
   pool: 5
-  username: tlnabcyomnpzdw
-  password: dU21RRCmeK0V-HPWJjRaek5ftX
-  host:   ec2-184-73-194-196.compute-1.amazonaws.com
+  username: postgres
+  password: mai789789
+  host:   localhost
   port: 5433

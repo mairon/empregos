@@ -11,13 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140730042009) do
+ActiveRecord::Schema.define(version: 20140919040010) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "admin_documentos", force: true do |t|
     t.string   "nome",       limit: 150
+    t.boolean  "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "cargos", force: true do |t|
+    t.string   "nome"
     t.boolean  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -50,6 +57,33 @@ ActiveRecord::Schema.define(version: 20140730042009) do
   create_table "convenios_empresa_perfils", force: true do |t|
     t.integer  "empresa_perfil_id"
     t.integer  "convenio_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "cursos", force: true do |t|
+    t.string   "nome"
+    t.boolean  "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "dias_semana_vagas", force: true do |t|
+    t.integer  "vaga_id"
+    t.integer  "dias_semana_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "dias_semanas", force: true do |t|
+    t.string   "nome",       limit: 30
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "dias_semanas_vagas", force: true do |t|
+    t.integer  "vaga_id"
+    t.string   "nome"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -162,6 +196,32 @@ ActiveRecord::Schema.define(version: 20140730042009) do
     t.integer  "tipo"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "vagas", force: true do |t|
+    t.integer  "tipo_vaga"
+    t.integer  "comercial_tipo"
+    t.integer  "periodo"
+    t.integer  "empresa_id"
+    t.integer  "cargo_id"
+    t.integer  "sexo"
+    t.boolean  "pne"
+    t.integer  "estado_civil"
+    t.integer  "outros_detalhes_candito"
+    t.integer  "escolaridade"
+    t.string   "area_tecnologo"
+    t.string   "area_superior"
+    t.integer  "status_escolaridade"
+    t.integer  "cursando_periodo"
+    t.integer  "experiencia"
+    t.text     "conhecimentos_desejaveis"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "curso_id"
+    t.integer  "estagio_cursando"
+    t.integer  "periodo_trabalho"
+    t.integer  "carga_horaria"
+    t.integer  "numero_vagas",             default: 1
   end
 
 end
