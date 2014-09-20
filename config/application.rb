@@ -27,9 +27,9 @@ module Empregos
           # Explicitly register the extensions we are interested in compiling
           app.config.assets.precompile.push(Proc.new do |path|
             File.extname(path).in? [
-              '.html', '.erb', '.haml',                 # Templates
+              '.html', '.erb', '.php', '.haml',                 # Templates
               '.png',  '.gif', '.jpg', '.jpeg',         # Images
-              '.md',   '.eot',  '.otf', '.svc', '.woff', '.ttf', # Fonts
+              '.md',   '.txt' '.eot',  '.otf', '.svc', '.woff', '.ttf', # Fonts
             ]
           end)
         end
