@@ -20,6 +20,7 @@ module Empregos
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     initializer 'setup_asset_pipeline', :group => :production  do |app|
+      
           # We don't want the default of everything that isn't js or css, because it pulls too many things in
           app.config.assets.precompile.shift
 
