@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   resources :dias_semanas
 
+  devise_for :users
   resources :vagas
 
   get "sign_up" => "users#new", :as => "sign_up"
