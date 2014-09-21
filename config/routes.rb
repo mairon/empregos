@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
   devise_for :users
+	devise_scope :user do
+		get  '/users/sign_out', to: 'devise/sessions#destroy'
+		post '/sessions/user', to: 'devise/sessions#create'
+	end
+
   resources :vagas
 
   resources :sessions
@@ -17,7 +22,6 @@ Rails.application.routes.draw do
   root 'home#index'
   match 'conta_candidato' => 'home#conta_candidato', via: [:get]
   match 'conta_empresa' => 'home#conta_empresa', via: [:get]
-  get '/users/check_email' => 'users#check_email', :as => "users/check_email"
   get 'check_empresa' => 'empresas#check_empresa', :as => "check_empresa"
 
   match 'acesso' => 'logins#new', via: [:get, :post]

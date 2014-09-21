@@ -58,7 +58,7 @@
 					<label class="radio inline"><input type="radio" name="ssw_menu" id="ssw_menu_hover" value="menu_hover" /> Hover</label>
 				</div>
 			</div>
-			
+
 			<div class="gh_button-group">
 				<a href="#" id="showCss" class="btn btn-primary btn-mini">Show CSS</a>
 				<a href="#" id="resetDefault" class="btn btn-mini">Reset</a>
@@ -88,7 +88,7 @@
                                     	<%= current_user.cpfcnpj %><b class="caret"></b></a>
                                     <ul class="dropdown-menu">
 																			<li class="divider"></li>
-																			<li><%= link_to "Log out", log_out_path %></li>
+																			<li><%= link_to "Log out", destroy_user_session_path %></li>
                                     </ul>
 	                                </li>
                                 <% end %>

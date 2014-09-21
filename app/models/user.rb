@@ -3,28 +3,20 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  attr_accessor :password
-  has_one :empresa, :dependent => :destroy
-  before_save :encrypt_password
 
-  validates_confirmation_of :password
-  validates_presence_of :password, :on => :create
+	attr_accessor :cpfcnpj
+
+  has_one :empresa, :dependent => :destroy
+
   validates_presence_of :cpfcnpj
   validates_uniqueness_of :cpfcnpj
 
-  def self.authenticate(cpfcnpj, password)
-    user = find_by_cpfcnpj(cpfcnpj)
-    if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
-      user
-    else
-      nil
-    end
-  end
-
-	def encrypt_password
-    if password.present?
-      self.password_salt = BCrypt::Engine.generate_salt
-      self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
-    end
-  end
+	def self.find_first_by_auth_conditions(warden_conditions)
+		conditions = warden_conditions.dup
+		if cpfcnpj = conditions.delete(:cpfcnpj)
+			where(conditions).where(["lower(cpfcnpj) = :value", { :value => cpfcnpj.downcase }]).first
+		else
+			where(conditions).first
+		end
+	end
 end

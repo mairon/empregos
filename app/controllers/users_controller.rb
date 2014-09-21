@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :destroy]
   def check_email
     @user = User.find_by_cpfcnpj(params[:user][:cpfcnpj])
 
@@ -17,19 +17,6 @@ class UsersController < ApplicationController
 	  @user = User.new
 	end
 
-	def create
-	  @user = User.new(user_params)
-	  if @user.save
-      if @user.tipo == 1
-        Empresa.create(user_id: @user.id, cnpj: params[:user][:cpfcnpj])
-      end
-      session[:user_id] = @user.id
-	    redirect_to @user, :notice => "Signed up!"
-	  else
-	   render "new"
-	  end
-	end
-
   def destroy
     @user.destroy
     respond_to do |format|
@@ -39,8 +26,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
-    @empresa = Empresa.find(@user.empresa.id) 
+    @empresa = Empresa.find(@user.empresa.id)
   end
 
   private
