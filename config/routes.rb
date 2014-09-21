@@ -20,14 +20,13 @@ Rails.application.routes.draw do
   resources :empresa_perfils
 
   root 'home#index'
-  match 'conta_candidato' => 'home#conta_candidato', via: [:get]
-  match 'conta_empresa' => 'home#conta_empresa', via: [:get]
-  get 'check_empresa' => 'empresas#check_empresa', :as => "check_empresa"
+  get '/users/check_email', to: 'users#check_email', as: "users/check_email"
+  get 'check_empresa', to: 'empresas#check_empresa', as: "check_empresa"
 
-  match 'acesso' => 'logins#new', via: [:get, :post]
-  match 'main'  => 'main#index', via: [:get]
+  match 'acesso', to: 'logins#new', via: [:get, :post]
+  get 'main', to: 'main#index'
   namespace :admin do
-    match '/painel' => 'painel#index', via: [:get]
+    get '/painel', to: 'painel#index'
     resources :cities
     resources :states
     resources :ramos

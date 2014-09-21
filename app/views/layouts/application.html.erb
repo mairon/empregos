@@ -80,7 +80,7 @@
                             <ul class="nav user_menu pull-right">
 
                                 <li class="divider-vertical hidden-phone hidden-tablet"></li>
-                                <% if current_user %>
+                                <% if user_signed_in? %>
 	                                <li class="dropdown">
 	                                	<div id="user_nav">
 																		</div>
@@ -97,7 +97,7 @@
                             <nav>
                                 <div class="nav-collapse">
                                     <ul class="nav">
-                                    	<% if current_user %>
+                                    	<% if user_signed_in? %>
                                         <li class="dropdown">
                                             <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon-list-alt icon-white"></i> Cadastros <b class="caret"></b></a>
                                             <ul class="dropdown-menu">
