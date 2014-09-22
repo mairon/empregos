@@ -9,11 +9,13 @@ Rails.application.routes.draw do
   resources :dias_semanas
 
   devise_for :users
+	devise_scope :user do
+		get  '/users/sign_out', to: 'devise/sessions#destroy'
+		post '/sessions/user', to: 'devise/sessions#create'
+	end
+
   resources :vagas
 
-  get "sign_up" => "users#new", :as => "sign_up"
-  get "log_in" => "sessions#new", :as => "log_in"
-  get "log_out" => "sessions#destroy", :as => "log_out"
   resources :sessions
   resources :documentos_empresa_perfils
 
@@ -26,15 +28,13 @@ Rails.application.routes.draw do
   resources :empresa_perfils
 
   root 'home#index'
-  match 'conta_candidato' => 'home#conta_candidato', via: [:get]
-  match 'conta_empresa' => 'home#conta_empresa', via: [:get]
-  get '/users/check_email' => 'users#check_email', :as => "users/check_email"
-  get 'check_empresa' => 'empresas#check_empresa', :as => "check_empresa"
+  get '/users/check_email', to: 'users#check_email', as: "users/check_email"
+  get 'check_empresa', to: 'empresas#check_empresa', as: "check_empresa"
 
-  match 'acesso' => 'logins#new', via: [:get, :post]
-  match 'main'  => 'main#index', via: [:get]
+  match 'acesso', to: 'logins#new', via: [:get, :post]
+  get 'main', to: 'main#index'
   namespace :admin do
-    match '/painel' => 'painel#index', via: [:get]
+    get '/painel', to: 'painel#index'
     resources :cities
     resources :states
     resources :ramos
