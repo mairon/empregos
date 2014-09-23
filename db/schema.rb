@@ -11,7 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140919040010) do
+ActiveRecord::Schema.define(version: 20140919144113) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -63,13 +64,6 @@ ActiveRecord::Schema.define(version: 20140919040010) do
   create_table "cursos", force: true do |t|
     t.string   "nome"
     t.boolean  "status"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "dias_semana_vagas", force: true do |t|
-    t.integer  "vaga_id"
-    t.integer  "dias_semana_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -207,9 +201,6 @@ ActiveRecord::Schema.define(version: 20140919040010) do
     t.inet     "last_sign_in_ip"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-
   create_table "vagas", force: true do |t|
     t.integer  "tipo_vaga"
     t.integer  "comercial_tipo"
@@ -230,32 +221,10 @@ ActiveRecord::Schema.define(version: 20140919040010) do
     t.text     "conhecimentos_desejaveis"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "vagas", force: true do |t|
-    t.integer  "tipo_vaga"
-    t.integer  "comercial_tipo"
-    t.integer  "periodo"
-    t.integer  "empresa_id"
-    t.integer  "cargo_id"
-    t.integer  "sexo"
-    t.boolean  "pne"
-    t.integer  "estado_civil"
-    t.integer  "outros_detalhes_candito"
-    t.integer  "escolaridade"
-    t.string   "area_tecnologo"
-    t.string   "area_superior"
-    t.integer  "status_escolaridade"
-    t.integer  "cursando_periodo"
-    t.integer  "experiencia"
-    t.text     "conhecimentos_desejaveis"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.integer  "curso_id"
     t.integer  "estagio_cursando"
     t.integer  "periodo_trabalho"
     t.integer  "carga_horaria"
-    t.integer  "numero_vagas",             default: 1
   end
 
 end
