@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Vaga:</strong>
+  <%= @idiomas_vaga.vaga_id %>
+</p>
+
+<p>
+  <strong>Idioma:</strong>
+  <%= @idiomas_vaga.idioma_id %>
+</p>
+
+<p>
+  <strong>Nivel:</strong>
+  <%= @idiomas_vaga.nivel %>
+</p>
+
+<%= link_to 'Edit', edit_idiomas_vaga_path(@idiomas_vaga) %> |
+<%= link_to 'Back', idiomas_vagas_path %>

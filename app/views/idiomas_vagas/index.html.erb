@@ -1,0 +1,29 @@
+<h1>Listing idiomas_vagas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Vaga</th>
+      <th>Idioma</th>
+      <th>Nivel</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @idiomas_vagas.each do |idiomas_vaga| %>
+      <tr>
+        <td><%= idiomas_vaga.vaga_id %></td>
+        <td><%= idiomas_vaga.idioma_id %></td>
+        <td><%= idiomas_vaga.nivel %></td>
+        <td><%= link_to 'Show', idiomas_vaga %></td>
+        <td><%= link_to 'Edit', edit_idiomas_vaga_path(idiomas_vaga) %></td>
+        <td><%= link_to 'Destroy', idiomas_vaga, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Idiomas vaga', new_idiomas_vaga_path %>

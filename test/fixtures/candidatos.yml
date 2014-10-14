@@ -1,0 +1,69 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nome: MyString
+  rg: MyString
+  uf: MyString
+  cpf: MyString
+  data_nascimento: 2014-10-13
+  idade: 1
+  nome_mae: MyString
+  contato_cel: MyString
+  operadora_id: 1
+  contato_residencial: MyString
+  email_01: MyString
+  email_02: MyString
+  email_03: MyString
+  cep: MyString
+  endereco: MyString
+  numero: MyString
+  complemento: MyString
+  bairro: MyString
+  regiao: MyString
+  state_id: 1
+  city_id: 1
+  pais: 1
+  nacionalidade_id: 1
+  fumante: false
+  pne: 
+  pne_tipo: 1
+  png_grau: 1
+  pne_detalhe: MyText
+  estado_civil: 1
+  filhos: false
+  filhos_qtd: 1
+  filhos_cacula: 1
+
+two:
+  nome: MyString
+  rg: MyString
+  uf: MyString
+  cpf: MyString
+  data_nascimento: 2014-10-13
+  idade: 1
+  nome_mae: MyString
+  contato_cel: MyString
+  operadora_id: 1
+  contato_residencial: MyString
+  email_01: MyString
+  email_02: MyString
+  email_03: MyString
+  cep: MyString
+  endereco: MyString
+  numero: MyString
+  complemento: MyString
+  bairro: MyString
+  regiao: MyString
+  state_id: 1
+  city_id: 1
+  pais: 1
+  nacionalidade_id: 1
+  fumante: false
+  pne: 
+  pne_tipo: 1
+  png_grau: 1
+  pne_detalhe: MyText
+  estado_civil: 1
+  filhos: false
+  filhos_qtd: 1
+  filhos_cacula: 1

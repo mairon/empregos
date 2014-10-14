@@ -1,0 +1,29 @@
+<%= form_for(@idiomas_vaga) do |f| %>
+  <% if @idiomas_vaga.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@idiomas_vaga.errors.count, "error") %> prohibited this idiomas_vaga from being saved:</h2>
+
+      <ul>
+      <% @idiomas_vaga.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :vaga_id %><br>
+    <%= f.number_field :vaga_id %>
+  </div>
+  <div class="field">
+    <%= f.label :idioma_id %><br>
+    <%= f.number_field :idioma_id %>
+  </div>
+  <div class="field">
+    <%= f.label :nivel %><br>
+    <%= f.number_field :nivel %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

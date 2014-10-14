@@ -40,7 +40,8 @@ $(document).ready(function() {
   $(".cep").mask("99999-999");
   $(".cpf").mask("999.999.999-99");
   $(".cnpj").mask("99.999.999/9999-99");
-  $(".telefone").mask("(99) 9999-9999");
+  $(".telefone").mask("(99) 9999-999999");
+  $(".rg").mask("99.999.999-9");
   //somente numero
       $(".number").bind("keyup blur focus", function(e) {
           e.preventDefault();
@@ -57,8 +58,8 @@ $(document).ready(function() {
   $(".chzn-select").chosen();
   //mascara de moeda
   $(".money").maskMoney({thousands:".", decimal:","});
-	//* show all elements & remove preloader
-	setTimeout('$("html").removeClass("js")',1000);
+  //* show all elements & remove preloader
+  setTimeout('$("html").removeClass("js")',1000);
 
     $('#bank_state_id').blur(function() {
 
@@ -76,7 +77,7 @@ $(document).ready(function() {
 
           success: function(response)
           {
-          	$('#spinner').hide();
+            $('#spinner').hide();
           }
 
         });
@@ -98,7 +99,7 @@ $(document).ready(function() {
 
           success: function(response)
           {
-          	$('#spinner_2').hide();
+            $('#spinner_2').hide();
           }
 
         });

@@ -1,0 +1,12 @@
+<tr>
+	<td align="right">Idioma:</td>
+  <td>
+  	<%= f.collection_select :idioma_id, Idioma.select('id,nome').order('1'),:id, :nome,{prompt: 'Selecione o Idioma'} %>
+  </td>
+  <td width="300"><%= f.radio_button :nivel, 0, :style => "margin-top: -2px;" %> Basico
+    <%= f.radio_button :nivel, 1, :style => "margin-top: -2px;" %> Intermediario
+    <%= f.radio_button :nivel, 2, :style => "margin-top: -2px;" %> Fluente</td>
+  <td>
+  	<%= f.check_box :_destroy, :style => "margin-top: -2px;" %>Remover
+	</td>
+</tr>

@@ -1,5 +1,17 @@
 Rails.application.routes.draw do
 
+  resources :candidatos
+
+  resources :idiomas_vagas
+
+  resources :idiomas
+
+  resources :cnhs_vagas
+
+  resources :cngs_vagas
+
+  resources :cnhs
+
   resources :cargos
 
   resources :cursos
@@ -28,7 +40,7 @@ Rails.application.routes.draw do
   resources :empresa_perfils
 
   root 'home#index'
-  get '/users/check_email', to: 'users#check_email', as: "users/check_email"
+  get 'check_email', to: 'users#check_email', as: "users/check_email"
   get 'check_empresa', to: 'empresas#check_empresa', as: "check_empresa"
 
   match 'acesso', to: 'logins#new', via: [:get, :post]

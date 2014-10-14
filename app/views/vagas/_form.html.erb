@@ -30,19 +30,28 @@
             <td>
               <table>
                 <tr>
-                  <td width="220"><%= f.radio_button :tipo_vaga, 0 , :style => "margin-top: -2px;"%> Efetivo com registro em carteira</td>
-                  <td width="300"><%= f.radio_button :tipo_vaga, 1, :style => "margin-top: -2px;" %> Temporário</td>
-                  <td ><%= f.radio_button :tipo_vaga, 2, :style => "margin-top: -2px;" %> Estágio</td>
-                </tr>
-                <tr>
-                  <td><%= f.radio_button :tipo_vaga, 3, :style => "margin-top: -2px;" %> Trainne</td>
-                  <td><%= f.radio_button :tipo_vaga, 4, :style => "margin-top: -2px;" %> Free-Lancer</td>
-                  <td><%= f.radio_button :tipo_vaga, 5, :style => "margin-top: -2px;" %> Autonomo</td>
-                </tr>
-                <tr>
-                  <td><%= f.radio_button :tipo_vaga, 6, :style => "margin-top: -2px;" %> Representante Comercial</td>
-                  <td><%= f.radio_button :tipo_vaga, 7, :style => "margin-top: -2px;" %> Representante Comercial (obrigatório o core)</td>
-                  <td><%= f.radio_button :tipo_vaga, 8, :style => "margin-top: -2px;" %> Representante Comercial (obrigatório ter empresa com CNPJ)</td>
+                  <td><%= f.select :tipo_vaga, 
+                          ([
+                          ["Selecione o tipo de vaga", ""],
+                          ["Temporário", "1"],
+                          ["Extras", "2"],
+                          ["Estágio", "3"],
+                          ["Trainne", "4"],
+                          ["Free-Lancer", "5"],
+                          ["Efetivo com registro em carteira", "6"],
+                          ["Autonomo", "7"],
+                          ["Representante Comercial", "8"],
+                          ["Representante Comercial (obrigatório o core)", "9"],
+                          ["Representante Comercial (obrigatório ter empresa com CNPJ)", "10"]
+                          ]), onblur: "select_tipo()" %>
+                          <span class="f_req">*</span>
+                  </td>
+                  <td align="right">Cargo:</td>
+                  <td><%= f.collection_select :cargo_id, Cargo.select('id,nome').order('2'),:id, :nome, {prompt: 'Selecione o cargo'} %><span class="f_req">*</span></td>
+                  <td style ="padding-left: 15px;">
+                    Numero de Vagas: <%= f.number_field :numero_vagas, style: "width: 35px;" %> <span class="f_req">*</span>
+                  </td>
+
                 </tr>
               </table>
             </td>
@@ -50,23 +59,17 @@
         </table>
       </div>
       <div class="control-group formSep">
-          <table>
-            <tr>
-              <td align="right">Cargo:</td>
-              <td><%= f.collection_select :cargo_id, Cargo.select('id,nome').order('2'),:id, :nome,{prompt: 'Selecione o cargo'} %><span class="f_req">*</span></td>
-              <td style ="padding-left: 15px;">
-                Numero de Vagas: <%= f.number_field :numero_vagas, style: "width: 35px;" %> <span class="f_req">*</span>
-              </td>
-            </tr>
-          </table>
-      </div>
-
-      <div class="control-group formSep">
         <h5 class="heading">PERIODO EM QUE O CANDIDATO IRA TRABALHAR</h5>
           <table>
             <tr>
               <td align="right">Dias:</td>
               <td><%= f.select :periodo, 1..99 %><span class="f_req">*</span></td>
+
+              <td width="60" align="right">Turno:</td>
+              <td width="60"><%= f.check_box :turno_manha, :style => "margin-top: -2px;" %>Manhã</td>
+              <td width="60"><%= f.check_box :turno_tarde, :style => "margin-top: -2px;" %>Tarde</td>
+              <td width="60"><%= f.check_box :turno_noite, :style => "margin-top: -2px;" %>Noite</td>
+              <td> <b> ou </b> Horário específico entre: <%= f.time_select :turno_especifico_inicio %> - <%= f.time_select :turno_espeficico_final %></td>
             </tr>
           </table>
       </div>
@@ -78,7 +81,7 @@
               <% @dias_semanas.each do |c| %>
                 <td>
                   <label class="checkbox" >
-                    <%= check_box_tag "vagas[dias_semana_ids][]", c.id, @vaga.dias_semanas.include?(c) %> <%= c.nome %>
+                    <%= check_box_tag "vaga[dias_semana_ids][]", c.id, @vaga.dias_semanas.include?(c) %> <%= c.nome %>
                   </label>
                 </td>
               <% end %>
@@ -101,12 +104,113 @@
 
       <div class="control-group formSep">
         <h5 class="heading">CARGA HORARIA DIARIO</h5>
-          <table>
-            <tr>
-              <td>Horas por dia:<%= f.select :carga_horaria, 1..6 %></td>
-            </tr>
-          </table>
+        <table>
+          <tr>
+            <td>Horas por dia:<%= f.select :carga_horaria, 1..12 %></td>
+          </tr>
+        </table>
       </div>
+
+      <div class="control-group formSep">
+        <h5 class="heading">PREFERENCIA DE CANDIDATOS:</h5>
+        <table>
+          <tr height="30">
+            <td align="right"></td>
+            <td width="250" colspan="4"><%= f.check_box :pne, :style => "margin-top: -2px;" %> ( PNE ) Pordador de necessidades especiais</td>
+          </tr>
+
+          <tr height="30">
+            <td align="right">Sexo:</td>
+            <td width="250"><%= f.radio_button :sexo, 0, :style => "margin-top: -2px;" %> Masculino</td>
+            <td width="250"><%= f.radio_button :sexo, 1, :style => "margin-top: -2px;" %> Feminino</td>
+            <td width="250"><%= f.radio_button :sexo, 2, :style => "margin-top: -2px;" %> Indiferente</td>
+          </tr>
+
+          <tr height="30">
+            <td align="right">Estado Civil:</td>
+            <td width="250"><%= f.radio_button :estado_civil, 0, :style => "margin-top: -2px;" %> Solteiro(a), Viuvo, Separado</td>
+            <td width="250"><%= f.radio_button :estado_civil, 1, :style => "margin-top: -2px;" %> Casado(a), uninão estável</td>
+            <td width="250"><%= f.radio_button :estado_civil, 2, :style => "margin-top: -2px;" %> Indiferente</td>
+          </tr>
+
+          <tr height="30">
+            <td align="right">Carteira de Habilitacao:</td>
+            <td colspan="2"><%= f.radio_button :cnh, 0, :style => "margin-top: -2px;" %> A
+            <%= f.radio_button :cnh, 1, :style => "margin-top: -2px;" %> B
+            <%= f.radio_button :cnh, 2, :style => "margin-top: -2px;" %> C
+            <%= f.radio_button :cnh, 3, :style => "margin-top: -2px;" %> D
+            <%= f.radio_button :cnh, 4, :style => "margin-top: -2px;" %> AB
+            <%= f.radio_button :cnh, 5, :style => "margin-top: -2px;" %> AC
+            <%= f.radio_button :cnh, 6, :style => "margin-top: -2px;" %> AD
+            <%= f.radio_button :cnh, 7, :style => "margin-top: -2px;" %> AE</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td width="250" colspan="4"><%= f.check_box :veiculo_proprio, :style => "margin-top: -2px;" %> Veiculo Proprio</td>
+          </tr>
+
+          <tr height="30">
+            <td align="right">Outros:</td>
+            <td width="250"><%= f.radio_button :estado_civil, 0, :style => "margin-top: -2px;" %> Não fumante</td>
+            <td width="250" colspan="4"><%= f.radio_button :estado_civil, 1, :style => "margin-top: -2px;" %> Apenas candidatos moradores na minha cidade</td>
+          </tr>
+        </table>
+      </div>
+      <div class="control-group formSep">
+        <h5 class="heading">IDIOMAS</h5>
+        <table>
+          <%= f.fields_for :idiomas_vagas do |builder| %>
+              <%= render "idiomas_fields", :f => builder %>
+          <% end %>
+        </table>
+      </div>
+
+      <div class="control-group formSep">
+        <h5 class="heading">NIVEL ESCOLAR DESEJAVEL</h5>
+        <table>
+          <tr>
+            <td><%= f.radio_button :escolaridade, 0, :style => "margin-top: -2px;" %> Ens. fundamental (até 8ª serie ou 9ª ano)</td>
+          </tr>
+          <tr>
+            <td><%= f.radio_button :escolaridade, 1, :style => "margin-top: -2px;" %> Ens. médio (1º ou 3º ano do antigo 2º grau)</td>
+          </tr>
+            <td><%= f.radio_button :escolaridade, 2, :style => "margin-top: -2px;" %> Ens. Tecnólogo</td>
+          </tr>
+          <tr>
+            <td><%= f.radio_button :escolaridade, 3, :style => "margin-top: -2px;" %> Ens. Superior (Bacharel)</td>
+          </tr>
+          <tr>
+            <td><%= f.radio_button :escolaridade, 4, :style => "margin-top: -2px;" %> Ens. Superior (Licenciatura)</td>
+          </tr>
+
+          <tr>
+            <td colspan="5">
+              Estado:
+              <%= f.radio_button :status_escolaridade, 0, :style => "margin-top: -2px;" %> Indiferente
+              <%= f.radio_button :status_escolaridade, 1, :style => "margin-top: -2px;" %> Completo
+              <%= f.radio_button :status_escolaridade, 2, :style => "margin-top: -2px;" %> Incompleto
+              <%= f.radio_button :status_escolaridade, 3, :style => "margin-top: -2px;" %> Cursando
+              período minino: <%= f.select :cursando_periodo, 1..12 %>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="control-group formSep">
+        <h5 class="heading">EXPERIENCIA MINIMA DESEJADA:</h5>
+        <table>
+          <tr>
+            <td width="200"><%= f.radio_button :experiencia, 0, :style => "margin-top: -2px;" %> Nenhuma</td>
+            <td width="200"><%= f.radio_button :experiencia, 1, :style => "margin-top: -2px;" %> Com ou sem experiência</td>
+            <td width="350">
+              <%= f.radio_button :experiencia, 2, :style => "margin-top: -2px;" %> Com experiência minima de :<%= f.select :experiencia_qtd, 1..12 %>
+              <%= f.radio_button :experiencia_mes_ano, 0, :style => "margin-top: -2px;" %> Mes
+              <%= f.radio_button :experiencia_mes_ano, 0, :style => "margin-top: -2px;" %> Ano
+            </td>
+          </tr>
+        </table>
+      </div>
+
 
   </div>
   <div class="actions">
@@ -114,3 +218,10 @@
   </div>
 </div>
 <% end %>
+
+<script type="text/javascript">
+  $("#vaga_tipo_vaga").blur(function(){
+    if ($("#vaga_tipo_vaga").val() != ''){
+    };  
+  });
+</script>

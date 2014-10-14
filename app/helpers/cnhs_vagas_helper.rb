@@ -1,0 +1,2 @@
+module CnhsVagasHelper
+end

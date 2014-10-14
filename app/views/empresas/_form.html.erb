@@ -20,6 +20,7 @@
           <tr>
             <td align="right">CNPJ:</td>
             <td><%= f.text_field :cnpj, size: 30, class: 'cnpj' %><span class="f_req">*</span></td>
+            <td></td>
 
             <td align="right"> Razão Social:</td>
             <td><%= f.text_field :razao_social, size: 70, maxlength: 100 %><span class="f_req">*</span></td>
@@ -170,6 +171,19 @@
         </div>
         <div class="control-group formSep">
           <h5 class="heading">Responsável</h5>
+          <div class="control-group formSep">
+            <table>
+              <tr>
+                <td align="right"></td>
+                <td colspan="6">
+                  O Responsável pela  entrevita:
+                  <%= f.radio_button :endero_entrevista, true, onchange: "RespEntrevista(0)" %> Igual ao inserido acima
+                  <%= f.radio_button :endero_entrevista, false, onchange: "RespEntrevista(1)" %> Outro
+                </td>
+              </tr>
+            </table>
+          </div>
+
           <table>
             <tr>
               <td width="115" align="right">Nome:</td>
@@ -227,7 +241,23 @@
 </div>
 
 <script>
-  function LocalEntrevista(v){
+  function RespEntrevista(v){
+    if (v == '0'){
+      var resp  = $('#empresa_responsavel').val();
+      var fone  = $('#empresa_fone_resp').val();
+      var email = $('#empresa_email_receb').val();
+      $('#empresa_entrev_responsavel').val(resp);
+      $('#empresa_entrev_fone_resp').val(fone);
+      $('#empresa_entrev_email').val(email);
+    }else {
+      $('#empresa_entrev_responsavel').val('');
+      $('#empresa_entrev_fone_resp').val('');
+      $('#empresa_entrev_email').val('');
+ 
+      }
+  }
+
+ function LocalEntrevista(v){
     if (v == '0'){
       var cep         = $('#empresa_cep').val();
       var endereco    = $('#empresa_endereco').val();
@@ -253,7 +283,6 @@
       $('#empresa_entrev_numero').val('')
     }
   }
-
 </script>
 <% end %>
 

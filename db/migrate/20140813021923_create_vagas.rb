@@ -4,7 +4,6 @@ class CreateVagas < ActiveRecord::Migration
       t.integer :tipo_vaga
       t.integer :comercial_tipo
       t.integer :periodo
-      t.integer :periodo
       t.integer :empresa_id
       t.integer :cargo_id
       t.integer :numero_vagas

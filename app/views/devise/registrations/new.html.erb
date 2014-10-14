@@ -35,7 +35,7 @@ $(document).ready(function () {
   $("#new_user").validate({
   debug: true,
   rules: {
-  "user[cpfcnpj]": {required: true, cpf: true, remote:"/users/check_email"},
+  "user[cpfcnpj]": {required: true, cnpj: true, remote:"/check_email"},
   "user[password]": {required: true, minlength: 6},
   "user[password_confirmation]": {required: true, equalTo: "#user_password"}
   },submitHandler:function(form) {
