@@ -1,0 +1,25 @@
+<%= form_for(@convenios_empresa_perfil) do |f| %>
+  <% if @convenios_empresa_perfil.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@convenios_empresa_perfil.errors.count, "error") %> prohibited this convenios_empresa_perfil from being saved:</h2>
+
+      <ul>
+      <% @convenios_empresa_perfil.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :empresa_perfil_id %><br>
+    <%= f.number_field :empresa_perfil_id %>
+  </div>
+  <div class="field">
+    <%= f.label :convenio_id %><br>
+    <%= f.number_field :convenio_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

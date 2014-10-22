@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  empresa_perfil_id: 1
+  dias_semana_id: 1
+
+two:
+  empresa_perfil_id: 1
+  dias_semana_id: 1

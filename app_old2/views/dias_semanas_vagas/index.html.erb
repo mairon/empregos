@@ -1,0 +1,27 @@
+<h1>Listing dias_semanas_vagas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Vaga</th>
+      <th>Nome</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dias_semanas_vagas.each do |dias_semanas_vaga| %>
+      <tr>
+        <td><%= dias_semanas_vaga.vaga_id %></td>
+        <td><%= dias_semanas_vaga.nome %></td>
+        <td><%= link_to 'Show', dias_semanas_vaga %></td>
+        <td><%= link_to 'Edit', edit_dias_semanas_vaga_path(dias_semanas_vaga) %></td>
+        <td><%= link_to 'Destroy', dias_semanas_vaga, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Dias semanas vaga', new_dias_semanas_vaga_path %>

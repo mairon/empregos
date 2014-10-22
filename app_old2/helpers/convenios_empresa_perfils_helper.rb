@@ -1,0 +1,2 @@
+module ConveniosEmpresaPerfilsHelper
+end

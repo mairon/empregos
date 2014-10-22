@@ -1,0 +1,8 @@
+<ul>
+<% @users.each do |u| %>
+	<li>
+		<%= u.id %> | <%= u.cpfcnpj %> - <%= u.tipo %> |
+		<%= link_to 'Eliminar', u, method: :delete, data: { confirm: 'Are you sure?' } %>
+	</li>
+<% end %>
+</ul>

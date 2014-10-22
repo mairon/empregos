@@ -20,17 +20,16 @@
           <tr>
             <td align="right">CNPJ:</td>
             <td><%= f.text_field :cnpj, size: 30, class: 'cnpj' %><span class="f_req">*</span></td>
-            <td></td>
 
             <td align="right"> Razão Social:</td>
-            <td><%= f.text_field :razao_social, size: 70, maxlength: 100 %><span class="f_req">*</span></td>
+            <td><%= f.text_field :razao_social, size: 50, maxlength: 100 %><span class="f_req">*</span></td>
           </tr>
           <tr>
             <td align="right"> Ramo de Atividade:</td>
             <td height="35"><%= f.collection_select :ramo_id, Ramo.select('id,nome').order('2'),:id, :nome,{prompt: 'Selecione o Ramo de Atividade'} %><span class="f_req">*</span>
             </td>
             <td align="right"> Nome Fantasia:</td>
-            <td><%= f.text_field :nome_fantasia, size: 70, maxlength: 100 %><span class="f_req">*</span></td>
+            <td><%= f.text_field :nome_fantasia, size: 50, maxlength: 100 %><span class="f_req">*</span></td>
           </tr>
         </table>
       </div>
@@ -54,16 +53,18 @@
             <td align="right" width="115">CEP:</td>
             <td><%= f.text_field :cep, size: 10, class: 'cep' %><span class="f_req">*</span></td>
             <td align="right">Endereço:</td>
-            <td><%= f.text_field :endereco, size: 35, maxlength: 100, placeholder: 'Ex. Rua Augusta jardin'  %><span class="f_req">*</span></td>
+            <td><%= f.text_field :endereco, size: 35, maxlength: 50, placeholder: 'Ex. Rua Augusta jardin'  %><span class="f_req">*</span></td>
             <td align="right">Nº:</td>
             <td><%= f.text_field :numero, size: 5 %><span class="f_req">*</span></td>
+            <td align="right">Bairro:</td>
+            <td><%= f.text_field :bairro, size: 20, maxlength: 44 %><span class="f_req">*</span></td>
 
           </tr>
           <tr>
             <td align="right">Complemento:</td>
-            <td colspan="3"><%= f.text_field :complemento, size: 63, maxlength: 100 %></td>
-            <td align="right" width="115">Região:</td>
-            <td colspan="3"><%= f.text_field :regiao, size: 30, maxlength: 100, placeholder: 'Ex. vila A' %></td>
+            <td colspan="3"><%= f.text_field :complemento, size: 58, maxlength: 100 %></td>
+            <td align="right">Região:</td>
+            <td colspan="3"><%= f.text_field :regiao, size: 35, maxlength: 100, placeholder: 'Ex. vila A' %></td>
           </tr>
           <tr>
             <td align="right">Estado:</td>
@@ -71,7 +72,7 @@
               <%= f.collection_select :state_id, State.select('id,name').order('2'),:id, :name,{prompt: 'Selecione o Estado'} %><span class="f_req">*</span>
             </td>
             <td align="right">Cidade:</td>
-            <td>
+            <td  colspan="3">
               <%= f.collection_select :city_id, City.select('id,name').order('2'),:id, :name,{prompt: 'Selecione a Cidade'} %><span class="f_req">*</span>
             </td>
           </tr>
@@ -143,19 +144,21 @@
           <div class="control-group formSep">
           <table>
             <tr>
-              <td align="right" width="115">CEP:</td>
+              <td align="right">CEP:</td>
               <td><%= f.text_field :entrev_cep, size: 10, class: 'cep' %><span class="f_req">*</span></td>
               <td align="right">Endereço:</td>
               <td><%= f.text_field :entrev_endereco, size: 35, maxlength: 100, placeholder: 'Ex. Rua Augusta jardin' %><span class="f_req">*</span></td>
               <td align="right">Nº:</td>
               <td><%= f.text_field :entrev_numero, size: 5 %><span class="f_req">*</span></td>
+              <td align="right">Bairro:</td>
+              <td><%= f.text_field :entrev_bairro, size: 25, maxlength: 35 %><span class="f_req">*</span></td>
 
             </tr>
             <tr>
               <td align="right">Complemento:</td>
-              <td colspan="3"><%= f.text_field :entrev_complemento, size: 63, maxlength: 100 %></td>
-              <td align="right" width="115">Região:</td>
-              <td colspan="3"><%= f.text_field :entrev_regiao, size: 30, maxlength: 100 %></td>
+              <td colspan="3"><%= f.text_field :entrev_complemento, size: 58, maxlength: 100 %></td>
+              <td align="right">Região:</td>
+              <td colspan="3"><%= f.text_field :entrev_regiao, size: 35, maxlength: 100 %></td>
             </tr>
             <tr>
               <td align="right">Estado:</td>
@@ -163,7 +166,7 @@
                 <%= f.collection_select :entrev_state_id, State.select('id,name').order('2'),:id, :name,{prompt: 'Selecione o Estado'} %><span class="f_req">*</span>
               </td>
               <td align="right">Cidade:</td>
-              <td>
+              <td colspan="3">
                 <%= f.collection_select :entrev_city_id, City.select('id,name').order('2'),:id, :name,{prompt: 'Selecione a Cidade'} %><span class="f_req">*</span>
               </td>
             </tr>
@@ -177,8 +180,8 @@
                 <td align="right"></td>
                 <td colspan="6">
                   O Responsável pela  entrevita:
-                  <%= f.radio_button :endero_entrevista, true, onchange: "RespEntrevista(0)" %> Igual ao inserido acima
-                  <%= f.radio_button :endero_entrevista, false, onchange: "RespEntrevista(1)" %> Outro
+                  <%= f.radio_button :resp_entrevista, true, onchange: "RespEntrevista(0)" %> Igual ao inserido acima
+                  <%= f.radio_button :resp_entrevista, false, onchange: "RespEntrevista(1)" %> Outro
                 </td>
               </tr>
             </table>
@@ -238,6 +241,8 @@
   <div class="actions">
     <%= f.submit'Salvar', data: { disable_with: "Aguarde..." }, class: "btn btn-gebo" %> <%= link_to 'Sair', empresas_path, :class => "btn" %>
   </div>
+  <% end %>
+
 </div>
 
 <script>
@@ -266,6 +271,7 @@
       var city_id     = $('#empresa_city_id').val();
       var regiao      = $('#empresa_regiao').val();
       var numero      = $('#empresa_numero').val();
+      var bairro      = $('#empresa_bairro').val();
       $('#empresa_entrev_cep').val(cep);
       $('#empresa_entrev_endereco').val(endereco)
       $('#empresa_entrev_complemento').val(complemento)
@@ -273,6 +279,7 @@
       $('#empresa_entrev_city_id').val(city_id)
       $('#empresa_entrev_regiao').val(regiao)
       $('#empresa_entrev_numero').val(numero)
+      $('#empresa_entrev_bairro').val(bairro)
     }else{
       $('#empresa_entrev_cep').val('');
       $('#empresa_entrev_endereco').val('')
@@ -284,7 +291,6 @@
     }
   }
 </script>
-<% end %>
 
 <script>
 $(document).ready(function () {

@@ -1,0 +1,27 @@
+<h1>Listing documentos_empresa_perfils</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Empresa perfil</th>
+      <th>Documento</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @documentos_empresa_perfils.each do |documentos_empresa_perfil| %>
+      <tr>
+        <td><%= documentos_empresa_perfil.empresa_perfil_id %></td>
+        <td><%= documentos_empresa_perfil.documento_id %></td>
+        <td><%= link_to 'Show', documentos_empresa_perfil %></td>
+        <td><%= link_to 'Edit', edit_documentos_empresa_perfil_path(documentos_empresa_perfil) %></td>
+        <td><%= link_to 'Destroy', documentos_empresa_perfil, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Documentos empresa perfil', new_documentos_empresa_perfil_path %>

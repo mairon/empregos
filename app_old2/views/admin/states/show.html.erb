@@ -1,0 +1,44 @@
+<nav>
+  <div class="breadCrumb module">
+      <ul>
+          <li>
+              Cadastros
+          </li>
+          <li>&#187;</li>
+          <li>
+              <a href="/states">Estados</a>
+          </li>
+          <li>&#187;</li>
+          <li>
+              <a href="#"> Visualizar </a>
+          </li>
+
+      </ul>
+  </div>
+</nav>
+
+<div class="row-fluid">
+    <div class="chat_box">
+      <div class="row-fluid">
+        <div class="well chat_content">
+            <table>
+              <tr>
+                  <td align="right">Sigla:</td>
+                  <td><%= @state.acronym %></td>
+              </tr>
+              <tr>
+                  <td align="right">Nome:</td>
+                  <td><%= @state.name %></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+                  <%= link_to 'Voltar', states_path, :class => "btn" %>
+                </td>
+              </tr>
+            </table>
+
+        </div>
+      </div>
+    </div>
+</div>

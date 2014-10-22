@@ -1,0 +1,2 @@
+module DiasSemanasVagasHelper
+end

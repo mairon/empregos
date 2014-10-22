@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :dias_semanas_empresa_perfils
+
   resources :candidatos
 
   resources :idiomas_vagas

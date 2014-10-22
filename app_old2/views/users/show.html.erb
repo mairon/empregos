@@ -1,0 +1,5 @@
+<% if @empresa.razao_social.present? %>
+	
+<% else %>
+	<%= render partial: "empresas/edit_empresa", locals: {empresa: @empresa} %>
+<% end %>

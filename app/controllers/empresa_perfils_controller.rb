@@ -64,6 +64,7 @@ class EmpresaPerfilsController < ApplicationController
   private
     def load_resources
       @convenios = Convenio.all
+      @dias_semanas = DiasSemana.all
     end
 
     # Use callbacks to share common setup or constraints between actions.
@@ -75,9 +76,9 @@ class EmpresaPerfilsController < ApplicationController
     def empresa_perfil_params
       params[:empresa_perfil][:convenio_ids] ||= []
       params[:empresa_perfil][:documento_ids] ||= []
-      params.require(:empresa_perfil).permit( :empresa_id, :trab_sabado, :trab_domingo_feriados, 
-        :trans_vale_transporte, :trans_ajuda, :trans_combinar, :ali_vale_refeicao, 
-        :ali_refeitorio_proprio, :ali_ajuda, :ali_combinar, :trans_vale_valor, 
-        :trans_ajuda_valor, :ali_vale_valor, :ali_ajuda_valor, convenio_ids: [], documento_ids: [])
+      params[:empresa_perfil][:dias_semana_ids] ||= []
+      params.require(:empresa_perfil).permit( :empresa_id, :trab_sabado, :trab_domingo_feriados, :vale_transporte,
+      :vale_transporte_valor, :vale_alimentacao, :vale_alimentacao_valor, convenio_ids: [], documento_ids: [], 
+      dias_semana_ids: [])
     end
 end

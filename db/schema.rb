@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141014005906) do
+ActiveRecord::Schema.define(version: 20141022044944) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -126,6 +126,13 @@ ActiveRecord::Schema.define(version: 20141014005906) do
     t.datetime "updated_at"
   end
 
+  create_table "dias_semanas_empresa_perfils", force: true do |t|
+    t.integer  "empresa_perfil_id"
+    t.integer  "dias_semana_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "dias_semanas_vagas", force: true do |t|
     t.integer  "vaga_id"
     t.string   "nome"
@@ -150,21 +157,13 @@ ActiveRecord::Schema.define(version: 20141014005906) do
 
   create_table "empresa_perfils", force: true do |t|
     t.integer  "empresa_id"
-    t.boolean  "trab_sabado"
-    t.boolean  "trab_domingo_feriados"
-    t.boolean  "trans_vale_transporte"
-    t.boolean  "trans_ajuda"
-    t.boolean  "trans_combinar"
-    t.boolean  "ali_vale_refeicao"
-    t.boolean  "ali_refeitorio_proprio"
-    t.boolean  "ali_ajuda"
-    t.boolean  "ali_combinar"
-    t.decimal  "trans_vale_valor",       precision: 15, scale: 2, default: 0.0
-    t.decimal  "trans_ajuda_valor",      precision: 15, scale: 2, default: 0.0
-    t.decimal  "ali_vale_valor",         precision: 15, scale: 2, default: 0.0
-    t.decimal  "ali_ajuda_valor",        precision: 15, scale: 2, default: 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "vale_transporte"
+    t.decimal  "vale_transporte_valor",  precision: 15, scale: 2, default: 0.0
+    t.integer  "vale_alimentacao"
+    t.decimal  "vale_alimentacao_valor", precision: 15, scale: 2, default: 0.0
+    t.text     "sobre"
   end
 
   create_table "empresas", force: true do |t|
@@ -212,6 +211,10 @@ ActiveRecord::Schema.define(version: 20141014005906) do
     t.integer  "user_id"
     t.string   "cnpj",                limit: 20
     t.boolean  "resp_entrevista"
+    t.string   "bairro",              limit: 100
+    t.string   "entrev_bairro",       limit: 100
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "idiomas", force: true do |t|

@@ -16,42 +16,44 @@
       <h3 class="heading">PERFIL EMPRESA: <%= @empresa.razao_social.upcase %></h3>
         <div class="control-group formSep">
             <h5 class="heading">DE UMA MANEIRA GERAL, OS FUNCIONARIOS DE SUA EMPRESA PRECISAM:</h5>
-            <label class="checkbox">
-              <%= f.check_box :trab_sabado %> Trabalhar aos Sábados
-            </label>
-            <label class="checkbox">
-              <%= f.check_box :trab_domingo_feriados %> Trabalhar aos Domingos e Feriados - com folgas semanais
-            </label>
+            <table>
+              <tr>
+                <% @dias_semanas.each do |c| %>
+                  <td>
+                    <label class="checkbox" >
+                      <%= check_box_tag "empresa_perfil[dias_semana_ids][]", c.id, @empresa_perfil.dias_semanas.include?(c) %> <%= c.nome %>
+                    </label>
+                  </td>
+                <% end %>
+              </tr>
+            </table>
         </div>
 
         <div class="control-group formSep">
           <h5 class="heading">SUA EMPRESA OFERECE:</h5>
           <h5 class="heading">Sobre Transporte:</h5>
           <label class="checkbox" >
-            <%= f.check_box :trans_vale_transporte, :style => "margin-top: 12px;" %> Vale Transporte no valor de <strong>R$</strong> <%= f.text_field :trans_vale_valor, class: 'money', dir: "rtl", size: 15 %> ou,
+            <%= f.radio_button :vale_transporte, 1, :style => "margin-top: -5px;" %> Vale Transporte
+            <%= f.radio_button :vale_transporte, 2, :style => "margin-top: -5px;" %> Ajuda de custo para transporte no valor de 
+            <%= f.radio_button :vale_transporte, 0, :style => "margin-top: -5px;" %> A Combinar.
           </label>
           <label class="checkbox">
-            <%= f.check_box :trans_ajuda, :style => "margin-top: 12px;" %> Ajuda de custo para transporte no valor de <strong>R$</strong> <%= f.text_field :trans_ajuda_valor, class: 'money', dir: "rtl", size: 15 %>
-          </label>
-          <label class="checkbox">
-            <%= f.check_box :trans_combinar %> A Combinar.
+            Valor do Beneficio <strong>R$</strong>: <%= f.text_field :vale_transporte_valor, class: 'money', dir: "rtl", size: 15 %>
           </label>
         </div>
 
         <div class="control-group formSep">
           <h5 class="heading">Sobre a alimentação:</h5>
           <label class="checkbox" >
-            <%= f.check_box :ali_vale_refeicao, :style => "margin-top: 12px;" %> Vale Alimenteção no valor de <strong>R$</strong> <%= f.text_field :ali_vale_valor, class: 'money', dir: "rtl", size: 15 %> ou,
+            <%= f.radio_button :vale_alimentacao, 1, :style => "margin-top: -5px;" %> Vale Alimenteção
+            <%= f.radio_button :vale_alimentacao, 2, :style => "margin-top: -5px;" %> Refeitório Próprio
+            <%= f.radio_button :vale_alimentacao, 3, :style => "margin-top: -5px;" %> Ajuda de custo para refeição
+            <%= f.radio_button :vale_alimentacao, 0, :style => "margin-top: -5px;" %> A Combinar.
           </label>
           <label class="checkbox">
-            <%= f.check_box :ali_refeitorio_proprio %> Refeitório Próprio
+            Valor do Beneficio <strong>R$</strong>: <%= f.text_field :vale_alimentacao_valor, class: 'money', dir: "rtl", size: 15 %>
           </label>
-          <label class="checkbox">
-            <%= f.check_box :ali_ajuda, :style => "margin-top: 12px;" %> Ajuda de custo para refeição no valor de <strong>R$</strong> <%= f.text_field :ali_ajuda_valor, class: 'money', dir: "rtl", size: 15 %>
-          </label>
-          <label class="checkbox">
-            <%= f.check_box :ali_combinar %> A Combinar.
-          </label>
+        </div>
         </div>
 
         <div class="control-group formSep">
@@ -71,8 +73,19 @@
             </label>
           <% end %>
         </div>
-
+        <div  class="control-group formSep">
+          <h3 class="heading">Um pouco sobre a  <b><%= @empresa.razao_social %></b></h3>
+          <table>
+            <tr>
+              <td width="400"><%= f.text_area :sobre, rows: 16, cols: 40, placeholder: 'Escreva aqui um pouco sobre a empresa.' %></td>
+              <td><%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@empresa.latitude}%2C#{@empresa.longitude}" %></td>
+            </tr>
+          </table>
+          
+        </div>
       <div class="actions">
         <%= f.submit'Atulizar Perfil', data: { disable_with: "Aguarde..." }, class: "btn btn-gebo" %> <%= link_to 'Sair', empresas_path, :class => "btn" %>
       </div>
     <% end %>
+
+
