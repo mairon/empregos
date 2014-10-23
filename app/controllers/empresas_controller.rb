@@ -1,5 +1,5 @@
 class EmpresasController < ApplicationController
-  
+  before_action :authenticate_user!  
   before_action :set_empresa, only: [:show, :edit, :update, :destroy]
   before_filter :load_resources, only: %w(new create edit update show)
 

@@ -1,4 +1,6 @@
 class VagasController < ApplicationController
+  before_action :authenticate_user!  
+
   before_action :set_vaga, only: [:show, :edit, :update, :destroy]
   before_filter :load_resources, only: %w(new create edit update)
   # GET /vagas

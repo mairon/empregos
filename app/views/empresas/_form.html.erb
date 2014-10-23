@@ -84,19 +84,19 @@
           <table>
             <tr>
               <td width="115" align="right">Telefone 01:</td>
-              <td><%= f.text_field :fone01, size: 20, class: 'telefone' %><span class="f_req">*</span></td>
+              <td><%= f.telephone_field :fone01, size: 20, class: 'telefone' %><span class="f_req">*</span></td>
               <td align="right">Ramal:</td>
               <td><%= f.text_field :ramal01, size: 10, maxlength: 4 %><span class="f_req">*</span></td>
             </tr>
             <tr>
               <td align="right">Telefone 02:</td>
-              <td><%= f.text_field :fone02, size: 20, class: 'telefone' %></td>
+              <td><%= f.telephone_field :fone02, size: 20, class: 'telefone' %></td>
               <td align="right">Ramal:</td>
               <td><%= f.text_field :ramal02, size: 10, maxlength: 4 %></td>
             </tr>
             <tr>
               <td align="right">Telefone 03:</td>
-              <td><%= f.text_field :fone03, size: 20, class: 'telefone' %></td>
+              <td><%= f.telephone_field :fone03, size: 20, class: 'telefone' %></td>
               <td align="right">Ramal:</td>
               <td><%= f.text_field :ramal03, size: 10, maxlength: 4 %></td>
             </tr>
@@ -110,7 +110,7 @@
               <td width="115" align="right">Nome:</td>
               <td><%= f.text_field :responsavel, size: 40, maxlength: 50 %><span class="f_req">*</span></td>
               <td align="right">Telefone:</td>
-              <td><%= f.text_field :fone_resp, size: 20, class: 'telefone' %><span class="f_req">*</span></td>
+              <td><%= f.telephone_field :fone_resp, size: 20, class: 'telefone' %><span class="f_req">*</span></td>
               <td align="right">Ramal:</td>
               <td><%= f.text_field :ramal_resp, size: 10, maxlength: 4 %></td>
             </tr>
@@ -192,7 +192,7 @@
               <td width="115" align="right">Nome:</td>
               <td><%= f.text_field :entrev_responsavel, size: 40, maxlength: 100, placeholder: 'Resposavel pela selação da vaga' %><span class="f_req">*</span></td>
               <td align="right">Telefone:</td>
-              <td><%= f.text_field :entrev_fone_resp, size: 20, class: 'telefone' %><span class="f_req">*</span></td>
+              <td><%= f.telephone_field :entrev_fone_resp, size: 20, class: 'telefone' %><span class="f_req">*</span></td>
               <td align="right">Ramal:</td>
               <td><%= f.text_field :ramal_resp, size: 10, maxlength: 4 %></td>
             </tr>

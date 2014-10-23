@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!  
+
   before_action :set_user, only: [:show, :destroy]
   def check_email
     @user = User.find_by_cpfcnpj(params[:user][:cpfcnpj])

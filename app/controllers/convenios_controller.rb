@@ -1,4 +1,6 @@
 class ConveniosController < ApplicationController
+  before_action :authenticate_user!  
+
   before_action :set_convenio, only: [:show, :edit, :update, :destroy]
 
   # GET /convenios

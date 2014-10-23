@@ -1,4 +1,6 @@
 class CursosController < ApplicationController
+  before_action :authenticate_user!  
+
   before_action :set_curso, only: [:show, :edit, :update, :destroy]
 
   # GET /cursos

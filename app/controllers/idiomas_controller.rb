@@ -1,4 +1,6 @@
 class IdiomasController < ApplicationController
+  before_action :authenticate_user!  
+
   before_action :set_idioma, only: [:show, :edit, :update, :destroy]
 
   # GET /idiomas

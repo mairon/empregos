@@ -1,4 +1,6 @@
 class DiasSemanasController < ApplicationController
+  before_action :authenticate_user!  
+
   before_action :set_dias_semana, only: [:show, :edit, :update, :destroy]
 
   # GET /dias_semanas

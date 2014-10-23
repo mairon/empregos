@@ -1,6 +1,5 @@
 class Empresa < ActiveRecord::Base
 	has_one :empresa_perfil, dependent: :destroy
-	has_one :user, dependent: :destroy
 	belongs_to :city
 	belongs_to :state
 	validates :cnpj, :razao_social, :ramo_id, :nome_fantasia,

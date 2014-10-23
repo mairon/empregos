@@ -1,4 +1,6 @@
 class DocumentosEmpresaPerfilsController < ApplicationController
+  before_action :authenticate_user!  
+
   before_action :set_documentos_empresa_perfil, only: [:show, :edit, :update, :destroy]
 
   # GET /documentos_empresa_perfils

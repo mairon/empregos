@@ -1,4 +1,6 @@
 class Admin::DocumentosController < ApplicationController
+  before_action :authenticate_user!  
+
   before_action :set_admin_documento, only: [:show, :edit, :update, :destroy]
 
   # GET /admin/documentos

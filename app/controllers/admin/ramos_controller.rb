@@ -1,4 +1,6 @@
 class Admin::RamosController < ApplicationController
+  before_action :authenticate_user!  
+
   before_action :set_ramo, only: [:show, :edit, :update, :destroy]
 
   # GET /admin/ramos

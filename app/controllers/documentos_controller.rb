@@ -1,4 +1,6 @@
 class DocumentosController < ApplicationController
+  before_action :authenticate_user!  
+
   before_action :set_documento, only: [:show, :edit, :update, :destroy]
 
   # GET /documentos

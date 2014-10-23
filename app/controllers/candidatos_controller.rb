@@ -1,4 +1,6 @@
 class CandidatosController < ApplicationController
+  before_action :authenticate_user!  
+
   before_action :set_candidato, only: [:show, :edit, :update, :destroy]
 
   # GET /candidatos

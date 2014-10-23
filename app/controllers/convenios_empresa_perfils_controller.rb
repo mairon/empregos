@@ -1,4 +1,6 @@
 class ConveniosEmpresaPerfilsController < ApplicationController
+  before_action :authenticate_user!  
+
   before_action :set_convenios_empresa_perfil, only: [:show, :edit, :update, :destroy]
 
   # GET /convenios_empresa_perfils

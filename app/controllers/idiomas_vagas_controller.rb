@@ -1,4 +1,6 @@
 class IdiomasVagasController < ApplicationController
+  before_action :authenticate_user!  
+
   before_action :set_idiomas_vaga, only: [:show, :edit, :update, :destroy]
 
   # GET /idiomas_vagas
