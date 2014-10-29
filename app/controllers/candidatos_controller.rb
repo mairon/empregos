@@ -31,10 +31,8 @@ class CandidatosController < ApplicationController
     respond_to do |format|
       if @candidato.save
         format.html { redirect_to @candidato, notice: 'Candidato was successfully created.' }
-        format.json { render :show, status: :created, location: @candidato }
       else
         format.html { render :new }
-        format.json { render json: @candidato.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -45,10 +43,8 @@ class CandidatosController < ApplicationController
     respond_to do |format|
       if @candidato.update(candidato_params)
         format.html { redirect_to @candidato, notice: 'Candidato was successfully updated.' }
-        format.json { render :show, status: :ok, location: @candidato }
       else
         format.html { render :edit }
-        format.json { render json: @candidato.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -59,7 +55,6 @@ class CandidatosController < ApplicationController
     @candidato.destroy
     respond_to do |format|
       format.html { redirect_to candidatos_url, notice: 'Candidato was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 

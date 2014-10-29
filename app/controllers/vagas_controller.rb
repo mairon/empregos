@@ -31,28 +31,20 @@ class VagasController < ApplicationController
   def create
     @vaga = Vaga.new(vaga_params)
 
-    respond_to do |format|
-      if @vaga.save
-        format.html { redirect_to @vaga, notice: 'Vaga was successfully created.' }
-        format.json { render :show, status: :created, location: @vaga }
-      else
-        format.html { render :new }
-        format.json { render json: @vaga.errors, status: :unprocessable_entity }
-      end
+    if @vaga.save
+      redirect_to @vaga
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /vagas/1
   # PATCH/PUT /vagas/1.json
   def update
-    respond_to do |format|
-      if @vaga.update(vaga_params)
-        format.html { redirect_to @vaga, notice: 'Vaga was successfully updated.' }
-        format.json { render :show, status: :ok, location: @vaga }
-      else
-        format.html { render :edit }
-        format.json { render json: @vaga.errors, status: :unprocessable_entity }
-      end
+    if @vaga.update(vaga_params)
+      redirect_to @vaga
+    else
+      render :edit
     end
   end
 
@@ -60,10 +52,7 @@ class VagasController < ApplicationController
   # DELETE /vagas/1.json
   def destroy
     @vaga.destroy
-    respond_to do |format|
-      format.html { redirect_to vagas_url, notice: 'Vaga was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to vagas_url
   end
 
   private
@@ -84,8 +73,10 @@ class VagasController < ApplicationController
             :representante, :comerical, :comercial_tipo, :periodo, 
             :empresa_id, :cargo_id, :numero_vagas, :sexo, :pne, 
             :estado_civil, :outros_detalhes_candito, :escolaridade, 
-            :area_tecnologo, :area_superior, :status_escolaridade, 
-            :cursando_periodo, :experiencia, :conhecimentos_desejaveis,
-            :tipo_vaga, dias_semana_ids: [], idiomas_vagas_attributes: [ :_destroy, :idioma_id, :nivel ])
+            :area_tecnologo, :area_superior, :status_escolaridade, :mostrar_salario,
+            :cursando_periodo, :experiencia, :conhecimentos_desejaveis, :salario_inicial,
+            :salario_pos_exp, :salario_por_hms, :salario_comissao, :salario_comissao_porcen,
+            :salario_bonif, :salario_premiacao, :tipo_vaga, dias_semana_ids: [], 
+            idiomas_vagas_attributes: [ :_destroy, :idioma_id, :nivel ])
     end
 end

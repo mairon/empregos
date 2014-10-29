@@ -105,14 +105,6 @@
       </div>
 
       <div class="control-group formSep">
-        <h5 class="heading">CARGA HORARIA DIARIO</h5>
-        <table>
-          <tr>
-          </tr>
-        </table>
-      </div>
-
-      <div class="control-group formSep">
         <h5 class="heading">PREFERENCIA DE CANDIDATOS:</h5>
         <table>
           <tr height="30">
@@ -213,6 +205,45 @@
       </div>
 
 
+      <div class="control-group formSep">
+        <h5 class="heading">SALARIO:</h5>
+        <table>
+          <tr>
+            <%= f.radio_button :mostrar_salario, true, :style => "margin-top: -2px;", onblur: "BoxValores(1)", onclick: "BoxValores(0)", :checked => true %>Divulgar Salario
+            <%= f.radio_button :mostrar_salario, false, :style => "margin-top: -2px;", onblur: "BoxValores(0)", onclick: "BoxValores(1)" %>A combinar
+          </tr>
+        </table>
+
+        <table  id="box_salario">
+          <tr>
+            <td colspan="5">
+              Salario inicial: <%= f.text_field :salario_inicial, class: 'money', dir: "rtl", size: 15 %>
+              <%= f.radio_button :salario_por_hms, 0, :style => "margin-top: -2px;" %> Por hora
+              <%= f.radio_button :salario_por_hms, 1, :style => "margin-top: -2px;" %> Por mês
+              <%= f.radio_button :salario_por_hms, 2, :style => "margin-top: -2px;" %> Por semana
+            </td>
+          </tr>
+          <tr>
+            <td >Salário após experiência: <%= f.text_field :salario_pos_exp, class: 'money', dir: "rtl", size: 15 %></td>
+          </tr>
+          <tr>
+            <td>
+              <%= f.check_box :salario_comissao, :style => "margin-top: -2px;" %>Comissão <%= f.text_field :salario_comissao_porcen, size: 5 %>%
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <%= f.check_box :salario_bonif, :style => "margin-top: -2px;" %>Bonificação
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <%= f.check_box :salario_premiacao, :style => "margin-top: -2px;" %>Premiação
+            </td>
+          </tr>
+        </table>
+      </div>
+
   </div>
   <div class="actions">
     <%= f.submit'Salvar', data: { disable_with: "Aguarde..." }, class: "btn btn-gebo" %> <%= link_to 'Sair', vagas_path, :class => "btn" %>
@@ -225,4 +256,13 @@
     if ($("#vaga_tipo_vaga").val() != ''){
     };  
   });
+
+  function BoxValores(valor){
+    if (valor == '0'){
+      $("#box_salario").css("display", "table-cell");
+    }else{
+      $("#box_salario").css("display", "none");
+    }
+  }
+
 </script>
