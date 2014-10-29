@@ -5,10 +5,7 @@ class EmpresasController < ApplicationController
 
   def check_empresa
     @empresa = Empresa.find_by_cnpj(params[:empresa][:cnpj])
-
-    respond_to do |format|
-     format.json { render :json => !@empresa }
-    end
+    render :json => !@empresa
   end
 
   # GET /empresas
@@ -38,28 +35,20 @@ class EmpresasController < ApplicationController
   # POST /empresas.json
   def create
     @empresa = Empresa.new(empresa_params)
-    respond_to do |format|
-      if @empresa.save
-        format.html { redirect_to @empresa }
-        format.json { render :show, status: :created, location: @empresa }
-      else
-        format.html { render :new }
-        format.json { render json: @empresa.errors, status: :unprocessable_entity }
-      end
+    if @empresa.save
+      redirect_to @empresa
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /empresas/1
   # PATCH/PUT /empresas/1.json
   def update
-    respond_to do |format|
-      if @empresa.update(empresa_params)
-        format.html { redirect_to @empresa }
-        format.json { render :show, status: :ok, location: @empresa }
-      else
-        format.html { render :edit }
-        format.json { render json: @empresa.errors, status: :unprocessable_entity }
-      end
+    if @empresa.update(empresa_params)
+       render :show, status: :ok, location: @empresa
+    else
+      render :edit
     end
   end
 
@@ -67,10 +56,7 @@ class EmpresasController < ApplicationController
   # DELETE /empresas/1.json
   def destroy
     @empresa.destroy
-    respond_to do |format|
-      format.html { redirect_to empresas_url }
-      format.json { head :no_content }
-    end
+    redirect_to empresas_url
   end
 
   private
