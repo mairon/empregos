@@ -8,22 +8,12 @@ class Admin::StatesController < ApplicationController
 
   def show
     @state = State.find(params[:id])
-
-    respond_to do |format|
-      format.html
-      format.json { render json: @state }
-    end
   end
 
   # GET /states/new
   # GET /states/new.json
   def new
     @state = State.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @state }
-    end
   end
 
   # GET /states/1/edit

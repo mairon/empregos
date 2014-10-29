@@ -5,7 +5,6 @@
 //= require js/jquery.cookie.min
 //= require bootstrap/js/bootstrap.min
 //= require lib/jBreadcrumbs/js/jquery.jBreadCrumb.1.1.min
-//= require lib/colorbox/jquery.colorbox.min
 //= require js/ios-orientationchange-fix
 //= require lib/antiscroll/antiscroll
 //= require lib/antiscroll/jquery-mousewheel
@@ -16,8 +15,6 @@
 //= require js/jquery.wookmark
 //= require js/jquery.mediaTable.min
 //= require js/jquery.peity.min
-//= require lib/list_js/list.min
-//= require lib/chosen/chosen.jquery.min
 //= require js/gebo_dashboard
 //= require jquery_ujs
 //= require lib/datatables/jquery.dataTables.min
@@ -49,8 +46,6 @@ $(document).ready(function() {
 
   //foco no primeiro campo
   $("input:text:eq(0):visible").focus();
-  //campo select personalizado
-  $(".chzn-select").chosen();
   //mascara de moeda
   $(".money").maskMoney({thousands:".", decimal:","});
   //* show all elements & remove preloader

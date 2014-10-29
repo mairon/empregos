@@ -12,8 +12,6 @@
  *= require bootstrap/css/bootstrap-responsive
  *= require css/blue
  *= require lib/jBreadcrumbs/css/BreadCrumb
- *= require lib/chosen/chosen
- *= require lib/colorbox/colorbox
  *= require lib/sticky/sticky
  *= require lib/datatables/css/TableTools
  *= require LiveSearchGridPanel
