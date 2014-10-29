@@ -4,7 +4,6 @@
 //= require js/jquery.actual.min
 //= require js/jquery.cookie.min
 //= require bootstrap/js/bootstrap.min
-//= require lib/qtip2/jquery.qtip.min
 //= require lib/jBreadcrumbs/js/jquery.jBreadCrumb.1.1.min
 //= require lib/colorbox/jquery.colorbox.min
 //= require js/ios-orientationchange-fix
@@ -17,9 +16,6 @@
 //= require js/jquery.wookmark
 //= require js/jquery.mediaTable.min
 //= require js/jquery.peity.min
-//= require lib/flot/jquery.flot.min
-//= require lib/flot/jquery.flot.resize.min
-//= require lib/flot/jquery.flot.pie.min
 //= require lib/list_js/list.min
 //= require lib/chosen/chosen.jquery.min
 //= require js/gebo_dashboard
