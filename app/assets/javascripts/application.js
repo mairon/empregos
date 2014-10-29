@@ -20,7 +20,6 @@
 //= require lib/flot/jquery.flot.min
 //= require lib/flot/jquery.flot.resize.min
 //= require lib/flot/jquery.flot.pie.min
-//= require lib/fullcalendar/fullcalendar.min
 //= require lib/list_js/list.min
 //= require lib/chosen/chosen.jquery.min
 //= require js/gebo_dashboard
