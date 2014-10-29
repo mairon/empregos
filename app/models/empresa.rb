@@ -22,7 +22,9 @@ class Empresa < ActiveRecord::Base
   end
 
   def full_address
-    "#{endereco}, #{cep}, #{city.name}, #{state.name}"
+  	unless self.endereco.blank?
+	    "#{endereco}, #{cep}, #{city.name}, #{state.name}"
+	end
   end
 
 end

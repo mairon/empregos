@@ -2,43 +2,15 @@ class Admin::StatesController < ApplicationController
   before_action :authenticate_user!  
 
   before_action :set_state, only: [:show, :edit, :update, :destroy]
-  # GET /states
-  # GET /states.json
   def index
-  @states = State.select('id,acronym,name')
-  respond_to do |format|
-
-        format.html # index.html.erb
-        format.js do
-          offset = (params["page"].to_i-1)*params["rp"].to_i if params["page"] and params["rp"]
-
-          # Conditions passed by flexigrid
-          conditions = [params["qtype"]+"=?", params["query"]] if params["query"] and params["query"].strip!=""
-          people = State.where(conditions)
-
-          # Total count of lines, before paginating
-          total = people.count
-
-          # People from the page
-          people_de_la_page = people
-            .order([params["sortname"], params["sortorder"]].join(" "))
-            .offset(offset)
-            .limit(params["rp"]).all
-          # Rendering
-          render :json => {
-              :rows=>people_de_la_page.collect{|r| {:id=>r.id, :cell=>[r.acronym, r.name]}}, 
-              :page=>params["page"],
-              :total=>total
-            }.to_json
-        end #format.js
-      end #respond_to
-  end #index method
+    @states = State.select('id,acronym,name')
+  end
 
   def show
     @state = State.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @state }
     end
   end

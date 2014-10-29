@@ -3,3 +3,18 @@
 	<%= f.label :cpfcnpj, "CPF" %>
 	<%= f.text_field :cpfcnpj, class: 'cpf' %>
 </p>
+
+<script>
+$(document).ready(function () {
+  $("#new_user").validate({
+  debug: true,
+  rules: {
+  "user[cpfcnpj]": {required: true, cpf: true},
+  "user[password]": {required: true, minlength: 6},
+  "user[password_confirmation]": {required: true, equalTo: "#user_password"}
+  },submitHandler:function(form) {
+      form.submit();
+    }
+  });
+});
+</script>

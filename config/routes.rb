@@ -45,7 +45,6 @@ Rails.application.routes.draw do
   get 'check_email', to: 'users#check_email', as: "users/check_email"
   get 'check_empresa', to: 'empresas#check_empresa', as: "check_empresa"
 
-  match 'acesso', to: 'logins#new', via: [:get, :post]
   get 'main', to: 'main#index'
   namespace :admin do
     get '/painel', to: 'painel#index'
