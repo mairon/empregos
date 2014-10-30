@@ -1,5 +1,5 @@
 	class State < ActiveRecord::Base
-	has_many :cities
+	has_many :cities, dependent: :restrict_with_error
   validates :acronym,
           :name,
           :presence => true

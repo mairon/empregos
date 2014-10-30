@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!  
 
-  before_action :set_user, only: [:show, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
   def check_email
     @user = User.find_by_cpfcnpj(params[:user][:cpfcnpj])
 
@@ -18,12 +18,21 @@ class UsersController < ApplicationController
 	  @user = User.new
 	end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    if @user.update(user_params)
+      redirect_to users_url
+    else
+      render :edit
+    end
+  end
+
   def destroy
     @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url }
-      format.json { head :no_content }
-    end
+    redirect_to users_url
   end
 
   def show
@@ -38,7 +47,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:cpfcnpj, :password, :tipo)
+      params.require(:user).permit(:cpfcnpj, :password, :tipo, :nome)
     end
 
 end

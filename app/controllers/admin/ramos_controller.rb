@@ -10,7 +10,6 @@ class Admin::RamosController < ApplicationController
   end
 
   # GET /admin/ramos/1
-  # GET /admin/ramos/1.json
   def show
   end
 
@@ -24,32 +23,21 @@ class Admin::RamosController < ApplicationController
   end
 
   # POST /admin/ramos
-  # POST /admin/ramos.json
   def create
     @ramo = Ramo.new(ramo_params)
-
-    respond_to do |format|
-      if @ramo.save
-        format.html { redirect_to admin_ramos_url }
-        format.json { render :show, status: :created, location: @ramo }
-      else
-        format.html { render :new }
-        format.json { render json: @ramo.errors, status: :unprocessable_entity }
-      end
+    if @ramo.save
+      redirect_to admin_ramos_url
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /admin/ramos/1
-  # PATCH/PUT /admin/ramos/1.json
   def update
-    respond_to do |format|
-      if @ramo.update(ramo_params)
-        format.html { redirect_to admin_ramos_url }
-        format.json { render :show, status: :ok, location: @ramo }
-      else
-        format.html { render :edit }
-        format.json { render json: @ramo.errors, status: :unprocessable_entity }
-      end
+    if @ramo.update(ramo_params)
+      redirect_to admin_ramos_url
+    else
+      render :edit
     end
   end
 
@@ -57,10 +45,7 @@ class Admin::RamosController < ApplicationController
   # DELETE /admin/ramos/1.json
   def destroy
     @ramo.destroy
-    respond_to do |format|
-      format.html { redirect_to admin_ramos_url }
-      format.json { head :no_content }
-    end
+    redirect_to admin_ramos_url
   end
 
   private

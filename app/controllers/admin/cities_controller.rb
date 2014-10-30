@@ -40,32 +40,18 @@ class Admin::CitiesController < ApplicationController
   end
 
   # PUT /cities/1
-  # PUT /cities/1.json
   def update
-    @city = City.find(city_params)
-
-    respond_to do |format|
-      if @city.update_attributes(params[:city])
-        format.html { redirect_to admin_cities_url }
-      else
-        format.html { render action: "edit" }
-      end
+    if @city.update(city_params)
+      redirect_to admin_cities_url
+    else
+      render :edit
     end
   end
 
   # DELETE /cities/1
-  # DELETE /cities/1.json
   def destroy
-    @city = City.find(params[:id])
-    begin
     @city.destroy
-      flash[:success] = "Removido com Sucesso"
-    rescue ActiveRecord::DeleteRestrictionError => e
-      @city.errors.add(:base, e)
-      flash[:error] = "Não é possível remover o cadastro porque ele possui vínculo com outro cadastro."
-    ensure
-      redirect_to admin_cities_url
-    end
+    redirect_to admin_cities_url
   end
 
   private
@@ -73,6 +59,10 @@ class Admin::CitiesController < ApplicationController
     def set_city
       @ramo = Ramo.find(params[:id])
     end
+    def set_city
+      @city = City.find(params[:id])
+    end
+
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def city_params

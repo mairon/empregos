@@ -26,45 +26,27 @@ class Admin::StatesController < ApplicationController
   def create
     @state = State.new(state_params)
 
-    respond_to do |format|
-      if @state.save
-        format.html { redirect_to admin_states_url }
-      else
-        format.html { render action: "new" }
-      end
+    if @state.save
+      redirect_to admin_states_url
+    else
+      render action: "new"
     end
   end
 
   # PUT /states/1
-  # PUT /states/1.json
   def update
-    @state = State.find(params[:id])
-
-    respond_to do |format|
-      if @state.update_attributes(state_params)
-        format.html { redirect_to admin_states_url }
-      else
-        format.html { render action: "edit" }
-      end
+    if @state.update(state_params)
+      redirect_to admin_states_url
+    else
+      render :edit
     end
   end
 
   # DELETE /states/1
-  # DELETE /states/1.json
   def destroy
-    @state = State.find(params[:id])
-    begin
-      @state.destroy
-      flash[:success] = "Removido com Sucesso" 
-    rescue ActiveRecord::DeleteRestrictionError => e
-      @state.errors.add(:base, e)
-      flash[:error] = "Não é possível remover o cadastro porque ele possui vínculo com outro cadastro."
-    ensure
-      redirect_to admin_states_url
-    end
-
+    @state.destroy
+    redirect_to admin_states_url
   end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_state
