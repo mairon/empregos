@@ -10,13 +10,9 @@
   </thead>
 
   <tbody>
-    <% @dias_semanas_empresa_perfils.each do |dias_semanas_empresa_perfil| %>
+    <% @days.each do |d| %>
       <tr>
-        <td><%= dias_semanas_empresa_perfil.empresa_perfil_id %></td>
-        <td><%= dias_semanas_empresa_perfil.dias_semana_id %></td>
-        <td><%= link_to 'Show', dias_semanas_empresa_perfil %></td>
-        <td><%= link_to 'Edit', edit_dias_semanas_empresa_perfil_path(dias_semanas_empresa_perfil) %></td>
-        <td><%= link_to 'Destroy', dias_semanas_empresa_perfil, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= d.vale_transporte %></td>
       </tr>
     <% end %>
   </tbody>

@@ -16,7 +16,7 @@
       <div class="control-group formSep">
           <table>
             <tr>
-              <td align="right">Empresa:</td>
+              <td align="right">Empresa: <div class="result"></div></td>
               <td><%= f.collection_select :empresa_id, Empresa.select('id,razao_social').order('2'),:id, :razao_social,{prompt: 'Selecione a Empresa'} %><span class="f_req">*</span></td>
             </tr>
           </table>
@@ -35,9 +35,9 @@
                           ["Selecione o tipo de vaga", ""],
                           ["Temporário", "1"],
                           ["Extras", "2"],
-                          ["Estágio", "3"],
-                          ["Trainne", "4"],
-                          ["Free-Lancer", "5"],
+                          ["Free-Lancer", "3"],
+                          ["Estágio", "4"],
+                          ["Trainne", "5"],
                           ["Efetivo com registro em carteira", "6"],
                           ["Autonomo", "7"],
                           ["Representante Comercial", "8"],
@@ -59,19 +59,28 @@
         </table>
       </div>
       <div class="control-group formSep">
-        <h5 class="heading">PERIODO EM QUE O CANDIDATO IRA TRABALHAR</h5>
+        <h5 class="heading">PERIODO EM QUE O CANDIDATO IRA TRABALHAR:</h5>
+          <table style="display: none;" class="dias">
+            <tr>
+              <td width="130" align="right">Dias:</td>
+              <td><%= f.select :periodo, 1..99 %><span class="f_req">*</span></td>
+            </tr>
+          </table>
+
           <table>
             <tr>
-              <td align="right">Dias:</td>
-              <td><%= f.select :periodo, 1..99 %><span class="f_req">*</span></td>
-
-              <td width="60" align="right">Turno:</td>
-              <td width="60"><%= f.check_box :turno_manha, :style => "margin-top: -2px;" %>Manhã</td>
-              <td width="60"><%= f.check_box :turno_tarde, :style => "margin-top: -2px;" %>Tarde</td>
-              <td width="60"><%= f.check_box :turno_noite, :style => "margin-top: -2px;" %>Noite</td>
-              <td> <b> ou </b> Horário específico entre: <%= f.time_select :turno_especifico_inicio %> - <%= f.time_select :turno_espeficico_final %></td>
-              <td>Carga Horaria por dia:<%= f.select :carga_horaria, 1..24 %></td>
-  
+              <td height="35" align="right">Turno:</td>
+              <td><%= f.check_box :turno_manha, :style => "margin-top: -2px;" %>Manhã</td>
+              <td><%= f.check_box :turno_tarde, :style => "margin-top: -2px;" %>Tarde</td>
+              <td><%= f.check_box :turno_noite, :style => "margin-top: -2px;" %>Noite</td>
+            </tr>
+            <tr>
+              <td align="right">Horário específico: </td> 
+              <td colspan="2"><%= f.time_select :turno_especifico_inicio %> às <%= f.time_select :turno_espeficico_final %></td>
+            </tr>
+            <tr height="45">
+              <td align="right">Carga Horaria por dia:</td>
+              <td><%= f.select :carga_horaria, 1..24 %></td>
             </tr>
           </table>
       </div>
@@ -83,7 +92,7 @@
               <% @dias_semanas.each do |c| %>
                 <td>
                   <label class="checkbox" >
-                    <%= check_box_tag "vaga[dias_semana_ids][]", c.id, @vaga.dias_semanas.include?(c) %> <%= c.nome %>
+                    <%= check_box_tag "vaga[dias_semana_ids][]", c.id, @vaga.dias_semanas.include?(c), class: "id#{c.id}" %> <%= c.nome %>
                   </label>
                 </td>
               <% end %>
@@ -144,8 +153,8 @@
 
           <tr height="30">
             <td align="right">Outros:</td>
-            <td width="250"><%= f.radio_button :estado_civil, 0, :style => "margin-top: -2px;" %> Não fumante</td>
-            <td width="250" colspan="4"><%= f.radio_button :estado_civil, 1, :style => "margin-top: -2px;" %> Apenas candidatos moradores na minha cidade</td>
+            <td width="250"><%= f.check_box :nao_fumante, :style => "margin-top: -2px;" %> Não fumante</td>
+            <td width="250" colspan="4"><%= f.check_box :candidatos_regiao, :style => "margin-top: -2px;" %> Apenas candidatos moradores na minha cidade</td>
           </tr>
         </table>
       </div>
@@ -209,8 +218,10 @@
         <h5 class="heading">SALARIO:</h5>
         <table>
           <tr>
-            <%= f.radio_button :mostrar_salario, true, :style => "margin-top: -2px;", onblur: "BoxValores(1)", onclick: "BoxValores(0)", :checked => true %>Divulgar Salario
-            <%= f.radio_button :mostrar_salario, false, :style => "margin-top: -2px;", onblur: "BoxValores(0)", onclick: "BoxValores(1)" %>A combinar
+            <%= f.radio_button :mostrar_salario, true, onchange: "BoxValores('true')" %> Divulgar Salario
+            <%= f.radio_button :mostrar_salario, false, onchange: "BoxValores('false')" %> A combinar
+
+            <input type="hidden" value="<%= @vaga.mostrar_salario %>" id="mostra_sa">
           </tr>
         </table>
 
@@ -252,17 +263,55 @@
 <% end %>
 
 <script type="text/javascript">
+  $("#vaga_empresa_id").focus();
+  $("#vaga_empresa_id").blur(function(){
+      $.each([ <%= @dias_semanas.map  { |t| t.id }.join(', ') %> ], function( index, value ) {
+        $(".id"+value).prop('checked',(value == 1));
+      });
+
+    $.getJSON("/dias_semanas_empresa_perfils.json?q="+ $("#vaga_empresa_id").val(), function(data) {
+      var items = [];
+      $.each( data, function( key, val ) {
+        items.push( $(".id"+val.id).attr('checked','checked'));
+        });
+    });
+  });
+
+$(document).ready(function() {
+
+  if ($("#vaga_tipo_vaga").val() == '1' || $("#vaga_tipo_vaga").val() == '2' || $("#vaga_tipo_vaga").val() == '3'){
+    $(".dias").css("display", "table-cell").fadeIn();
+  }else{
+    $(".dias").css("display", "none");
+  };  
+
+
   $("#vaga_tipo_vaga").blur(function(){
-    if ($("#vaga_tipo_vaga").val() != ''){
+    if ($("#vaga_tipo_vaga").val() == '1' || $("#vaga_tipo_vaga").val() == '2' || $("#vaga_tipo_vaga").val() == '3'){
+      $(".dias").css("display", "table-cell").fadeIn();
+    }else{
+      $(".dias").css("display", "none");
     };  
   });
 
-  function BoxValores(valor){
-    if (valor == '0'){
+  if ($("#mostra_sa") == 'true'){
       $("#box_salario").css("display", "table-cell");
     }else{
       $("#box_salario").css("display", "none");
-    }
-  }
+    };
+});
+
+
+
+  function BoxValores(valor){
+    $("#mostra_sa").val(valor);
+    if ($("#mostra_sa").val() == 'true'){
+      $("#box_salario").css("display", "table-cell");
+    }else{
+      $("#box_salario").css("display", "none");
+    };
+  };
 
 </script>
+
+ 

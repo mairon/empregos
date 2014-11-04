@@ -44,8 +44,6 @@ $(document).ready(function() {
       });
 
 
-  //foco no primeiro campo
-  $("input:text:eq(0):visible").focus();
   //mascara de moeda
   $(".money").maskMoney({thousands:".", decimal:","});
   //* show all elements & remove preloader

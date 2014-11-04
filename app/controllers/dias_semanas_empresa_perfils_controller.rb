@@ -6,7 +6,9 @@ class DiasSemanasEmpresaPerfilsController < ApplicationController
   # GET /dias_semanas_empresa_perfils
   # GET /dias_semanas_empresa_perfils.json
   def index
-    @dias_semanas_empresa_perfils = DiasSemanasEmpresaPerfil.all
+    @days = DiasSemanasEmpresaPerfil.select('dias_semanas_empresa_perfils.dias_semana_id').joins(:empresa_perfil).where(empresa_perfils: {empresa_id: params[:q]})
+    list = @days.map {|u| Hash[ id: u.dias_semana_id]}
+    render json: list
   end
 
   # GET /dias_semanas_empresa_perfils/1

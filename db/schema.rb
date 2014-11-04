@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141029022905) do
+ActiveRecord::Schema.define(version: 20141104033604) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -314,6 +314,8 @@ ActiveRecord::Schema.define(version: 20141029022905) do
     t.decimal  "salario_comissao_porcen",            precision: 15, scale: 2, default: 0.0
     t.boolean  "salario_bonif"
     t.boolean  "salario_premiacao"
+    t.boolean  "nao_fumante"
+    t.boolean  "candidatos_regiao"
   end
 
 end

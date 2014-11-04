@@ -58,7 +58,7 @@ class VagasController < ApplicationController
   private
 
     def load_resources
-      @dias_semanas = DiasSemana.all
+      @dias_semanas = DiasSemana.includes(:vagas)
     end
 
     # Use callbacks to share common setup or constraints between actions.
@@ -75,8 +75,8 @@ class VagasController < ApplicationController
             :estado_civil, :outros_detalhes_candito, :escolaridade, 
             :area_tecnologo, :area_superior, :status_escolaridade, :mostrar_salario,
             :cursando_periodo, :experiencia, :conhecimentos_desejaveis, :salario_inicial,
-            :salario_pos_exp, :salario_por_hms, :salario_comissao, :salario_comissao_porcen,
-            :salario_bonif, :salario_premiacao, :tipo_vaga, dias_semana_ids: [], 
-            idiomas_vagas_attributes: [ :_destroy, :idioma_id, :nivel ])
+            :salario_pos_exp, :salario_por_hms, :salario_comissao, :salario_comissao_porcen, 
+            :nao_fumante, :candidatos_regiao, :salario_bonif, :salario_premiacao, 
+            :tipo_vaga, dias_semana_ids: [], idiomas_vagas_attributes: [ :_destroy, :idioma_id, :nivel ])
     end
 end
