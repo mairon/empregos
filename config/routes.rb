@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  resources :candidato_idiomas
+
+  resources :formacaos
+
+  resources :candidato_formacaos
+
   resources :dias_semanas_empresa_perfils
 
   resources :candidatos

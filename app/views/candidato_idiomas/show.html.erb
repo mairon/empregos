@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Idioma:</strong>
+  <%= @candidato_idioma.idioma_id %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @candidato_idioma.estado %>
+</p>
+
+<%= link_to 'Edit', edit_candidato_idioma_path(@candidato_idioma) %> |
+<%= link_to 'Back', candidato_idiomas_path %>

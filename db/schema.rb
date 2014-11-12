@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141104033604) do
+ActiveRecord::Schema.define(version: 20141112041959) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,30 @@ ActiveRecord::Schema.define(version: 20141104033604) do
   create_table "admin_documentos", force: true do |t|
     t.string   "nome",       limit: 150
     t.boolean  "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "candidato_formacaos", force: true do |t|
+    t.integer  "candidato_id"
+    t.integer  "formacao_id"
+    t.integer  "curso_id"
+    t.integer  "status"
+    t.integer  "inicio_mes"
+    t.integer  "inicio_ano"
+    t.integer  "final_mes"
+    t.integer  "final_ano"
+    t.string   "instituicao"
+    t.integer  "pais_id"
+    t.integer  "estado_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "candidato_idiomas", force: true do |t|
+    t.integer  "candidato_id"
+    t.integer  "idioma_id"
+    t.integer  "estado"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -215,6 +239,12 @@ ActiveRecord::Schema.define(version: 20141104033604) do
     t.string   "entrev_bairro",       limit: 100
     t.float    "latitude"
     t.float    "longitude"
+  end
+
+  create_table "formacaos", force: true do |t|
+    t.string   "descricao"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "idiomas", force: true do |t|

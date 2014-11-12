@@ -1,0 +1,25 @@
+<%= form_for(@candidato_idioma) do |f| %>
+  <% if @candidato_idioma.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@candidato_idioma.errors.count, "error") %> prohibited this candidato_idioma from being saved:</h2>
+
+      <ul>
+      <% @candidato_idioma.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :idioma_id %><br>
+    <%= f.number_field :idioma_id %>
+  </div>
+  <div class="field">
+    <%= f.label :estado %><br>
+    <%= f.number_field :estado %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

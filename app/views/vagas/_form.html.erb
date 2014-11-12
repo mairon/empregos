@@ -100,7 +100,7 @@
           </table>
       </div>
 
-      <div class="control-group formSep">
+      <div class="control-group formSep estagio" style="display: none;">
         <h5 class="heading">O CANDIDATO DEVERA ESTAR CURSANDO</h5>
           <table>
             <tr>
@@ -278,39 +278,52 @@
   });
 
 $(document).ready(function() {
-
+  //vagas temporarias load do campo
   if ($("#vaga_tipo_vaga").val() == '1' || $("#vaga_tipo_vaga").val() == '2' || $("#vaga_tipo_vaga").val() == '3'){
     $(".dias").css("display", "table-cell").fadeIn();
   }else{
     $(".dias").css("display", "none");
-  };  
+  };
 
+  //vagas estagio load
+  if ($("#vaga_tipo_vaga").val() == '4'){
+    $(".estagio").css("display", "table").fadeIn();
+  }else{
+    $(".estagio").css("display", "none");
+  };
 
+  //vagas temporarias saida do campo
   $("#vaga_tipo_vaga").blur(function(){
     if ($("#vaga_tipo_vaga").val() == '1' || $("#vaga_tipo_vaga").val() == '2' || $("#vaga_tipo_vaga").val() == '3'){
       $(".dias").css("display", "table-cell").fadeIn();
     }else{
       $(".dias").css("display", "none");
+    };
+
+    //vagas estagio
+    if ( $( "#vaga_tipo_vaga" ).val() == '4'){
+      ($( ".estagio" ).css( "display", "table" )).fadeIn( "slow" );
+    }else{
+      $( ".estagio" ).css( "display", "none" );
     };  
+
   });
 
   if ($("#mostra_sa") == 'true'){
-      $("#box_salario").css("display", "table-cell");
-    }else{
-      $("#box_salario").css("display", "none");
-    };
+    $("#box_salario").css("display", "table-cell");
+  }else{
+    $("#box_salario").css("display", "none");
+  };
 });
 
-
-
-  function BoxValores(valor){
-    $("#mostra_sa").val(valor);
-    if ($("#mostra_sa").val() == 'true'){
-      $("#box_salario").css("display", "table-cell");
-    }else{
-      $("#box_salario").css("display", "none");
-    };
+function BoxValores(valor){
+  $("#mostra_sa").val(valor);
+  if ($("#mostra_sa").val() == 'true'){
+    $("#box_salario").css("display", "table-cell");
+  }else{
+    $("#box_salario").css("display", "none");
   };
+};
 
 </script>
 

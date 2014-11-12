@@ -1,164 +1,52 @@
-<p id="notice"><%= notice %></p>
+<div class="row-fluid">
+  <div class="span12">
+    <h3 class="heading"><span style="color:#999; margin-right: 18%">1. DADOS PESSOAIS</span> <span >2. DADOS PROFISSIONAIS</span></h3>
+    <div class="control-group formSep">
+      <h5 class="heading">Formação Acadêmica</h5>
+      <%= render :partial=>"candidato_formacaos/index_formacao", :locals=>{:candidato_formacaos => @candidato.candidato_formacaos} %>
+      <%= link_to 'Add Formação', '#', class: 'open_formacao' %>
+      <div class="formacao" style="display:none">
+        <%= render :partial=>"candidato_formacaos/new_formacao", :locals=>{:candidato_formacao=>CandidatoFormacao.new(:candidato_id=>@candidato.id)} %>
+      </div>
+    </div>
 
-<p>
-  <strong>Nome:</strong>
-  <%= @candidato.nome %>
-</p>
+    <div class="control-group formSep">
+      <h5 class="heading">Idiomas</h5>
+      <%= render :partial=>"candidato_idiomas/index_idioma", :locals=>{:candidato_idiomas => @candidato.candidato_idiomas} %>
+      <%= link_to 'Add Idioma', '#', class: 'open_idioma' %>
+      <div class="idioma" style="display:none">
+        <%= render :partial=>"candidato_idiomas/new_idioma", :locals=>{:candidato_idioma=>CandidatoIdioma.new(:candidato_id=>@candidato.id)} %>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<br>
+<%= link_to 'Voltar', edit_candidato_path(@candidato), class: "btn btn-gebo" %>
+<%= link_to 'Sair', candidatos_path, class: "btn btn-gebo" %>
 
-<p>
-  <strong>Rg:</strong>
-  <%= @candidato.rg %>
-</p>
+<script type="text/javascript">
 
-<p>
-  <strong>Uf:</strong>
-  <%= @candidato.uf %>
-</p>
+$('.open_formacao').toggle(
+  function() { $('.formacao').fadeIn();
+               $('.open_formacao').text("Fechar");
+               $('#candidato_formacao_formacao_id').focus();
 
-<p>
-  <strong>Cpf:</strong>
-  <%= @candidato.cpf %>
-</p>
+  },
+  function() { $('.formacao').fadeOut();
+               $('.open_formacao').text("Add Formacao");
+  }
+);
+$('.open_idioma').toggle(
+  function() { $('.idioma').fadeIn();
+               $('.open_idioma').text("Fechar");
+               $('#candidato_idioma_idioma_id').focus();
 
-<p>
-  <strong>Data nascimento:</strong>
-  <%= @candidato.data_nascimento %>
-</p>
+  },
+  function() { $('.idioma').fadeOut();
+               $('.open_idioma').text("Add Formacao");
+  }
+);
 
-<p>
-  <strong>Idade:</strong>
-  <%= @candidato.idade %>
-</p>
-
-<p>
-  <strong>Nome mae:</strong>
-  <%= @candidato.nome_mae %>
-</p>
-
-<p>
-  <strong>Contato cel:</strong>
-  <%= @candidato.contato_cel %>
-</p>
-
-<p>
-  <strong>Operadora:</strong>
-  <%= @candidato.operadora_id %>
-</p>
-
-<p>
-  <strong>Contato residencial:</strong>
-  <%= @candidato.contato_residencial %>
-</p>
-
-<p>
-  <strong>Email 01:</strong>
-  <%= @candidato.email_01 %>
-</p>
-
-<p>
-  <strong>Email 02:</strong>
-  <%= @candidato.email_02 %>
-</p>
-
-<p>
-  <strong>Email 03:</strong>
-  <%= @candidato.email_03 %>
-</p>
-
-<p>
-  <strong>Cep:</strong>
-  <%= @candidato.cep %>
-</p>
-
-<p>
-  <strong>Endereco:</strong>
-  <%= @candidato.endereco %>
-</p>
-
-<p>
-  <strong>Numero:</strong>
-  <%= @candidato.numero %>
-</p>
-
-<p>
-  <strong>Complemento:</strong>
-  <%= @candidato.complemento %>
-</p>
-
-<p>
-  <strong>Bairro:</strong>
-  <%= @candidato.bairro %>
-</p>
-
-<p>
-  <strong>Regiao:</strong>
-  <%= @candidato.regiao %>
-</p>
-
-<p>
-  <strong>State:</strong>
-  <%= @candidato.state_id %>
-</p>
-
-<p>
-  <strong>City:</strong>
-  <%= @candidato.city_id %>
-</p>
-
-<p>
-  <strong>Pais:</strong>
-  <%= @candidato.pais %>
-</p>
-
-<p>
-  <strong>Nacionalidade:</strong>
-  <%= @candidato.nacionalidade_id %>
-</p>
-
-<p>
-  <strong>Fumante:</strong>
-  <%= @candidato.fumante %>
-</p>
-
-<p>
-  <strong>Pne:</strong>
-  <%= @candidato.pne %>
-</p>
-
-<p>
-  <strong>Pne tipo:</strong>
-  <%= @candidato.pne_tipo %>
-</p>
-
-<p>
-  <strong>Png grau:</strong>
-  <%= @candidato.png_grau %>
-</p>
-
-<p>
-  <strong>Pne detalhe:</strong>
-  <%= @candidato.pne_detalhe %>
-</p>
-
-<p>
-  <strong>Estado civil:</strong>
-  <%= @candidato.estado_civil %>
-</p>
-
-<p>
-  <strong>Filhos:</strong>
-  <%= @candidato.filhos %>
-</p>
-
-<p>
-  <strong>Filhos qtd:</strong>
-  <%= @candidato.filhos_qtd %>
-</p>
-
-<p>
-  <strong>Filhos cacula:</strong>
-  <%= @candidato.filhos_cacula %>
-</p>
-
-<%= link_to 'Edit', edit_candidato_path(@candidato) %> |
-<%= link_to 'Back', candidatos_path %>
+</script>

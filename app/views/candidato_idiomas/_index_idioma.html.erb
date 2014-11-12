@@ -1,0 +1,29 @@
+<table class="table table-striped table-bordered dTableR">
+  <thead>
+    <tr>
+      <th>Idioma</th>
+      <th>Nivel</th>
+      <th></th>      
+    </tr>
+  </thead>
+  <tbody>
+    <% candidato_idiomas.each do |c| %>
+    <tr>
+      <td width='200'><%= c.idioma.nome %></td>
+      <td width='200'>
+        <% if c.estado == 0 %>
+          Básico
+        <% elsif c.estado == 1 %>
+          Intermediário
+        <% elsif c.estado == 2 %>
+          Avançado
+        <% elsif c.estado == 3 %>
+          Fluente
+        <% end %>
+      <td width="5">
+        <%= link_to 'Remover', c, method: :delete, data: { confirm: 'Deseja realmente remover o registro?' } %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Formacao:</strong>
+  <%= @candidato_formacao.formacao_id %>
+</p>
+
+<p>
+  <strong>Curso:</strong>
+  <%= @candidato_formacao.curso_id %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @candidato_formacao.status %>
+</p>
+
+<p>
+  <strong>Inicio mes:</strong>
+  <%= @candidato_formacao.inicio_mes %>
+</p>
+
+<p>
+  <strong>Inicio ano:</strong>
+  <%= @candidato_formacao.inicio_ano %>
+</p>
+
+<p>
+  <strong>Final mes:</strong>
+  <%= @candidato_formacao.final_mes %>
+</p>
+
+<p>
+  <strong>Final ano:</strong>
+  <%= @candidato_formacao.final_ano %>
+</p>
+
+<p>
+  <strong>Instituicao:</strong>
+  <%= @candidato_formacao.instituicao %>
+</p>
+
+<p>
+  <strong>Pais:</strong>
+  <%= @candidato_formacao.pais_id %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @candidato_formacao.estado_id %>
+</p>
+
+<%= link_to 'Edit', edit_candidato_formacao_path(@candidato_formacao) %> |
+<%= link_to 'Back', candidato_formacaos_path %>

@@ -1,0 +1,57 @@
+<%= form_for(@candidato_formacao) do |f| %>
+  <% if @candidato_formacao.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@candidato_formacao.errors.count, "error") %> prohibited this candidato_formacao from being saved:</h2>
+
+      <ul>
+      <% @candidato_formacao.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :formacao_id %><br>
+    <%= f.number_field :formacao_id %>
+  </div>
+  <div class="field">
+    <%= f.label :curso_id %><br>
+    <%= f.number_field :curso_id %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.number_field :status %>
+  </div>
+  <div class="field">
+    <%= f.label :inicio_mes %><br>
+    <%= f.number_field :inicio_mes %>
+  </div>
+  <div class="field">
+    <%= f.label :inicio_ano %><br>
+    <%= f.number_field :inicio_ano %>
+  </div>
+  <div class="field">
+    <%= f.label :final_mes %><br>
+    <%= f.number_field :final_mes %>
+  </div>
+  <div class="field">
+    <%= f.label :final_ano %><br>
+    <%= f.number_field :final_ano %>
+  </div>
+  <div class="field">
+    <%= f.label :instituicao %><br>
+    <%= f.text_field :instituicao %>
+  </div>
+  <div class="field">
+    <%= f.label :pais_id %><br>
+    <%= f.number_field :pais_id %>
+  </div>
+  <div class="field">
+    <%= f.label :estado_id %><br>
+    <%= f.number_field :estado_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,24 @@
+<table class="table table-striped table-bordered dTableR">
+  <thead>
+    <tr>
+      <th>Formação</th>
+      <th>Curso</th>
+      <th>Instituição</th>
+      <th>Periodo</th>
+      <th></th>      
+    </tr>
+  </thead>
+  <tbody>
+    <% candidato_formacaos.each do |c| %>
+    <tr>
+      <td width='200'><%= c.formacao.descricao %></td>
+      <td width='200'><%= c.curso_id %></td>
+      <td width='200'><%= c.instituicao %></td>
+      <td width='65'><%= c.inicio_mes %>/<%= c.inicio_ano %>-<%= c.final_mes %>/<%= c.final_ano %></td>
+      <td width="5">
+        <%= link_to 'Remover', c, method: :delete, data: { confirm: 'Deseja realmente remover o registro?' } %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
