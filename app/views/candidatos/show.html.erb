@@ -18,6 +18,16 @@
         <%= render :partial=>"candidato_idiomas/new_idioma", :locals=>{:candidato_idioma=>CandidatoIdioma.new(:candidato_id=>@candidato.id)} %>
       </div>
     </div>
+
+    <div class="control-group formSep">
+      <h5 class="heading">Experiências profissionais</h5>
+      <%= render :partial=>"candidato_experiencias/index_experiencia", :locals=>{:candidato_experiencias => @candidato.candidato_experiencias} %>
+      <%= link_to 'Add Experiência', '#', class: 'open_experiencia' %>
+      <div class="experiencia" style="display:none">
+        <%= render :partial=>"candidato_experiencias/new_experiencia", :locals=>{:candidato_experiencia=>CandidatoExperiencia.new(:candidato_id=>@candidato.id)} %>
+      </div>
+    </div>
+
   </div>
 </div>
 <br>
@@ -35,7 +45,7 @@ $('.open_formacao').toggle(
 
   },
   function() { $('.formacao').fadeOut();
-               $('.open_formacao').text("Add Formacao");
+               $('.open_formacao').text("Add Formação");
   }
 );
 $('.open_idioma').toggle(
@@ -45,8 +55,20 @@ $('.open_idioma').toggle(
 
   },
   function() { $('.idioma').fadeOut();
-               $('.open_idioma').text("Add Formacao");
+               $('.open_idioma').text("Add Idioma");
   }
 );
+
+$('.open_experiencia').toggle(
+  function() { $('.experiencia').fadeIn();
+               $('.open_experiencia').text("Fechar");
+               $('#candidato_experiencia_empresa_nome').focus();
+
+  },
+  function() { $('.experiencia').fadeOut();
+               $('.open_experiencia').text("Add Experiência");
+  }
+);
+
 
 </script>

@@ -21,7 +21,7 @@ class CandidatoIdiomasController < ApplicationController
   def create
     @candidato_idioma = CandidatoIdioma.new(candidato_idioma_params)
     @candidato_idioma.save
-    redirect_to "/candidatos/#{@candidato_idioma.candidato_id}" 
+    redirect_to  candidato_url(@candidato_idioma.candidato_id)
   end
 
   def update
@@ -31,7 +31,7 @@ class CandidatoIdiomasController < ApplicationController
 
   def destroy
     @candidato_idioma.destroy
-    redirect_to "/candidatos/#{@candidato_idioma.candidato_id}" 
+    redirect_to  candidato_url(@candidato_idioma.candidato_id)
   end
 
   private

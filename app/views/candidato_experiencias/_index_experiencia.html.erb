@@ -1,0 +1,28 @@
+<table class="table table-striped table-bordered dTableR">
+  <thead>
+    <tr>
+      <th>Cargo</th>
+      <th>Empresa</th>
+      <th>Periodo</th>
+      <th></th>      
+    </tr>
+  </thead>
+  <tbody>
+    <% candidato_experiencias.each do |c| %>
+    <tr>
+      <td width='200'><%= c.cargo.nome %></td>
+      <td width='200'><%= c.empresa_nome %></td>
+      <td width='65'>
+      <% if c.atual.to_i == 1 %>
+        Atualmente
+      <% else %>
+        <%= c.inicio_mes %>/<%= c.inicio_ano %>-<%= c.final_mes %>/<%= c.final_ano %></td>
+      <% end %>
+      
+      <td width="5">
+        <%= link_to 'Remover', c, method: :delete, data: { confirm: 'Deseja realmente remover o registro?' } %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

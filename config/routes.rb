@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :candidato_experiencias
+
   resources :candidato_idiomas
 
   resources :formacaos

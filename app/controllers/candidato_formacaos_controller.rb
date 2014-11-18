@@ -21,7 +21,7 @@ class CandidatoFormacaosController < ApplicationController
   def create
     @candidato_formacao = CandidatoFormacao.new(candidato_formacao_params)
     @candidato_formacao.save
-    redirect_to "/candidatos/#{@candidato_formacao.candidato_id}" 
+    redirect_to  candidato_url(@candidato_formacao.candidato_id)
  end
 
   def update
@@ -31,7 +31,7 @@ class CandidatoFormacaosController < ApplicationController
 
   def destroy
     @candidato_formacao.destroy
-    redirect_to "/candidatos/#{@candidato_formacao.candidato_id}" 
+    redirect_to  candidato_url(@candidato_formacao.candidato_id)
   end
 
   private

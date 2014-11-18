@@ -7,7 +7,7 @@ gem 'rails', '4.1.5'
 gem 'pg'
 
 gem 'brazilian-rails'
-
+gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
 gem "bcrypt-ruby", :require => "bcrypt"
 gem 'devise'
 gem 'geocoder'

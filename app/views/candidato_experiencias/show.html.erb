@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Candidato:</strong>
+  <%= @candidato_experiencia.candidato_id %>
+</p>
+
+<p>
+  <strong>Empresa nome:</strong>
+  <%= @candidato_experiencia.empresa_nome %>
+</p>
+
+<p>
+  <strong>Cargo:</strong>
+  <%= @candidato_experiencia.cargo_id %>
+</p>
+
+<p>
+  <strong>Descricao ativ:</strong>
+  <%= @candidato_experiencia.descricao_ativ %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @candidato_experiencia.state_id %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @candidato_experiencia.city_id %>
+</p>
+
+<%= link_to 'Edit', edit_candidato_experiencia_path(@candidato_experiencia) %> |
+<%= link_to 'Back', candidato_experiencias_path %>

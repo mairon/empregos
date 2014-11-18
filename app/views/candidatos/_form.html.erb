@@ -31,7 +31,7 @@
 
           <tr>
             <td align="right"> Data de Nascimento:</td>
-            <td><%= f.date_select :data_nascimento, size: 30 %><span class="f_req">*</span></td>
+            <td><%= f.date_select :data_nascimento, start_year: 1930 , size: 30 %><span class="f_req">*</span></td>
           </tr>
           <tr>
             <td align="right">Nome da Mae:</td>
@@ -92,16 +92,18 @@
             <td align="right" width="115">CEP:</td>
             <td><%= f.text_field :cep, size: 10, class: 'cep' %><span class="f_req">*</span></td>
             <td align="right">Endereço:</td>
-            <td><%= f.text_field :endereco, size: 35, maxlength: 100, placeholder: 'Ex. Rua Augusta jardin'  %><span class="f_req">*</span></td>
+            <td><%= f.text_field :endereco, size: 35, maxlength: 50, placeholder: 'Ex. Rua Augusta jardin'  %><span class="f_req">*</span></td>
             <td align="right">Nº:</td>
             <td><%= f.text_field :numero, size: 5 %><span class="f_req">*</span></td>
+            <td align="right">Bairro:</td>
+            <td><%= f.text_field :bairro, size: 20, maxlength: 44 %><span class="f_req">*</span></td>
 
           </tr>
           <tr>
             <td align="right">Complemento:</td>
-            <td colspan="3"><%= f.text_field :complemento, size: 63, maxlength: 100 %></td>
-            <td align="right" width="115">Região:</td>
-            <td colspan="3"><%= f.text_field :regiao, size: 30, maxlength: 100, placeholder: 'Ex. vila A' %></td>
+            <td colspan="3"><%= f.text_field :complemento, size: 58, maxlength: 100 %></td>
+            <td align="right">Região:</td>
+            <td colspan="3"><%= f.text_field :regiao, size: 35, maxlength: 100, placeholder: 'Ex. vila A' %></td>
           </tr>
           <tr>
             <td align="right">Estado:</td>
@@ -109,12 +111,13 @@
               <%= f.collection_select :state_id, State.select('id,name').order('2'),:id, :name,{prompt: 'Selecione o Estado'} %><span class="f_req">*</span>
             </td>
             <td align="right">Cidade:</td>
-            <td>
+            <td  colspan="3">
               <%= f.collection_select :city_id, City.select('id,name').order('2'),:id, :name,{prompt: 'Selecione a Cidade'} %><span class="f_req">*</span>
             </td>
           </tr>
         </table>
       </div>
+
 
 
       <div class="control-group formSep">
