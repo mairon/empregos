@@ -19,7 +19,7 @@
     </tr>
     <tr>
       <td align="right">Curso: <div class="result"></div></td>
-      <td><%= f.collection_select :curso_id, Curso.select('id,nome').order('2'),:id, :nomde, {prompt: 'Selecione o curso'} %><span class="f_req">*</span></td>
+      <td><%= f.collection_select :curso_id, Curso.select('id,nome').order('2'),:id, :nome, {prompt: 'Selecione o curso'} %><span class="f_req">*</span></td>
     </tr>
 
     <tr height="30">

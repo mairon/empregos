@@ -16,6 +16,8 @@
  *= require lib/datatables/css/TableTools
  *= require LiveSearchGridPanel
  *= require css/style
+ *= require lib/multiselect/css/multi-select
+ *= require lib/chosen/chosen
  *= require_self
 
  */

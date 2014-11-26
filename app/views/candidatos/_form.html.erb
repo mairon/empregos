@@ -25,7 +25,7 @@
           </tr>
           <tr>
             <td align="right"> RG:</td>
-            <td><%= f.text_field :rg, size: 10, class: 'rg' %><span class="f_req">*</span></td>
+            <td><%= f.text_field :rg, size: 10, maxlength: 9 %><span class="f_req">*</span></td>
             <td height="35"><%= f.collection_select :uf, State.select('acronym').order('1'),:acronym, :acronym,{prompt: 'UF'} %><span class="f_req">*</span>
           </td>
 
@@ -137,14 +137,45 @@
                           ])%></td>
             
           </tr>
-          <tr>
-            <td align="right" height="30">Voce e Fumante?:</td>
-            <td><%= f.check_box :fumante %></td>
+
+          <tr height="30">
+            <td align="right">Estado Civil:</td>
+            <td width="250"><%= f.radio_button :estado_civil, 0, :style => "margin-top: -2px;" %> Solteiro(a), Viuvo, Separado</td>
+            <td width="250"><%= f.radio_button :estado_civil, 1, :style => "margin-top: -2px;" %> Casado(a), uninão estável</td>
+            <td width="250"><%= f.radio_button :estado_civil, 2, :style => "margin-top: -2px;" %> Indiferente</td>
+          </tr>
+
+          <tr height="30">
+            <td align="right">Carteira de Habilitacao:</td>
+            <td colspan="2"><%= f.radio_button :cnh, 0, :style => "margin-top: -2px;" %> A
+            <%= f.radio_button :cnh, 1, :style => "margin-top: -2px;" %> B
+            <%= f.radio_button :cnh, 2, :style => "margin-top: -2px;" %> C
+            <%= f.radio_button :cnh, 3, :style => "margin-top: -2px;" %> D
+            <%= f.radio_button :cnh, 4, :style => "margin-top: -2px;" %> AB
+            <%= f.radio_button :cnh, 5, :style => "margin-top: -2px;" %> AC
+            <%= f.radio_button :cnh, 6, :style => "margin-top: -2px;" %> AD
+            <%= f.radio_button :cnh, 7, :style => "margin-top: -2px;" %> AE</td>
           </tr>
           <tr>
-            <td align="right" height="30">PNE:</td>
-            <td><%= f.check_box :pne %>(Portador de Necessidades Especiais)</td>
+            <td></td>
+            <td width="250" colspan="4"><%= f.check_box :veiculo_proprio, :style => "margin-top: -2px;" %> Veiculo Proprio</td>
           </tr>
+
+          <tr>
+            <td align="right" height="30"></td>
+            <td colspan="5"><%= f.check_box :filhos, style:'margin-top: -2px' %> Filhos? Quantos <%= f.number_field :filhos_qtd, style: "width: 35px;", maxlength: 2 %> Idade do Casula <%= f.number_field :filhos_cacula, style: "width: 35px;", maxlength: 2 %></td>
+          </tr>
+
+          <tr>
+            <td align="right" height="30"></td>
+            <td><%= f.check_box :fumante, style:'margin-top: -2px' %> Você é Fumante?</td>
+          </tr>
+          <tr>
+            <td align="right" height="30"></td>
+            <td colspan="5"><%= f.check_box :pne, style:'margin-top: -2px' %> PNE (Portador de Necessidades Especiais)</td>
+          </tr>
+          </table>
+          <table  class="pne" style="display:none">
           <tr>
             <td align="right">Voce e Deficiente:</td>
             <td><%= f.select :pne_tipo, 
@@ -173,14 +204,27 @@
               <%= f.text_area :pne_detalhe, cols: 95, rows: 5 %>
             </td>
           </tr>
+        </table>
+      </div>
 
-          <tr height="40">
-            <td align="right">Estado Civil:</td>
-            <td width="250"><%= f.radio_button :estado_civil, 0, :style => "margin-top: -2px;" %> Solteiro(a), Viuvo, Separado</td>
-            <td width="250"><%= f.radio_button :estado_civil, 1, :style => "margin-top: -2px;" %> Casado(a), uninão estável</td>
-            <td width="250"><%= f.radio_button :estado_civil, 2, :style => "margin-top: -2px;" %> Indiferente</td>
+      <div class="control-group formSep">
+        <h5 class="heading">Pretenção Salárial</h5>
+        <table>
+          <tr>
+            <td align="right">Minimo:</td>
+            <td><%= f.text_field :pretencao_salario_min, class: 'money', dir: "rtl", size: 15 %></td>
           </tr>
+        </table>
+      </div>
 
+      <div class="control-group formSep">
+        <h5 class="heading">Cargos Pretendidos<span class="f_req">Em teste</span></h5>
+        <table>
+          <tr>
+            <td>
+          <%= select_tag "categories", options_from_collection_for_select(Cargo.all, 'id', 'nome'), :multiple => true, class: "pre-selected-options" %>
+            </td>
+          </tr>
         </table>
       </div>
 
@@ -190,3 +234,38 @@
     <% end %>
   </div>
 </div>
+
+<script type="text/javascript">
+$('.pre-selected-options').multiSelect();
+  $('#candidato_pne').click(function() {
+    $(".pne").toggle(this.checked);
+  });
+
+  $(document).ready(function() {
+    //teste se se pne
+    if($('#candidato_pne').is(':checked')){
+      $(".pne").css('display','block');
+    };
+    //teste se te filhos
+    if($('#candidato_filhos').is(':checked')){
+      $("#candidato_filhos_qtd").removeAttr('disabled');
+      $("#candidato_filhos_cacula").removeAttr('disabled');
+    }else{
+      $("#candidato_filhos_qtd").attr('disabled','disabled');
+      $("#candidato_filhos_cacula").attr('disabled','disabled');
+    };
+
+  });
+
+
+  $("#candidato_filhos").click(function() {
+
+    if($('#candidato_filhos').is(':checked')){
+      $("#candidato_filhos_qtd").removeAttr('disabled');
+      $("#candidato_filhos_cacula").removeAttr('disabled');
+    }else{
+      $("#candidato_filhos_qtd").attr('disabled','disabled');
+      $("#candidato_filhos_cacula").attr('disabled','disabled');
+    };
+  });
+</script>

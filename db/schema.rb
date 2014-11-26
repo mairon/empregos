@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141118040305) do
+ActiveRecord::Schema.define(version: 20141126035625) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,26 +64,26 @@ ActiveRecord::Schema.define(version: 20141118040305) do
   end
 
   create_table "candidatos", force: true do |t|
-    t.string   "nome",                limit: 150
+    t.string   "nome",                  limit: 150
     t.integer  "sexo"
-    t.string   "rg",                  limit: 20
-    t.string   "uf",                  limit: 2
-    t.string   "cpf",                 limit: 20
+    t.string   "rg",                    limit: 20
+    t.string   "uf",                    limit: 2
+    t.string   "cpf",                   limit: 20
     t.date     "data_nascimento"
     t.integer  "idade"
-    t.string   "nome_mae",            limit: 150
-    t.string   "contato_cel",         limit: 20
+    t.string   "nome_mae",              limit: 150
+    t.string   "contato_cel",           limit: 20
     t.integer  "operadora_id"
-    t.string   "contato_residencial", limit: 50
-    t.string   "email_01",            limit: 50
-    t.string   "email_02",            limit: 50
-    t.string   "email_03",            limit: 50
-    t.string   "cep",                 limit: 10
-    t.string   "endereco",            limit: 100
-    t.string   "numero",              limit: 50
-    t.string   "complemento",         limit: 150
-    t.string   "bairro",              limit: 150
-    t.string   "regiao",              limit: 150
+    t.string   "contato_residencial",   limit: 50
+    t.string   "email_01",              limit: 50
+    t.string   "email_02",              limit: 50
+    t.string   "email_03",              limit: 50
+    t.string   "cep",                   limit: 10
+    t.string   "endereco",              limit: 100
+    t.string   "numero",                limit: 50
+    t.string   "complemento",           limit: 150
+    t.string   "bairro",                limit: 150
+    t.string   "regiao",                limit: 150
     t.integer  "state_id"
     t.integer  "city_id"
     t.integer  "pais"
@@ -99,6 +99,10 @@ ActiveRecord::Schema.define(version: 20141118040305) do
     t.integer  "filhos_cacula"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "cnh"
+    t.boolean  "veiculo_proprio"
+    t.decimal  "pretencao_salario_min",             precision: 15, scale: 2, default: 0.0
+    t.decimal  "pretencao_salario_max",             precision: 15, scale: 2, default: 0.0
   end
 
   create_table "cargos", force: true do |t|

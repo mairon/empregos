@@ -26,6 +26,8 @@
 //= require jquery.maskMoney
 //= require jquery.maskedinput
 //= require lib/validation/jquery.validate
+//= require lib/multiselect/js/jquery.multi-select.min
+//= require lib/chosen/chosen.jquery.min
 
 
 $(document).ready(function() {
@@ -33,7 +35,13 @@ $(document).ready(function() {
   $(".cnpj").mask("99.999.999/9999-99");
   $(".cpf").mask("999.999.999-99");
   
-  $(".rg").mask("99.999.999-9");
+  $(".rg").bind("keyup blur focus", function(e) {
+          e.preventDefault();
+          var expre = /[^0-9]/g;
+          // REMOVE OS CARACTERES DA EXPRESSAO ACIMA
+          if ($(this).val().match(expre))
+              $(this).val($(this).val().replace(expre,''));
+      });
   //somente numero
       $(".number").bind("keyup blur focus", function(e) {
           e.preventDefault();
