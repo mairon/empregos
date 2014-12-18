@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Candidato:</strong>
+  <%= @candidatos_dias_semana.candidato_id %>
+</p>
+
+<p>
+  <strong>Dias semana:</strong>
+  <%= @candidatos_dias_semana.dias_semana_id %>
+</p>
+
+<%= link_to 'Edit', edit_candidatos_dias_semana_path(@candidatos_dias_semana) %> |
+<%= link_to 'Back', candidatos_dias_semanas_path %>

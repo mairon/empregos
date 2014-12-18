@@ -1,0 +1,27 @@
+<h1>Listing candidatos_dias_semanas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Candidato</th>
+      <th>Dias semana</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @candidatos_dias_semanas.each do |candidatos_dias_semana| %>
+      <tr>
+        <td><%= candidatos_dias_semana.candidato_id %></td>
+        <td><%= candidatos_dias_semana.dias_semana_id %></td>
+        <td><%= link_to 'Show', candidatos_dias_semana %></td>
+        <td><%= link_to 'Edit', edit_candidatos_dias_semana_path(candidatos_dias_semana) %></td>
+        <td><%= link_to 'Destroy', candidatos_dias_semana, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Candidatos dias semana', new_candidatos_dias_semana_path %>

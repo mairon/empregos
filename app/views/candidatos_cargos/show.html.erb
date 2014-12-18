@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Candidato:</strong>
+  <%= @candidatos_cargo.candidato_id %>
+</p>
+
+<p>
+  <strong>Cargo:</strong>
+  <%= @candidatos_cargo.cargo_id %>
+</p>
+
+<%= link_to 'Edit', edit_candidatos_cargo_path(@candidatos_cargo) %> |
+<%= link_to 'Back', candidatos_cargos_path %>

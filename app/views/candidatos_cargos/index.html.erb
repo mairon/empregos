@@ -1,0 +1,27 @@
+<h1>Listing candidatos_cargos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Candidato</th>
+      <th>Cargo</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @candidatos_cargos.each do |candidatos_cargo| %>
+      <tr>
+        <td><%= candidatos_cargo.candidato_id %></td>
+        <td><%= candidatos_cargo.cargo_id %></td>
+        <td><%= link_to 'Show', candidatos_cargo %></td>
+        <td><%= link_to 'Edit', edit_candidatos_cargo_path(candidatos_cargo) %></td>
+        <td><%= link_to 'Destroy', candidatos_cargo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Candidatos cargo', new_candidatos_cargo_path %>

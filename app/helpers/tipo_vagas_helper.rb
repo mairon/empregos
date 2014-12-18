@@ -1,0 +1,2 @@
+module TipoVagasHelper
+end

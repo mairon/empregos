@@ -1,0 +1,217 @@
+<div class="row-fluid">
+  <div class="span12">
+      <div class="control-group formSep">
+        <table>
+          <tr>
+            <td align="right">Nome:</td>
+            <td colspan="2"><%= @candidato.nome%></td>
+            <td rowspan="7" width="330" align="center">
+              
+              <div data-fileupload="image" class="fileupload fileupload-new">
+                <input type="hidden" />
+                <div style="width: 80px; height: 80px;" class="fileupload-new thumbnail"><img src="http://www.placehold.it/80x80/EFEFEF/AAAAAA" alt="" /></div>
+                <br/>
+                <div style="width: 80px; height: 80px; line-height: 80px;" class="fileupload-preview fileupload-exists thumbnail"></div>
+                <span class="btn btn-file"><span class="fileupload-new">Select image</span>
+              </div>  
+
+            </td>
+          </tr>
+          <tr>
+            <td align="right">Sexo:</td>
+            <td>
+            <% if @candidato.sexo == 0 %>
+              Masculino
+            <% else %>
+              Feminino
+            <% end %>
+            </td>
+          </tr>
+
+          <tr>
+            <td align="right"> RG:</td>
+            <td><%= @candidato.rg %> <%= @candidato.uf %></td>
+          </td>
+
+          <tr>
+            <td align="right"> Data de Nascimento:</td>
+            <td colspan="3"><%= @candidato.data_nascimento %><b>Idade: <span id="idade"></span></b></td>
+            <input type="hidden" id="nascimento" >
+          </tr>
+          <tr>
+            <td align="right">Nome da Mae:</td>
+            <td colspan="6"><%= @candidato.nome_mae %></td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="control-group formSep">
+        <h5 class="heading">Contato</h5>
+        <table>
+          <tr>
+            <td align="right">Celular:</td>
+            <td><%= @candidato.contato_cel %></td>
+            <td align="right">Operadora:</td>
+            <td><%= @candidato.operadora_id %></td>
+          </tr>
+          <tr>
+            <td align="right">Telefone Residencial:</td>
+            <td><%= @candidato.contato_residencial %></td>
+          </tr>
+
+          <tr>
+            <td align="right">E-mail 01:</td>
+            <td colspan="4"><%= @candidato.email_01 %></td>
+          </tr>
+
+          <tr>
+            <td align="right">E-mail 02:</td>
+            <td colspan="4"><%= @candidato.email_02 %></td>
+          </tr>
+        </table>
+      </div>
+
+
+      <div class="control-group formSep">
+        <h5 class="heading">Localização</h5>
+        <table>
+          <tr>
+            <td align="right" width="115">CEP:</td>
+            <td><%= @candidato.cep %></td>
+            <td align="right">Endereço:</td>
+            <td><%= @candidato.endereco %></td>
+            <td align="right">Nº:</td>
+            <td><%= @candidato.numero %></td>
+            <td align="right">Bairro:</td>
+            <td><%= @candidato.bairro %></td>
+
+          </tr>
+          <tr>
+            <td align="right">Complemento:</td>
+            <td colspan="3"><%= @candidato.complemento %></td>
+            <td align="right">Região:</td>
+            <td colspan="3"><%= @candidato.regiao %></td>
+          </tr>
+          <tr>
+            <td align="right">Estado:</td>
+            <td colspan="3">
+              <%= @candidato.state_id %>
+            </td>
+            <td align="right">Cidade:</td>
+            <td  colspan="3">
+              <%= @candidato.city_id %>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+
+
+      <div class="control-group formSep">
+        <h5 class="heading">Informacoes Complementares</h5>
+        <table>
+          <tr>
+            <td align="right" width="115">Nacionalidade:</td>
+            <td  colspan="4"></td>
+          </tr>
+
+          <tr height="30">
+            <td align="right">Estado Civil:</td>
+            <td width="250">
+            <% if @candidato.estado_civil == 0 %>
+              Solteiro(a), Viuvo, Separado
+            <% elsif @candidato.estado_civil == 1 %>
+              Casado(a), uninão estável
+            <% elsif @candidato.estado_civil == 2 %>
+              Indiferente
+            <% end %>
+            </td>
+          </tr>
+
+          <tr height="30">
+            <td align="right">Carteira de Habilitacao:</td>
+            <td colspan="2">
+              <% if @candidato.estado_civil == 0 %>
+                A
+              <% elsif @candidato.estado_civil == 1 %>
+                B
+              <% elsif @candidato.estado_civil == 2 %>
+                C
+              <% elsif @candidato.estado_civil == 3 %>
+                D
+              <% elsif @candidato.estado_civil == 4 %>
+                AB
+              <% elsif @candidato.estado_civil == 5 %>
+                AC
+              <% elsif @candidato.estado_civil == 6 %>
+                AD
+              <% elsif @candidato.estado_civil == 7 %>
+                AE
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td>Veiculo Proprio</td>
+            <td width="250" colspan="4"><%= @candidato.veiculo_proprio%></td>
+          </tr>
+        </table>
+        </div>
+                  <tr>
+            <td>em processo....</td>
+          </tr>
+
+</div>
+
+<%= link_to 'Sair', candidatos_path, class: "btn btn-gebo" %>
+<script type="text/javascript">
+$('.pre-selected-options').multiSelect();
+  $('#candidato_pne').click(function() {
+    $(".pne").toggle(this.checked);
+  });
+
+  $(document).ready(function() {
+    //teste se se pne
+    if($('#candidato_pne').is(':checked')){
+      $(".pne").css('display','block');
+    };
+    //teste se te filhos
+    if($('#candidato_filhos').is(':checked')){
+      $("#candidato_filhos_qtd").removeAttr('disabled');
+      $("#candidato_filhos_cacula").removeAttr('disabled');
+    }else{
+      $("#candidato_filhos_qtd").attr('disabled','disabled');
+      $("#candidato_filhos_cacula").attr('disabled','disabled');
+    };
+
+  });
+
+
+  $("#candidato_filhos").click(function() {
+
+    if($('#candidato_filhos').is(':checked')){
+      $("#candidato_filhos_qtd").removeAttr('disabled');
+      $("#candidato_filhos_cacula").removeAttr('disabled');
+    }else{
+      $("#candidato_filhos_qtd").attr('disabled','disabled');
+      $("#candidato_filhos_cacula").attr('disabled','disabled');
+    };
+  });
+
+
+
+
+function calculateAge() {
+  var nasc = $('#candidato_data_nascimento_1i').val()+'-'+ $('#candidato_data_nascimento_2i').val()+'-'+ $('#candidato_data_nascimento_3i').val()
+
+  var dob = new Date(nasc);
+  var currentDate = new Date();
+  var currentYear = currentDate.getFullYear();
+  var birthdayThisYear = new Date(currentYear, dob.getMonth(), dob.getDate());
+  var age = currentYear - dob.getFullYear();
+if(birthdayThisYear > currentDate) {
+  alert('Data Incorreta!');
+  $('#candidato_data_nascimento_1i').focus()
+}
+  $("#idade").text(age + ' anos')
+}
+</script>

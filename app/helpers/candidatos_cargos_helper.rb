@@ -1,0 +1,2 @@
+module CandidatosCargosHelper
+end

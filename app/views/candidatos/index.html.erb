@@ -34,7 +34,8 @@
           <tbody>
           <% @candidatos.each do |candidato| %>
             <tr>
-              <td width="40">
+              <td width="80">
+                <%= link_to 'Visualizar', visualizacao_candidato_path(candidato) %> |
                 <%= link_to 'Editar', edit_candidato_path(candidato) %> |
                 <%= link_to 'Remover', candidato, method: :delete, data: { confirm: 'Deseja realmente remover o registro?' } %>
               </td>

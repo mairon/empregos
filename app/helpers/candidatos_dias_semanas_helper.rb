@@ -1,0 +1,2 @@
+module CandidatosDiasSemanasHelper
+end

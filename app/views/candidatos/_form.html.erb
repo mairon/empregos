@@ -1,3 +1,4 @@
+<body onload="calculateAge()">
 <div class="row-fluid">
   <div class="span12">
     <%= form_for(@candidato, html:  {class: "form-horizontal"}) do |f| %>
@@ -17,25 +18,41 @@
         <table>
           <tr>
             <td align="right">Nome:</td>
-            <td colspan="2"><%= f.text_field :nome, size: 50 %><span class="f_req">*</span></td>
-            <td>
-              <%= f.radio_button :sexo, 0 %> Masculino
-              <%= f.radio_button :sexo, 1 %> Feminino
+            <td colspan="2"><%= f.text_field :nome, size: 50, autofocus: true %><span class="f_req">*</span></td>
+            <td rowspan="7" width="330" align="center">
+              
+              <div data-fileupload="image" class="fileupload fileupload-new">
+                <input type="hidden" />
+                <div style="width: 80px; height: 80px;" class="fileupload-new thumbnail"><img src="http://www.placehold.it/80x80/EFEFEF/AAAAAA" alt="" /></div>
+                <br/>
+                <div style="width: 80px; height: 80px; line-height: 80px;" class="fileupload-preview fileupload-exists thumbnail"></div>
+                <span class="btn btn-file"><span class="fileupload-new">Select image</span>
+              </div>  
+
             </td>
           </tr>
           <tr>
+            <td align="right">Sexo:</td>
+            <td>
+              <%= f.radio_button :sexo, 0, style: "margin-top: -2px;" %> Masculino
+              <%= f.radio_button :sexo, 1, style: "margin-top: -2px;" %> Feminino
+            </td>
+
+          </tr>
+
+          <tr>
             <td align="right"> RG:</td>
-            <td><%= f.text_field :rg, size: 10, maxlength: 9 %><span class="f_req">*</span></td>
-            <td height="35"><%= f.collection_select :uf, State.select('acronym').order('1'),:acronym, :acronym,{prompt: 'UF'} %><span class="f_req">*</span>
+            <td><%= f.text_field :rg, size: 10, maxlength: 9 %> <%= f.collection_select :uf, State.select('acronym').order('1'),:acronym, :acronym,{prompt: 'UF'} %><span class="f_req">*</span></td>
           </td>
 
           <tr>
             <td align="right"> Data de Nascimento:</td>
-            <td><%= f.date_select :data_nascimento, start_year: 1930 , size: 30 %><span class="f_req">*</span></td>
+            <td colspan="3"><%= f.date_select :data_nascimento, start_year: 1930 , size: 30 %><span class="f_req">*</span> <b>Idade: <span id="idade"></span></b></td>
+            <input type="hidden" id="nascimento" >
           </tr>
           <tr>
             <td align="right">Nome da Mae:</td>
-            <td colspan="4"><%= f.text_field :nome_mae, size: 50 %><span class="f_req">*</span></td>
+            <td colspan="6"><%= f.text_field :nome_mae, size: 50, onfocus: "calculateAge()" %><span class="f_req">*</span></td>
           </tr>
         </table>
       </div>
@@ -44,7 +61,7 @@
         <h5 class="heading">Contato</h5>
         <table>
           <tr>
-            <td align="right" width="115">Celular:</td>
+            <td align="right">Celular:</td>
             <td><%= f.text_field :contato_cel, size: 20, class: 'telefone' %><span class="f_req">*</span></td>
             <td align="right">Operadora:</td>
             <td><%= f.select :operadora_id, 
@@ -63,23 +80,18 @@
                           <span class="f_req">*</span> </td>
           </tr>
           <tr>
-            <td align="right" width="115">Telefone Residencial:</td>
+            <td align="right">Telefone Residencial:</td>
             <td><%= f.text_field :contato_residencial, size: 20, class: 'telefone' %><span class="f_req">*</span></td>
           </tr>
 
           <tr>
-            <td align="right" width="115">E-mail 01:</td>
-            <td><%= f.text_field :email_01, size: 20, class: 'telefone' %><span class="f_req">*</span></td>
+            <td align="right">E-mail 01:</td>
+            <td colspan="4"><%= f.text_field :email_01, size: 50 %><span class="f_req">*</span></td>
           </tr>
 
           <tr>
-            <td align="right" width="115">E-mail 02:</td>
-            <td><%= f.text_field :email_02, size: 20, class: 'telefone' %></td>
-          </tr>
-
-          <tr>
-            <td align="right" width="115">E-mail 03:</td>
-            <td><%= f.text_field :email_03, size: 20, class: 'telefone' %></td>
+            <td align="right">E-mail 02:</td>
+            <td colspan="4"><%= f.text_field :email_02, size: 50 %></td>
           </tr>
         </table>
       </div>
@@ -101,9 +113,9 @@
           </tr>
           <tr>
             <td align="right">Complemento:</td>
-            <td colspan="3"><%= f.text_field :complemento, size: 58, maxlength: 100 %></td>
+            <td colspan="3"><%= f.text_field :complemento, size: 62, maxlength: 100 %></td>
             <td align="right">Região:</td>
-            <td colspan="3"><%= f.text_field :regiao, size: 35, maxlength: 100, placeholder: 'Ex. vila A' %></td>
+            <td colspan="3"><%= f.text_field :regiao, size: 39, maxlength: 100, placeholder: 'Ex. vila A' %></td>
           </tr>
           <tr>
             <td align="right">Estado:</td>
@@ -163,7 +175,11 @@
 
           <tr>
             <td align="right" height="30"></td>
-            <td colspan="5"><%= f.check_box :filhos, style:'margin-top: -2px' %> Filhos? Quantos <%= f.number_field :filhos_qtd, style: "width: 35px;", maxlength: 2 %> Idade do Casula <%= f.number_field :filhos_cacula, style: "width: 35px;", maxlength: 2 %></td>
+            <td colspan="5">
+              <%= f.check_box :filhos, style:'margin-top: -2px' %> Filhos? Quantos <%= f.number_field :filhos_qtd, style: "width: 35px;", maxlength: 2 %> Idade do Casula <%= f.number_field :filhos_cacula, style: "width: 35px;", maxlength: 2 %>
+              <%= f.radio_button :filho_mes_ano, 0, style: "margin-top: -2px;" %> meses <%= f.radio_button :filho_mes_ano, 1, style: "margin-top: -2px;" %> anos
+
+            </td>
           </tr>
 
           <tr>
@@ -211,18 +227,58 @@
         <h5 class="heading">Pretenção Salárial</h5>
         <table>
           <tr>
-            <td align="right">Minimo:</td>
+
+            <td align="right">Pretenção Salárial:</td>
+            <td><%= f.text_field :pretencao_salario, class: 'money', dir: "rtl", size: 15 %></td>
+
+            <td align="right">Pretenção Salárial Minimo:</td>
             <td><%= f.text_field :pretencao_salario_min, class: 'money', dir: "rtl", size: 15 %></td>
           </tr>
         </table>
       </div>
 
       <div class="control-group formSep">
-        <h5 class="heading">Cargos Pretendidos<span class="f_req">Em teste</span></h5>
+        <h5 class="heading">Disponibilidade de inicio</h5>
+          <table>
+            <tr height="30">
+              
+              <td colspan="2"><%= f.radio_button :disponibilidade_inicio, 1, :style => "margin-top: -2px;" %> Imediatamente
+              <%= f.radio_button :disponibilidade_inicio, 2, :style => "margin-top: -2px;" %> 1 semana
+              <%= f.radio_button :disponibilidade_inicio, 3, :style => "margin-top: -2px;" %> 15 dias
+              <%= f.radio_button :disponibilidade_inicio, 4, :style => "margin-top: -2px;" %> 1 mês</td>
+            </tr>
+          </table>
+      </div>
+      <div class="control-group formSep">
+        <h5 class="heading">Dias da semana disponível</h5>
+          <table>
+            <tr>
+              <% @dias_semanas.each do |c| %>
+                <td>
+                  <label class="checkbox" >
+                    <%= check_box_tag "candidato[dias_semana_ids][]", c.id, @candidato.dias_semanas.include?(c), class: "id#{c.id}" %> <%= c.nome %>
+                  </label>
+                </td>
+              <% end %>
+            </tr>
+          </table>
+      </div>
+      <div class="control-group formSep">
+        <h5 class="heading">Cargos Pretendidos</h5>
         <table>
           <tr>
             <td>
-          <%= select_tag "categories", options_from_collection_for_select(Cargo.all, 'id', 'nome'), :multiple => true, class: "pre-selected-options" %>
+              <fieldset>
+                <legend>Qual o tipo de vaga que procura?</legend>
+                <%= f.collection_select :tipo_vaga_ids, TipoVaga.all, :id, :nome, {}, {:multiple => true, class: "pre-selected-options"} %>
+              </fieldset>
+            </td>
+            <td width="50"></td>
+            <td>
+              <fieldset>
+                <legend>Em quais áreas ?</legend>
+                <%= f.collection_select :cargo_ids, Cargo.all, :id, :nome, {}, {:multiple => true, class: "pre-selected-options"} %>
+              </fieldset>
             </td>
           </tr>
         </table>
@@ -268,4 +324,23 @@ $('.pre-selected-options').multiSelect();
       $("#candidato_filhos_cacula").attr('disabled','disabled');
     };
   });
+
+
+
+
+function calculateAge() {
+  var nasc = $('#candidato_data_nascimento_1i').val()+'-'+ $('#candidato_data_nascimento_2i').val()+'-'+ $('#candidato_data_nascimento_3i').val()
+
+  var dob = new Date(nasc);
+  var currentDate = new Date();
+  var currentYear = currentDate.getFullYear();
+  var birthdayThisYear = new Date(currentYear, dob.getMonth(), dob.getDate());
+  var age = currentYear - dob.getFullYear();
+if(birthdayThisYear > currentDate) {
+  alert('Data Incorreta!');
+  $('#candidato_data_nascimento_1i').focus()
+}
+  $("#idade").text(age + ' anos')
+}
 </script>
+</body>

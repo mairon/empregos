@@ -1,0 +1,25 @@
+<%= form_for(@candidatos_dias_semana) do |f| %>
+  <% if @candidatos_dias_semana.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@candidatos_dias_semana.errors.count, "error") %> prohibited this candidatos_dias_semana from being saved:</h2>
+
+      <ul>
+      <% @candidatos_dias_semana.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :candidato_id %><br>
+    <%= f.number_field :candidato_id %>
+  </div>
+  <div class="field">
+    <%= f.label :dias_semana_id %><br>
+    <%= f.number_field :dias_semana_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

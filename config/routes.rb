@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  resources :tipo_vagas
+
+  resources :candidatos_tipo_vagas
+
+  resources :candidatos_cargos
+
+  resources :candidatos_dias_semanas
+
   resources :candidato_experiencias
 
   resources :candidato_idiomas
@@ -10,7 +18,11 @@ Rails.application.routes.draw do
 
   resources :dias_semanas_empresa_perfils
 
-  resources :candidatos
+  resources :candidatos do
+    member do
+      get 'visualizacao'
+    end
+  end
 
   resources :idiomas_vagas
 

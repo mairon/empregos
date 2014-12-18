@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Candidato:</strong>
+  <%= @candidatos_tipo_vaga.candidato_id %>
+</p>
+
+<p>
+  <strong>Tipo vagas:</strong>
+  <%= @candidatos_tipo_vaga.tipo_vagas_id %>
+</p>
+
+<%= link_to 'Edit', edit_candidatos_tipo_vaga_path(@candidatos_tipo_vaga) %> |
+<%= link_to 'Back', candidatos_tipo_vagas_path %>

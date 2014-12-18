@@ -1,0 +1,27 @@
+<h1>Listing candidatos_tipo_vagas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Candidato</th>
+      <th>Tipo vagas</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @candidatos_tipo_vagas.each do |candidatos_tipo_vaga| %>
+      <tr>
+        <td><%= candidatos_tipo_vaga.candidato_id %></td>
+        <td><%= candidatos_tipo_vaga.tipo_vagas_id %></td>
+        <td><%= link_to 'Show', candidatos_tipo_vaga %></td>
+        <td><%= link_to 'Edit', edit_candidatos_tipo_vaga_path(candidatos_tipo_vaga) %></td>
+        <td><%= link_to 'Destroy', candidatos_tipo_vaga, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Candidatos tipo vaga', new_candidatos_tipo_vaga_path %>
