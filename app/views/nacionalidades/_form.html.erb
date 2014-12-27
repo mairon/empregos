@@ -1,0 +1,21 @@
+<%= form_for(@nacionalidade) do |f| %>
+  <% if @nacionalidade.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@nacionalidade.errors.count, "error") %> prohibited this nacionalidade from being saved:</h2>
+
+      <ul>
+      <% @nacionalidade.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nome %><br>
+    <%= f.text_field :nome %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

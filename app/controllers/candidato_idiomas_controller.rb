@@ -26,7 +26,7 @@ class CandidatoIdiomasController < ApplicationController
 
   def update
     @candidato_idioma.update(candidato_idioma_params)
-    respond_with(@candidato_idioma)
+    redirect_to  candidato_url(@candidato_idioma.candidato_id)
   end
 
   def destroy

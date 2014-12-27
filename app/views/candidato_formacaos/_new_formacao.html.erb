@@ -55,3 +55,21 @@
     </tr>
   </table>
 <% end %>
+
+
+<script>
+$(document).ready(function () {
+  $("#new_candidato_formacao").validate({
+  debug: true,
+  rules: {
+  "candidato_formacao[formacao_id]": {required: true},
+  "candidato_formacao[curso_id]": {required: true},
+  "candidato_formacao[status]": {required: true}
+  "candidato_formacao[estado_id]": {required: true}
+  },submitHandler:function(form) {
+      form.submit();
+    }
+  });
+});
+</script>
+

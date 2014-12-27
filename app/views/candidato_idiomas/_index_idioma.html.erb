@@ -9,7 +9,7 @@
   <tbody>
     <% candidato_idiomas.each do |c| %>
     <tr>
-      <td width='200'><%= c.idioma.nome %></td>
+      <td width='370'><%= c.idioma.nome %></td>
       <td width='200'>
         <% if c.estado == 0 %>
           Básico
@@ -20,7 +20,8 @@
         <% elsif c.estado == 3 %>
           Fluente
         <% end %>
-      <td width="5">
+      <td width="65">
+        <%= link_to 'Editar', edit_candidato_idioma_path(c) %> |
         <%= link_to 'Remover', c, method: :delete, data: { confirm: 'Deseja realmente remover o registro?' } %>
       </td>
     </tr>

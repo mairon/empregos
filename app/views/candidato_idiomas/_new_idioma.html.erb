@@ -32,3 +32,19 @@
     </tr>
 	</table>
 <% end %>
+
+<script>
+$(document).ready(function () {
+  $("#new_candidato_idioma").validate({
+  debug: true,
+  rules: {
+  "candidato_idioma[idioma_id]": {required: true},
+  "candidato_idioma[estado]": {required: true}
+
+  },submitHandler:function(form) {
+      form.submit();
+    }
+  });
+});
+</script>
+

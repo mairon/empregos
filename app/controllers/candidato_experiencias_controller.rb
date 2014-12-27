@@ -26,7 +26,7 @@ class CandidatoExperienciasController < ApplicationController
 
   def update
     @candidato_experiencia.update(candidato_experiencia_params)
-    respond_with(@candidato_experiencia)
+    redirect_to  candidato_url(@candidato_experiencia.candidato_id)
   end
 
   def destroy
@@ -41,6 +41,6 @@ class CandidatoExperienciasController < ApplicationController
 
     def candidato_experiencia_params
       params.require(:candidato_experiencia).permit(:candidato_id, :empresa_nome, :cargo_id, :descricao_ativ, :state_id, 
-        :city_id, :inicio_mes, :inicio_ano, :final_mes, :final_ano, :atual)
+        :city_id, :inicio_mes, :inicio_ano, :final_mes, :final_ano, :atual, :tipo_vaga_id)
     end
 end

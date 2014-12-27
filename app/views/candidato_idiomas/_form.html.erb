@@ -1,25 +1,40 @@
-<%= form_for(@candidato_idioma) do |f| %>
-  <% if @candidato_idioma.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@candidato_idioma.errors.count, "error") %> prohibited this candidato_idioma from being saved:</h2>
+<div class="row-fluid">
+  <div class="span12">
+    <div class="control-group formSep">
+    <h5 class="heading">Editar Idioma</h5>
+      <%= form_for(@candidato_idioma) do |f| %>
+        <% if @candidato_idioma.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@candidato_idioma.errors.count, "error") %> prohibited this @candidato_idioma from being saved:</h2>
 
-      <ul>
-      <% @candidato_idioma.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+            <ul>
+            <% @candidato_idioma.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <%= f.hidden_field :candidato_id %>
+
+        <table>
+          <tr>
+            <td align="right">Idioma:</td>
+            <td><%= f.collection_select :idioma_id, Idioma.select('id,nome').order('2'),:id, :nome, {prompt: 'Selecione o Idioma'} %><span class="f_req">*</span></td>
+            <td align="right">Nivel:</td>
+            <td colspan="4">
+              <%= f.radio_button :estado, 0, :style => "margin-top: -2px;" %> Básico
+              <%= f.radio_button :estado, 1, :style => "margin-top: -2px;" %> Intermediário
+              <%= f.radio_button :estado, 2, :style => "margin-top: -2px;" %> Avançado
+              <%= f.radio_button :estado, 3, :style => "margin-top: -2px;" %> Fluente
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><%= f.submit 'Gravar', data: { disable_with: "Aguarde..." }, class: "btn btn-gebo" %></td>
+          </tr>
+        </table>
       <% end %>
-      </ul>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :idioma_id %><br>
-    <%= f.number_field :idioma_id %>
   </div>
-  <div class="field">
-    <%= f.label :estado %><br>
-    <%= f.number_field :estado %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

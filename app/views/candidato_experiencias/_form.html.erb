@@ -1,41 +1,63 @@
-<%= form_for(@candidato_experiencia) do |f| %>
-  <% if @candidato_experiencia.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@candidato_experiencia.errors.count, "error") %> prohibited this candidato_experiencia from being saved:</h2>
+<div class="row-fluid">
+  <div class="span12">
+    <div class="control-group formSep">
+      <h5 class="heading">Editar Experiência</h5>
+      <%= form_for(@candidato_experiencia) do |f| %>
+        <% if @candidato_experiencia.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@candidato_experiencia.errors.count, "error") %> prohibited this @candidato_experiencia from being saved:</h2>
 
-      <ul>
-      <% @candidato_experiencia.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+            <ul>
+            <% @candidato_experiencia.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+          <%= f.hidden_field :candidato_id %>
+        <table>
+          <tr>
+            <td align="right">Empresa:</td>
+            <td colspan="4"><%= f.text_field :empresa_nome, size: 50 %></td>
+          </tr>
+          <tr>      
+            <td align="right">Tipo :</td>
+            <td><%= f.collection_select :tipo_vaga_id, TipoVaga.select('id,nome').order('2'),:id, :nome, {prompt: 'Selecione tipo'} %><span class="f_req">*</span></td>
+          </tr>
+          <tr>
+            <td align="right">Cargo:</td>
+            <td><%= f.collection_select :cargo_id, Cargo.select('id,nome').order('2'),:id, :nome, {prompt: 'Selecione o cargo'} %><span class="f_req">*</span></td>
+
+          </tr>
+          <tr height="30">
+            <td align="right">Periodo Início:</td>
+            <td colspan="6">
+              <%= f.text_field :inicio_mes, size: 4, maxlength: 2, placeholder: 'mm' %>/<%= f.text_field :inicio_ano, size: 4, maxlength: 4, placeholder: 'aaaa' %>
+              <small>Conclusão</small>
+              <%= f.text_field :final_mes, size: 4, maxlength: 2, placeholder: 'mm' %>/<%= f.text_field :final_ano, size: 4, maxlength: 4, placeholder: 'aaaa' %><%= f.check_box :atual %> Atualmente
+            </td>
+          </tr>
+          <tr>
+            <td align="right">Descricao da Atividade:</td>
+            <td colspan="6"><%= f.text_area :descricao_ativ, cols: 55, rows: 5 %></td>
+          </tr>
+          <tr>
+            <td align="right">Estado:</td>
+            <td colspan="2">
+              <%= f.collection_select :state_id, State.select('id,name').order('2'),:id, :name,{prompt: 'Selecione o Estado'} %><span class="f_req">*</span>
+            </td>
+            <td align="right">Cidade:</td>
+            <td  colspan="3">
+              <%= f.collection_select :city_id, City.select('id,name').order('2'),:id, :name,{prompt: 'Selecione a Cidade'} %><span class="f_req">*</span>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><%= f.submit 'Gravar', data: { disable_with: "Aguarde..." }, class: "btn btn-gebo" %></td>
+          </tr>
+
+        </table>
       <% end %>
-      </ul>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :candidato_id %><br>
-    <%= f.number_field :candidato_id %>
   </div>
-  <div class="field">
-    <%= f.label :empresa_nome %><br>
-    <%= f.text_field :empresa_nome %>
-  </div>
-  <div class="field">
-    <%= f.label :cargo_id %><br>
-    <%= f.number_field :cargo_id %>
-  </div>
-  <div class="field">
-    <%= f.label :descricao_ativ %><br>
-    <%= f.text_area :descricao_ativ %>
-  </div>
-  <div class="field">
-    <%= f.label :state_id %><br>
-    <%= f.number_field :state_id %>
-  </div>
-  <div class="field">
-    <%= f.label :city_id %><br>
-    <%= f.number_field :city_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

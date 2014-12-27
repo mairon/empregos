@@ -26,7 +26,7 @@ class CandidatoFormacaosController < ApplicationController
 
   def update
     @candidato_formacao.update(candidato_formacao_params)
-    respond_with(@candidato_formacao)
+    redirect_to  candidato_url(@candidato_formacao.candidato_id)
   end
 
   def destroy

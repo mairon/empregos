@@ -11,7 +11,8 @@ class Candidato < ActiveRecord::Base
 	validates_presence_of :rg, :nome, :sexo, :email_01, :cep, :endereco, :state_id, :city_id
 	validates_presence_of :filhos_qtd, :filhos_cacula, if: :filhos?
 
-
+	has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "80x80>" }, :default_url => "http://www.placehold.it/80x80/EFEFEF/AAAAAA"
+  	validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
  def filhos?
     self.filhos == true

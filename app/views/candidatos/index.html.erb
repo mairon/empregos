@@ -27,21 +27,20 @@
             <tr>
               <th></th>
               <th>Código</th>
-              <th>CPF</th>
               <th>Nome</th>
             </tr>
           </thead>
           <tbody>
           <% @candidatos.each do |candidato| %>
             <tr>
-              <td width="80">
+              <td width="120">
                 <%= link_to 'Visualizar', visualizacao_candidato_path(candidato) %> |
                 <%= link_to 'Editar', edit_candidato_path(candidato) %> |
+                <%= link_to 'Dados Profissionais', candidato_path(candidato) %> |
                 <%= link_to 'Remover', candidato, method: :delete, data: { confirm: 'Deseja realmente remover o registro?' } %>
               </td>
-              <td width='100'><%= candidato.id.to_s.rjust(6,'0') %></td>
-              <td width='100'><%= candidato.cpf %></td>
-              <td width='100'><%= candidato.nome %></td>
+              <td width='30'><%= candidato.id.to_s.rjust(6,'0') %></td>
+              <td width='200'><%= candidato.nome %></td>
             </tr>
           <% end %>
           </tbody>

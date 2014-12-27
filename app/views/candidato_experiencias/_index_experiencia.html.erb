@@ -1,6 +1,7 @@
 <table class="table table-striped table-bordered dTableR">
   <thead>
     <tr>
+      <th>Tipo</th>
       <th>Cargo</th>
       <th>Empresa</th>
       <th>Periodo</th>
@@ -10,8 +11,9 @@
   <tbody>
     <% candidato_experiencias.each do |c| %>
     <tr>
-      <td width='200'><%= c.cargo.nome %></td>
-      <td width='200'><%= c.empresa_nome %></td>
+      <td width='150'><%= c.tipo_vaga.nome unless c.tipo_vaga_id.nil? %></td>
+      <td width='150'><%= c.cargo.nome %></td>
+      <td width='220'><%= c.empresa_nome %></td>
       <td width='65'>
       <% if c.atual.to_i == 1 %>
         Atualmente
@@ -19,7 +21,8 @@
         <%= c.inicio_mes %>/<%= c.inicio_ano %>-<%= c.final_mes %>/<%= c.final_ano %></td>
       <% end %>
       
-      <td width="5">
+      <td width="70">
+        <%= link_to 'Editar', edit_candidato_experiencia_path(c) %> |
         <%= link_to 'Remover', c, method: :delete, data: { confirm: 'Deseja realmente remover o registro?' } %>
       </td>
     </tr>

@@ -1,7 +1,7 @@
 <body onload="calculateAge()">
 <div class="row-fluid">
   <div class="span12">
-    <%= form_for(@candidato, html:  {class: "form-horizontal"}) do |f| %>
+    <%= form_for(@candidato, html:  {:multipart => true, class: "form-horizontal"}) do |f| %>
       <% if @candidato.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@candidato.errors.count, "error") %> prohibited this candidato from being saved:</h2>
@@ -20,13 +20,12 @@
             <td align="right">Nome:</td>
             <td colspan="2"><%= f.text_field :nome, size: 50, autofocus: true %><span class="f_req">*</span></td>
             <td rowspan="7" width="330" align="center">
-              
               <div data-fileupload="image" class="fileupload fileupload-new">
-                <input type="hidden" />
-                <div style="width: 80px; height: 80px;" class="fileupload-new thumbnail"><img src="http://www.placehold.it/80x80/EFEFEF/AAAAAA" alt="" /></div>
+                <div style="width: 80px; height: 80px;" class="fileupload-new thumbnail">
+                  <%= image_tag @candidato.avatar.url(:thumb) %>
+                </div>
                 <br/>
-                <div style="width: 80px; height: 80px; line-height: 80px;" class="fileupload-preview fileupload-exists thumbnail"></div>
-                <span class="btn btn-file"><span class="fileupload-new">Select image</span>
+                <%= f.file_field :avatar, :style => "width: 80px; height: 80px; line-height: 80px;" %>                
               </div>  
 
             </td>
@@ -52,7 +51,7 @@
           </tr>
           <tr>
             <td align="right">Nome da Mae:</td>
-            <td colspan="6"><%= f.text_field :nome_mae, size: 50, onfocus: "calculateAge()" %><span class="f_req">*</span></td>
+            <td colspan="6"><%= f.text_field :nome_mae, size: 50, onfocus: "calculateAge()" %></td>
           </tr>
         </table>
       </div>
@@ -137,16 +136,7 @@
         <table>
           <tr>
             <td align="right" width="115">Nacionalidade:</td>
-            <td  colspan="4"><%= f.select :operadora_id, 
-                          ([
-                          ["Selecione a nacionalidade", ""],
-                          ["Brasileiro", "1"],
-                          ["Alemao", "2"],
-                          ["Italiano", "3"],
-                          ["Frances", "4"],
-                          ["Portugues", "5"],
-                          ["OUTROS","99"]
-                          ])%></td>
+            <td  colspan="4"><%= f.collection_select :nacionalidade_id, Nacionalidade.select('id,nome').order('2'),:id, :nome,{prompt: 'Selecione a Nacionalidade'} %><span class="f_req">*</span></td>
             
           </tr>
 
@@ -228,10 +218,10 @@
         <table>
           <tr>
 
-            <td align="right">Pretenção Salárial:</td>
+            <td align="right">Pretenção Salárial após periodo de experiência:</td>
             <td><%= f.text_field :pretencao_salario, class: 'money', dir: "rtl", size: 15 %></td>
 
-            <td align="right">Pretenção Salárial Minimo:</td>
+            <td align="right">Pretenção Minima para salário inicial:</td>
             <td><%= f.text_field :pretencao_salario_min, class: 'money', dir: "rtl", size: 15 %></td>
           </tr>
         </table>

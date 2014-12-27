@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :nacionalidades
+
   resources :tipo_vagas
 
   resources :candidatos_tipo_vagas

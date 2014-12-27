@@ -11,6 +11,7 @@ gem 'rails-i18n', '~> 4.0.0' # For 4.0.x
 gem "bcrypt-ruby", :require => "bcrypt"
 gem 'devise'
 gem 'geocoder'
+gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
