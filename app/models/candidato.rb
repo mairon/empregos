@@ -14,8 +14,8 @@ class Candidato < ActiveRecord::Base
 	has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "80x80>" }, :default_url => "http://www.placehold.it/80x80/EFEFEF/AAAAAA"
   	validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
- def filhos?
-    self.filhos == true
-  end
+ 	def filhos?
+    	self.filhos == true
+  	end
 
 end

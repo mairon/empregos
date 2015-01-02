@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141227041329) do
+ActiveRecord::Schema.define(version: 20141229215403) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -111,6 +111,9 @@ ActiveRecord::Schema.define(version: 20141227041329) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "contato_recado",         limit: 25
+    t.string   "nome_recado",            limit: 150
+    t.string   "gra_pare_recado",        limit: 150
   end
 
   create_table "candidatos_cargos", force: true do |t|
@@ -345,6 +348,12 @@ ActiveRecord::Schema.define(version: 20141227041329) do
     t.datetime "updated_at"
   end
 
+  create_table "turnos", force: true do |t|
+    t.string   "nome"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.string   "cpfcnpj"
     t.string   "password_hash"
@@ -407,6 +416,9 @@ ActiveRecord::Schema.define(version: 20141227041329) do
     t.boolean  "salario_premiacao"
     t.boolean  "nao_fumante"
     t.boolean  "candidatos_regiao"
+    t.integer  "turno_id"
+    t.integer  "tipo_vaga_id"
+    t.integer  "divulga_salario"
   end
 
 end

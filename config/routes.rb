@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :turnos
+
   resources :nacionalidades
 
   resources :tipo_vagas

@@ -68,8 +68,8 @@ class VagasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def vaga_params     
-      params.require(:vaga).permit( :efetivo_carteira, 
-            :temporario, :extra, :trainer, :free_lancer, :autonomo, 
+      params.require(:vaga).permit( :efetivo_carteira, :tipo_vaga_id, :turno_id, 
+            :temporario, :extra, :trainer, :free_lancer, :autonomo, :divulga_salario,
             :representante, :comerical, :comercial_tipo, :periodo, 
             :empresa_id, :cargo_id, :numero_vagas, :sexo, :pne, 
             :estado_civil, :outros_detalhes_candito, :escolaridade, 

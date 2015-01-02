@@ -30,21 +30,8 @@
             <td>
               <table>
                 <tr>
-                  <td><%= f.select :tipo_vaga, 
-                          ([
-                          ["Selecione o tipo de vaga", ""],
-                          ["Temporário", "1"],
-                          ["Extras", "2"],
-                          ["Free-Lancer", "3"],
-                          ["Estágio", "4"],
-                          ["Trainne", "5"],
-                          ["Efetivo com registro em carteira", "6"],
-                          ["Autonomo", "7"],
-                          ["Representante Comercial", "8"],
-                          ["Representante Comercial (obrigatório o core)", "9"],
-                          ["Representante Comercial (obrigatório ter empresa com CNPJ)", "10"]
-                          ]), onblur: "select_tipo()" %>
-                          <span class="f_req">*</span>
+                  <td>
+                    <%= f.collection_select :tipo_vaga_id, TipoVaga.select('id,nome').order('2'),:id, :nome, {prompt: 'Selecione o tipo de vaga'},{onblur: "select_tipo()"} %><span class="f_req">*</span>
                   </td>
                   <td align="right">Cargo:</td>
                   <td><%= f.collection_select :cargo_id, Cargo.select('id,nome').order('2'),:id, :nome, {prompt: 'Selecione o cargo'} %><span class="f_req">*</span></td>
@@ -69,18 +56,15 @@
 
           <table>
             <tr>
-              <td height="35" align="right">Turno:</td>
-              <td><%= f.check_box :turno_manha, :style => "margin-top: -2px;" %>Manhã</td>
-              <td><%= f.check_box :turno_tarde, :style => "margin-top: -2px;" %>Tarde</td>
-              <td><%= f.check_box :turno_noite, :style => "margin-top: -2px;" %>Noite</td>
+              <td height="35" align="right">Pediodo de Trabalho:</td>
+              <td colspan="4"><%= f.collection_select :turno_id, Turno.select('id,nome').order('1'),:id, :nome,{prompt: 'Selecione Pediodo de Trabalho'} %><span class="f_req">*</span></td>
             </tr>
             <tr>
-              <td align="right">Horário específico: </td> 
+              <td align="right"> Complemento - Horário específico: </td> 
               <td colspan="2"><%= f.time_select :turno_especifico_inicio %> às <%= f.time_select :turno_espeficico_final %></td>
-            </tr>
-            <tr height="45">
+
               <td align="right">Carga Horaria por dia:</td>
-              <td><%= f.select :carga_horaria, 1..24 %></td>
+              <td><%= f.select :carga_horaria, 0..24 %></td>
             </tr>
           </table>
       </div>
@@ -188,7 +172,7 @@
           <tr>
             <td colspan="5">
               Estado:
-              <%= f.radio_button :status_escolaridade, 0, :style => "margin-top: -2px;" %> Indiferente
+              <%= f.radio_button :status_escolaridade, 0, checkd: true, :style => "margin-top: -2px;" %> Indiferente
               <%= f.radio_button :status_escolaridade, 1, :style => "margin-top: -2px;" %> Completo
               <%= f.radio_button :status_escolaridade, 2, :style => "margin-top: -2px;" %> Incompleto
               <%= f.radio_button :status_escolaridade, 3, :style => "margin-top: -2px;" %> Cursando
@@ -202,7 +186,7 @@
         <h5 class="heading">EXPERIENCIA MINIMA DESEJADA:</h5>
         <table>
           <tr>
-            <td width="200"><%= f.radio_button :experiencia, 0, :style => "margin-top: -2px;" %> Nenhuma</td>
+            <td width="200"><%= f.radio_button :experiencia, 0, checked: true, :style => "margin-top: -2px;"%> Nenhuma</td>
             <td width="200"><%= f.radio_button :experiencia, 1, :style => "margin-top: -2px;" %> Com ou sem experiência</td>
             <td width="350">
               <%= f.radio_button :experiencia, 2, :style => "margin-top: -2px;" %> Com experiência minima de :<%= f.select :experiencia_qtd, 1..12 %>
@@ -218,10 +202,9 @@
         <h5 class="heading">SALARIO:</h5>
         <table>
           <tr>
-            <%= f.radio_button :mostrar_salario, true, onchange: "BoxValores('true')" %> Divulgar Salario
-            <%= f.radio_button :mostrar_salario, false, onchange: "BoxValores('false')" %> A combinar
-
-            <input type="hidden" value="<%= @vaga.mostrar_salario %>" id="mostra_sa">
+              <td width="120"><%= f.radio_button :divulga_salario, 0, checked: true, :style => "margin-top: -2px;", onchange: "BoxValores('0')" %> A combinar</td>
+              <td width="120"><%= f.radio_button :divulga_salario, 1, :style => "margin-top: -2px;", onchange: "BoxValores('1')" %> Divulgar Salário</td>
+            <input type="hidden" value="<%= @vaga.divulga_salario %>" id="mostra_sa">
           </tr>
         </table>
 
@@ -263,6 +246,7 @@
 <% end %>
 
 <script type="text/javascript">
+$(document).ready(function() {
   $("#vaga_empresa_id").focus();
   $("#vaga_empresa_id").blur(function(){
       $.each([ <%= @dias_semanas.map  { |t| t.id }.join(', ') %> ], function( index, value ) {
@@ -277,31 +261,30 @@
     });
   });
 
-$(document).ready(function() {
   //vagas temporarias load do campo
-  if ($("#vaga_tipo_vaga").val() == '1' || $("#vaga_tipo_vaga").val() == '2' || $("#vaga_tipo_vaga").val() == '3'){
+  if ($("#vaga_tipo_vaga_id").val() == '1' || $("#vaga_tipo_vaga_id").val() == '2' || $("#vaga_tipo_vaga_id").val() == '3'){
     $(".dias").css("display", "table-cell").fadeIn();
   }else{
     $(".dias").css("display", "none");
   };
 
   //vagas estagio load
-  if ($("#vaga_tipo_vaga").val() == '4'){
+  if ($("#vaga_tipo_vaga_id").val() == '4'){
     $(".estagio").css("display", "table").fadeIn();
   }else{
     $(".estagio").css("display", "none");
   };
 
   //vagas temporarias saida do campo
-  $("#vaga_tipo_vaga").blur(function(){
-    if ($("#vaga_tipo_vaga").val() == '1' || $("#vaga_tipo_vaga").val() == '2' || $("#vaga_tipo_vaga").val() == '3'){
+  $("#vaga_tipo_vaga_id").blur(function(){
+    if ($("#vaga_tipo_vaga_id").val() == '1' || $("#vaga_tipo_vaga_id").val() == '2' || $("#vaga_tipo_vaga_id").val() == '3'){
       $(".dias").css("display", "table-cell").fadeIn();
     }else{
       $(".dias").css("display", "none");
     };
 
     //vagas estagio
-    if ( $( "#vaga_tipo_vaga" ).val() == '4'){
+    if ( $( "#vaga_tipo_vaga_id" ).val() == '4'){
       ($( ".estagio" ).css( "display", "table" )).fadeIn( "slow" );
     }else{
       $( ".estagio" ).css( "display", "none" );
@@ -309,19 +292,21 @@ $(document).ready(function() {
 
   });
 
-  if ($("#mostra_sa") == 'true'){
+  if ($("#mostra_sa").val() == '1'){
     $("#box_salario").css("display", "table-cell");
   }else{
     $("#box_salario").css("display", "none");
+    $("#vaga_salario_inicial").val('0')
   };
 });
 
 function BoxValores(valor){
   $("#mostra_sa").val(valor);
-  if ($("#mostra_sa").val() == 'true'){
+  if ($("#mostra_sa").val() == '1'){
     $("#box_salario").css("display", "table-cell");
   }else{
     $("#box_salario").css("display", "none");
+    $("#vaga_salario_inicial").val('0')
   };
 };
 
