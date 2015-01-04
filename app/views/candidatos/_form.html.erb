@@ -47,7 +47,6 @@
           <tr>
             <td align="right"> Data de Nascimento:</td>
             <td colspan="3"><%= f.date_select :data_nascimento, start_year: 1930 , size: 30 %><span class="f_req">*</span> <b>Idade: <span id="idade"></span></b></td>
-            <input type="hidden" id="nascimento" >
           </tr>
           <tr>
             <td align="right">Nome da Mae:</td>
@@ -349,7 +348,7 @@
 
 
 function calculateAge() {
-  var nasc = $('#candidato_data_nascimento_1i').val()+'-'+ $('#candidato_data_nascimento_2i').val()+'-'+ $('#candidato_data_nascimento_3i').val()
+  var nasc = $('#candidato_data_nascimento_1i').val()+'-'+ $('#candidato_data_nascimento_2i').val()+'-'+ $('#candidato_data_nascimento_3i').val();
 
   var dob = new Date(nasc);
   var currentDate = new Date();
@@ -357,8 +356,7 @@ function calculateAge() {
   var birthdayThisYear = new Date(currentYear, dob.getMonth(), dob.getDate());
   var age = currentYear - dob.getFullYear();
 if(birthdayThisYear > currentDate) {
-  alert('Data Incorreta!');
-  $('#candidato_data_nascimento_1i').focus()
+  $('#candidato_nome').focus()
 }
   $("#idade").text(age + ' anos')
 }

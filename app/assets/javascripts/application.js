@@ -43,7 +43,7 @@ $(document).ready(function() {
           if ($(this).val().match(expre))
               $(this).val($(this).val().replace(expre,''));
       });
-  //somente numero
+      //somente numero
       $(".number").bind("keyup blur focus", function(e) {
           e.preventDefault();
           var expre = /[^0-9]/g;
@@ -51,56 +51,10 @@ $(document).ready(function() {
           if ($(this).val().match(expre))
               $(this).val($(this).val().replace(expre,''));
       });
-
-
   //mascara de moeda
   $(".money").maskMoney({thousands:".", decimal:","});
   //* show all elements & remove preloader
   setTimeout('$("html").removeClass("js")',1000);
-
-    $('#bank_state_id').blur(function() {
-
-        var data=$('#bank_state_id').val();
-        $.ajax({
-
-          type: "POST",
-           url: "/dynamic_cities/"+data,
-          data: data,
-
-          beforeSend: function()
-          {
-            $('#spinner').show();
-          },
-
-          success: function(response)
-          {
-            $('#spinner').hide();
-          }
-
-        });
-    });
-
-    $('#bank_city_id').blur(function() {
-
-        var data=$('#bank_city_id').val();
-        $.ajax({
-
-          type: "POST",
-           url: "/dynamic_neighborhoods/"+data,
-          data: data,
-
-          beforeSend: function()
-          {
-              $('#spinner_2').show();
-          },
-
-          success: function(response)
-          {
-            $('#spinner_2').hide();
-          }
-
-        });
-    });
 
 });
 
