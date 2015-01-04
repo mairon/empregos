@@ -11,21 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141229215403) do
+ActiveRecord::Schema.define(version: 20150102213036) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "admin_documentos", force: true do |t|
+  create_table "admin_documentos", force: :cascade do |t|
     t.string   "nome",       limit: 150
     t.boolean  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "candidato_experiencias", force: true do |t|
+  create_table "candidato_experiencias", force: :cascade do |t|
     t.integer  "candidato_id"
-    t.string   "empresa_nome"
+    t.string   "empresa_nome",     limit: 255
     t.integer  "cargo_id"
     t.text     "descricao_ativ"
     t.integer  "state_id"
@@ -38,9 +38,22 @@ ActiveRecord::Schema.define(version: 20141229215403) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "tipo_vaga_id"
+    t.string   "referencia_nome",  limit: 150
+    t.string   "referencia_tel",   limit: 50
+    t.string   "referencia_ramal", limit: 10
+    t.integer  "periodo"
+    t.integer  "mes_ano"
   end
 
-  create_table "candidato_formacaos", force: true do |t|
+  create_table "candidato_experiencias_cargos", force: :cascade do |t|
+    t.integer  "cargo_id"
+    t.integer  "candidato_experiencia_id"
+    t.integer  "candidato_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  create_table "candidato_formacaos", force: :cascade do |t|
     t.integer  "candidato_id"
     t.integer  "formacao_id"
     t.integer  "curso_id"
@@ -49,14 +62,14 @@ ActiveRecord::Schema.define(version: 20141229215403) do
     t.integer  "inicio_ano"
     t.integer  "final_mes"
     t.integer  "final_ano"
-    t.string   "instituicao"
+    t.string   "instituicao",  limit: 255
     t.integer  "pais_id"
     t.integer  "estado_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "candidato_idiomas", force: true do |t|
+  create_table "candidato_idiomas", force: :cascade do |t|
     t.integer  "candidato_id"
     t.integer  "idioma_id"
     t.integer  "estado"
@@ -64,7 +77,7 @@ ActiveRecord::Schema.define(version: 20141229215403) do
     t.datetime "updated_at"
   end
 
-  create_table "candidatos", force: true do |t|
+  create_table "candidatos", force: :cascade do |t|
     t.string   "nome",                   limit: 150
     t.integer  "sexo"
     t.string   "rg",                     limit: 20
@@ -107,44 +120,45 @@ ActiveRecord::Schema.define(version: 20141229215403) do
     t.integer  "filho_mes_ano"
     t.integer  "disponibilidade_inicio"
     t.decimal  "pretencao_salario",                  precision: 15, scale: 2, default: 0.0
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
+    t.string   "avatar_file_name",       limit: 255
+    t.string   "avatar_content_type",    limit: 255
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string   "contato_recado",         limit: 25
     t.string   "nome_recado",            limit: 150
     t.string   "gra_pare_recado",        limit: 150
+    t.integer  "turno_id"
   end
 
-  create_table "candidatos_cargos", force: true do |t|
+  create_table "candidatos_cargos", force: :cascade do |t|
     t.integer  "candidato_id"
     t.integer  "cargo_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "candidatos_dias_semanas", force: true do |t|
+  create_table "candidatos_dias_semanas", force: :cascade do |t|
     t.integer  "candidato_id"
     t.integer  "dias_semana_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "candidatos_tipo_vagas", force: true do |t|
+  create_table "candidatos_tipo_vagas", force: :cascade do |t|
     t.integer  "candidato_id"
     t.integer  "tipo_vaga_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "cargos", force: true do |t|
-    t.string   "nome"
+  create_table "cargos", force: :cascade do |t|
+    t.string   "nome",       limit: 255
     t.boolean  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "cities", force: true do |t|
+  create_table "cities", force: :cascade do |t|
     t.string   "name",           limit: 50
     t.integer  "state_id"
     t.integer  "dimob"
@@ -161,77 +175,77 @@ ActiveRecord::Schema.define(version: 20141229215403) do
     t.datetime "updated_at"
   end
 
-  create_table "cnhs", force: true do |t|
+  create_table "cnhs", force: :cascade do |t|
     t.string   "nome",       limit: 20
     t.boolean  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "cnhs_vagas", force: true do |t|
+  create_table "cnhs_vagas", force: :cascade do |t|
     t.integer  "cnh_id"
     t.integer  "vaga_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "convenios", force: true do |t|
-    t.string   "nome"
+  create_table "convenios", force: :cascade do |t|
+    t.string   "nome",       limit: 255
     t.boolean  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "convenios_empresa_perfils", force: true do |t|
+  create_table "convenios_empresa_perfils", force: :cascade do |t|
     t.integer  "empresa_perfil_id"
     t.integer  "convenio_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "cursos", force: true do |t|
-    t.string   "nome"
+  create_table "cursos", force: :cascade do |t|
+    t.string   "nome",       limit: 255
     t.boolean  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "dias_semanas", force: true do |t|
+  create_table "dias_semanas", force: :cascade do |t|
     t.string   "nome",       limit: 30
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "dias_semanas_empresa_perfils", force: true do |t|
+  create_table "dias_semanas_empresa_perfils", force: :cascade do |t|
     t.integer  "empresa_perfil_id"
     t.integer  "dias_semana_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "dias_semanas_vagas", force: true do |t|
+  create_table "dias_semanas_vagas", force: :cascade do |t|
     t.integer  "vaga_id"
-    t.string   "nome"
+    t.string   "nome",           limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "dias_semana_id"
   end
 
-  create_table "documentos", force: true do |t|
-    t.string   "nome"
+  create_table "documentos", force: :cascade do |t|
+    t.string   "nome",       limit: 255
     t.boolean  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "documentos_empresa_perfils", force: true do |t|
+  create_table "documentos_empresa_perfils", force: :cascade do |t|
     t.integer  "empresa_perfil_id"
     t.integer  "documento_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "empresa_perfils", force: true do |t|
+  create_table "empresa_perfils", force: :cascade do |t|
     t.integer  "empresa_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -242,7 +256,7 @@ ActiveRecord::Schema.define(version: 20141229215403) do
     t.text     "sobre"
   end
 
-  create_table "empresas", force: true do |t|
+  create_table "empresas", force: :cascade do |t|
     t.integer  "ramo_id"
     t.string   "razao_social",        limit: 100
     t.string   "nome_fantasia",       limit: 100
@@ -293,20 +307,20 @@ ActiveRecord::Schema.define(version: 20141229215403) do
     t.float    "longitude"
   end
 
-  create_table "formacaos", force: true do |t|
-    t.string   "descricao"
+  create_table "formacaos", force: :cascade do |t|
+    t.string   "descricao",  limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "idiomas", force: true do |t|
+  create_table "idiomas", force: :cascade do |t|
     t.string   "nome",       limit: 150
     t.boolean  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "idiomas_vagas", force: true do |t|
+  create_table "idiomas_vagas", force: :cascade do |t|
     t.integer  "vaga_id"
     t.integer  "idioma_id"
     t.integer  "nivel"
@@ -314,13 +328,13 @@ ActiveRecord::Schema.define(version: 20141229215403) do
     t.datetime "updated_at"
   end
 
-  create_table "nacionalidades", force: true do |t|
+  create_table "nacionalidades", force: :cascade do |t|
     t.string   "nome",       limit: 150
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "ramos", force: true do |t|
+  create_table "ramos", force: :cascade do |t|
     t.string   "nome",       limit: 100
     t.boolean  "status"
     t.string   "codigo",     limit: 10
@@ -328,7 +342,7 @@ ActiveRecord::Schema.define(version: 20141229215403) do
     t.datetime "updated_at"
   end
 
-  create_table "states", force: true do |t|
+  create_table "states", force: :cascade do |t|
     t.string   "acronym",      limit: 2
     t.string   "name",         limit: 50
     t.time     "deleted_at"
@@ -342,38 +356,38 @@ ActiveRecord::Schema.define(version: 20141229215403) do
     t.datetime "updated_at"
   end
 
-  create_table "tipo_vagas", force: true do |t|
+  create_table "tipo_vagas", force: :cascade do |t|
     t.string   "nome",       limit: 150
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "turnos", force: true do |t|
-    t.string   "nome"
+  create_table "turnos", force: :cascade do |t|
+    t.string   "nome",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
-    t.string   "cpfcnpj"
-    t.string   "password_hash"
-    t.string   "password_salt"
+  create_table "users", force: :cascade do |t|
+    t.string   "cpfcnpj",                limit: 255
+    t.string   "password_hash",          limit: 255
+    t.string   "password_salt",          limit: 255
     t.integer  "tipo"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",                      default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
   end
 
-  create_table "vagas", force: true do |t|
+  create_table "vagas", force: :cascade do |t|
     t.integer  "tipo_vaga"
     t.integer  "comercial_tipo"
     t.integer  "periodo"
@@ -385,8 +399,8 @@ ActiveRecord::Schema.define(version: 20141229215403) do
     t.integer  "estado_civil"
     t.integer  "outros_detalhes_candito"
     t.integer  "escolaridade"
-    t.string   "area_tecnologo"
-    t.string   "area_superior"
+    t.string   "area_tecnologo",           limit: 255
+    t.string   "area_superior",            limit: 255
     t.integer  "status_escolaridade"
     t.integer  "cursando_periodo"
     t.integer  "experiencia"
@@ -407,11 +421,11 @@ ActiveRecord::Schema.define(version: 20141229215403) do
     t.integer  "cnh"
     t.boolean  "veiculo_proprio"
     t.boolean  "mostrar_salario"
-    t.decimal  "salario_inicial",                    precision: 15, scale: 2, default: 0.0
-    t.decimal  "salario_pos_exp",                    precision: 15, scale: 2, default: 0.0
+    t.decimal  "salario_inicial",                      precision: 15, scale: 2, default: 0.0
+    t.decimal  "salario_pos_exp",                      precision: 15, scale: 2, default: 0.0
     t.integer  "salario_por_hms"
     t.boolean  "salario_comissao"
-    t.decimal  "salario_comissao_porcen",            precision: 15, scale: 2, default: 0.0
+    t.decimal  "salario_comissao_porcen",              precision: 15, scale: 2, default: 0.0
     t.boolean  "salario_bonif"
     t.boolean  "salario_premiacao"
     t.boolean  "nao_fumante"

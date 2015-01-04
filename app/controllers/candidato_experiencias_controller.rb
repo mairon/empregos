@@ -40,7 +40,7 @@ class CandidatoExperienciasController < ApplicationController
     end
 
     def candidato_experiencia_params
-      params.require(:candidato_experiencia).permit(:candidato_id, :empresa_nome, :cargo_id, :descricao_ativ, :state_id, 
-        :city_id, :inicio_mes, :inicio_ano, :final_mes, :final_ano, :atual, :tipo_vaga_id)
+      params.require(:candidato_experiencia).permit(:candidato_id, :empresa_nome, :cargo_id, :descricao_ativ, :state_id, :periodo,
+        :city_id, :mes_ano, :referencia_nome, :referencia_tel, :referencia_ramal, :tipo_vaga_id, cargo_ids: [])
     end
 end

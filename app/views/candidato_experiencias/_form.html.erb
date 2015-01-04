@@ -16,41 +16,85 @@
         <% end %>
           <%= f.hidden_field :candidato_id %>
         <table>
-          <tr>
-            <td align="right">Empresa:</td>
-            <td colspan="4"><%= f.text_field :empresa_nome, size: 50 %></td>
-          </tr>
-          <tr>      
-            <td align="right">Tipo :</td>
-            <td><%= f.collection_select :tipo_vaga_id, TipoVaga.select('id,nome').order('2'),:id, :nome, {prompt: 'Selecione tipo'} %><span class="f_req">*</span></td>
-          </tr>
-          <tr>
-            <td align="right">Cargo:</td>
-            <td><%= f.collection_select :cargo_id, Cargo.select('id,nome').order('2'),:id, :nome, {prompt: 'Selecione o cargo'} %><span class="f_req">*</span></td>
+    <tr>
+      <td align="right">Empresa:</td>
+      <td colspan="4"><%= f.text_field :empresa_nome, size: 59 %><span class="f_req">*</span></td>
+    </tr>
 
-          </tr>
-          <tr height="30">
-            <td align="right">Periodo Início:</td>
-            <td colspan="6">
-              <%= f.text_field :inicio_mes, size: 4, maxlength: 2, placeholder: 'mm' %>/<%= f.text_field :inicio_ano, size: 4, maxlength: 4, placeholder: 'aaaa' %>
-              <small>Conclusão</small>
-              <%= f.text_field :final_mes, size: 4, maxlength: 2, placeholder: 'mm' %>/<%= f.text_field :final_ano, size: 4, maxlength: 4, placeholder: 'aaaa' %><%= f.check_box :atual %> Atualmente
-            </td>
-          </tr>
-          <tr>
-            <td align="right">Descricao da Atividade:</td>
-            <td colspan="6"><%= f.text_area :descricao_ativ, cols: 55, rows: 5 %></td>
-          </tr>
-          <tr>
-            <td align="right">Estado:</td>
-            <td colspan="2">
-              <%= f.collection_select :state_id, State.select('id,name').order('2'),:id, :name,{prompt: 'Selecione o Estado'} %><span class="f_req">*</span>
-            </td>
-            <td align="right">Cidade:</td>
-            <td  colspan="3">
-              <%= f.collection_select :city_id, City.select('id,name').order('2'),:id, :name,{prompt: 'Selecione a Cidade'} %><span class="f_req">*</span>
-            </td>
-          </tr>
+    <tr>
+      <td align="right">Referencia:</td>
+      <td colspan="4">
+      <%= f.text_field :referencia_nome, size: 20 %>
+      Telefone:<%= f.text_field :referencia_tel, size: 10 %> Ramal <%= f.text_field :referencia_ramal, size: 1 %>
+
+      </td>
+    </tr>
+
+
+    <tr>      
+      <td align="right">Tipo :</td>
+      <td><%= f.collection_select :tipo_vaga_id, TipoVaga.select('id,nome').order('2'),:id, :nome, {prompt: 'Selecione tipo'} %><span class="f_req">*</span></td>
+    </tr>
+
+    <tr>      
+      <td></td>
+      <td>
+        <fieldset>
+          <legend>Cargos e Atividades</legend>
+          <%= f.collection_select :cargo_ids, Cargo.all, :id, :nome, {}, {:multiple => true, class: "pre-selected-options"} %>
+        </fieldset>
+
+      </td>
+    </tr>
+    <tr height="30">
+      <td align="right">Periodo:</td>
+      <td colspan="6">
+      <%= f.select :periodo, [['Atualmente',0],
+                              [1,1],
+                              [2,2],
+                              [3,3],
+                              [4,4],
+                              [5,5],
+                              [6,6],
+                              [7,7],
+                              [8,8],
+                              [9,9],
+                              [10,10],
+                              [11,11],
+                              [12,12],
+                              [13,13],
+                              [14,14],
+                              [15,15],
+                              [16,16],
+                              [17,17],
+                              [18,18],
+                              [19,19],
+                              [20,20],
+                              [21,21],
+                              [22,22],
+                              [23,23],
+                              [24,24],
+                              [25,25],
+                              ['Mais de 25',99]
+                              ]  %>
+              <%= f.radio_button :mes_ano, 0, :style => "margin-top: -2px;" %> Mês
+              <%= f.radio_button :mes_ano, 1, :style => "margin-top: -2px;" %> Ano
+      </td>
+    </tr>
+    <tr>
+      <td align="right">Descricao da Atividade:</td>
+      <td colspan="6"><%= f.text_area :descricao_ativ, cols: 59, rows: 5 %></td>
+    </tr>
+    <tr>
+      <td align="right">Estado:</td>
+      <td colspan="2">
+        <%= f.collection_select :state_id, State.select('id,name').order('2'),:id, :name,{prompt: 'Selecione o Estado'} %></span>
+      </td>
+      <td align="right">Cidade:</td>
+      <td  colspan="3">
+        <%= f.collection_select :city_id, City.select('id,name').order('2'),:id, :name,{prompt: 'Selecione a Cidade'} %></span>
+      </td>
+    </tr>
           <tr>
             <td></td>
             <td><%= f.submit 'Gravar', data: { disable_with: "Aguarde..." }, class: "btn btn-gebo" %></td>

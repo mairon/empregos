@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :candidato_experiencias_cargos
+
+  resources :candidato_experiencia_cargos
+
   resources :turnos
 
   resources :nacionalidades

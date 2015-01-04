@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cargo:</strong>
+  <%= @candidato_experiencias_cargo.cargo_id %>
+</p>
+
+<p>
+  <strong>Candidato experiencia:</strong>
+  <%= @candidato_experiencias_cargo.candidato_experiencia_id %>
+</p>
+
+<p>
+  <strong>Candidato:</strong>
+  <%= @candidato_experiencias_cargo.candidato_id %>
+</p>
+
+<%= link_to 'Edit', edit_candidato_experiencias_cargo_path(@candidato_experiencias_cargo) %> |
+<%= link_to 'Back', candidato_experiencias_cargos_path %>

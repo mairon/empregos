@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Candidato_experiencias_cargos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Cargo</th>
+      <th>Candidato experiencia</th>
+      <th>Candidato</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @candidato_experiencias_cargos.each do |candidato_experiencias_cargo| %>
+      <tr>
+        <td><%= candidato_experiencias_cargo.cargo_id %></td>
+        <td><%= candidato_experiencias_cargo.candidato_experiencia_id %></td>
+        <td><%= candidato_experiencias_cargo.candidato_id %></td>
+        <td><%= link_to 'Show', candidato_experiencias_cargo %></td>
+        <td><%= link_to 'Edit', edit_candidato_experiencias_cargo_path(candidato_experiencias_cargo) %></td>
+        <td><%= link_to 'Destroy', candidato_experiencias_cargo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Candidato experiencias cargo', new_candidato_experiencias_cargo_path %>

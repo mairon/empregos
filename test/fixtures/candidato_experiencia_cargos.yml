@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cargo_id: 1
+  candidato_experiencia_id: 1
+  candidato_id: 1
+
+two:
+  cargo_id: 1
+  candidato_experiencia_id: 1
+  candidato_id: 1

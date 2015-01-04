@@ -253,10 +253,16 @@
       </div>
 
       <div class="control-group formSep">
-        <h5 class="heading">Disponibilidade de inicio</h5>
+        <h5 class="heading">Disponibilidade de horário e de inicio</h5>
           <table>
+
+            <tr>
+              <td height="35" align="right">Pediodo de Trabalho:</td>
+              <td colspan="4"><%= f.collection_select :turno_id, Turno.select('id,nome').order('1'),:id, :nome,{prompt: 'Qualquer horário'} %></td>
+            </tr>
+
             <tr height="30">
-              
+              <td align="right">Inicio:</td>
               <td colspan="2"><%= f.radio_button :disponibilidade_inicio, 1, :style => "margin-top: -2px;" %> Imediatamente
               <%= f.radio_button :disponibilidade_inicio, 2, :style => "margin-top: -2px;" %> 1 semana
               <%= f.radio_button :disponibilidade_inicio, 3, :style => "margin-top: -2px;" %> 15 dias
@@ -307,7 +313,6 @@
 </div>
 
 <script type="text/javascript">
-$('.pre-selected-options').multiSelect();
   $('#candidato_pne').click(function() {
     $(".pne").toggle(this.checked);
   });
