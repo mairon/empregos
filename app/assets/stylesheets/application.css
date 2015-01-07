@@ -42,3 +42,5 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 border-radius: 4px 4px 0 0;}
 
 fieldset{ padding: 10px;}
+
+legend{ font-weight: bold;}

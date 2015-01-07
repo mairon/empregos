@@ -31,7 +31,7 @@
 
 
 $(document).ready(function() {
-  $('.pre-selected-options').multiSelect();
+  $('.pre-selected-options').multiSelect({cssClass:"full_width"});
   $(".cep").mask("99999-999");
   $(".cnpj").mask("99.999.999/9999-99");
   $(".cpf").mask("999.999.999-99");

@@ -1,5 +1,5 @@
 .ms-container{
-  background: transparent url('../img/arrow.png') no-repeat 175px 83px;
+  background: transparent url('../img/arrow.png') no-repeat 205px 115px;
 }
 
 .ms-container:after{
@@ -29,8 +29,8 @@
 }
 
 .ms-container ul.ms-list{
-  width: 170px;
-  height: 200px;
+  width: 200px;
+  height: 270px;
   padding: 1px 0px;
 
   overflow-y: auto;
@@ -75,4 +75,10 @@
 
 .ms-container .ms-selection li:not(.disabled):hover{
   background: #eee url('../img/delete.png') no-repeat 3px 3px;
+}
+
+
+.full_width {
+  width:200px;
+
 }
