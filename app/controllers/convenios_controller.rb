@@ -2,65 +2,39 @@ class ConveniosController < ApplicationController
   before_action :authenticate_user!  
 
   before_action :set_convenio, only: [:show, :edit, :update, :destroy]
+  respond_to :html
 
-  # GET /convenios
-  # GET /convenios.json
   def index
     @convenios = Convenio.all
+    respond_with(@convenios)
   end
 
-  # GET /convenios/1
-  # GET /convenios/1.json
   def show
+    respond_with(@convenio)
   end
 
-  # GET /convenios/new
   def new
     @convenio = Convenio.new
+    respond_with(@convenio)
   end
 
-  # GET /convenios/1/edit
   def edit
   end
 
-  # POST /convenios
-  # POST /convenios.json
   def create
     @convenio = Convenio.new(convenio_params)
-
-    respond_to do |format|
-      if @convenio.save
-        format.html { redirect_to convenios_url }
-        format.json { render :show, status: :created, location: @convenio }
-      else
-        format.html { render :new }
-        format.json { render json: @convenio.errors, status: :unprocessable_entity }
-      end
-    end
+    @convenio.save
+    respond_with(@convenio)
   end
 
-  # PATCH/PUT /convenios/1
-  # PATCH/PUT /convenios/1.json
   def update
-    respond_to do |format|
-      if @convenio.update(convenio_params)
-        format.html { redirect_to convenios_url }
-        format.json { render :show, status: :ok, location: @convenio }
-      else
-        format.html { render :edit }
-        format.json { render json: @convenio.errors, status: :unprocessable_entity }
-      end
-    end
+    @convenio.update(convenio_params)
+    respond_with(@convenio)
   end
 
-  # DELETE /convenios/1
-  # DELETE /convenios/1.json
   def destroy
     @convenio.destroy
-    respond_to do |format|
-      format.html { redirect_to convenios_url }
-      format.json { head :no_content }
-    end
+    respond_with(@convenio)
   end
 
   private

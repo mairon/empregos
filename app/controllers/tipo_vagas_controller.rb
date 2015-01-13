@@ -1,7 +1,7 @@
 class TipoVagasController < ApplicationController
   before_action :authenticate_user!
   before_action :set_tipo_vaga, only: [:show, :edit, :update, :destroy]
-  respond_to :html, :xml, :json
+  respond_to :html
   
   def index
     @tipo_vagas = TipoVaga.all

@@ -70,7 +70,7 @@ class VagasController < ApplicationController
     def vaga_params     
       params.require(:vaga).permit( :efetivo_carteira, :tipo_vaga_id, :turno_id, 
             :temporario, :extra, :trainer, :free_lancer, :autonomo, :divulga_salario,
-            :representante, :comerical, :comercial_tipo, :periodo, 
+            :representante, :comerical, :comercial_tipo, :periodo, :tipo_veiculo,
             :empresa_id, :cargo_id, :numero_vagas, :sexo, :pne, 
             :estado_civil, :outros_detalhes_candito, :escolaridade, 
             :area_tecnologo, :area_superior, :status_escolaridade, :mostrar_salario,

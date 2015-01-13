@@ -184,7 +184,14 @@
           </tr>
           <tr>
             <td></td>
-            <td width="250" colspan="4"><%= f.check_box :veiculo_proprio, :style => "margin-top: -2px;" %> Veiculo Proprio</td>
+            <td width="250" colspan="4">
+              <%= f.check_box :veiculo_proprio, :style => "margin-top: -2px;" %> Veiculo Próprio
+              <div class="veiculo"  style="display:none">
+                <%= f.radio_button :tipo_veiculo, 0, :style => "margin-top: -2px;" %> Carro
+                <%= f.radio_button :tipo_veiculo, 1, :style => "margin-top: -2px;" %> Moto
+                <%= f.radio_button :tipo_veiculo, 2, :style => "margin-top: -2px;" %> Carro ou Moto
+              </div>
+            </td>
           </tr>
 
           <tr>
@@ -264,7 +271,7 @@
                   <tr>
                     <td width="200">
                     <label class="checkbox" >
-                      <input type="checkbox" name="candidato[dias_semana_ids][]" id="marca_todos" onclick="marcarTodos(this.checked);"><b> <span id="acao"> Marcar Todos </b></span>
+                      <input type="checkbox" name="dias_semana" id="marca_todos" onclick="marcarTodos(this.checked);"><b> <span id="acao"> Marcar Todos </b></span>
                       </label>
                       <% if params["action"] == 'edit' %>
 
@@ -347,6 +354,11 @@
     $(".pne").toggle(this.checked);
   });
 
+  $('#candidato_veiculo_proprio').click(function() {
+    $(".veiculo").toggle(this.checked);
+  });
+
+
   $(document).ready(function() {
 
     if($('#count_dias').val() == '7'){
@@ -357,6 +369,13 @@
     if($('#candidato_pne').is(':checked')){
       $(".pne").css('display','block');
     };
+
+    //teste veiculo
+    if($('#candidato_veiculo_proprio').is(':checked')){
+      $(".veiculo").css('display','block');
+    };
+
+
     //teste se te filhos
     if($('#candidato_filhos').is(':checked')){
       $("#candidato_filhos_qtd").removeAttr('disabled');
@@ -367,7 +386,6 @@
     };
 
   });
-
 
 
   $("#candidato_filhos").click(function() {

@@ -1,4 +1,5 @@
 class CandidatoFormacaosController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_candidato_formacao, only: [:show, :edit, :update, :destroy]
 
   def index

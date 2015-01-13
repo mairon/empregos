@@ -3,64 +3,39 @@ class DocumentosController < ApplicationController
 
   before_action :set_documento, only: [:show, :edit, :update, :destroy]
 
-  # GET /documentos
-  # GET /documentos.json
+  respond_to :html
+  
   def index
     @documentos = Documento.all
+    respond_with(@documentos)
   end
 
-  # GET /documentos/1
-  # GET /documentos/1.json
   def show
+    respond_with(@documento)
   end
 
-  # GET /documentos/new
   def new
     @documento = Documento.new
+    respond_with(@documento)
   end
 
-  # GET /documentos/1/edit
   def edit
   end
 
-  # POST /documentos
-  # POST /documentos.json
   def create
     @documento = Documento.new(documento_params)
-
-    respond_to do |format|
-      if @documento.save
-        format.html { redirect_to documentos_url }
-        format.json { render :show, status: :created, location: @documento }
-      else
-        format.html { render :new }
-        format.json { render json: @documento.errors, status: :unprocessable_entity }
-      end
-    end
+    @documento.save
+    respond_with(@documento)
   end
 
-  # PATCH/PUT /documentos/1
-  # PATCH/PUT /documentos/1.json
   def update
-    respond_to do |format|
-      if @documento.update(documento_params)
-        format.html { redirect_to documentos_url }
-        format.json { render :show, status: :ok, location: @documento }
-      else
-        format.html { render :edit }
-        format.json { render json: @documento.errors, status: :unprocessable_entity }
-      end
-    end
+    @documento.update(documento_params)
+    respond_with(@documento)
   end
 
-  # DELETE /documentos/1
-  # DELETE /documentos/1.json
   def destroy
     @documento.destroy
-    respond_to do |format|
-      format.html { redirect_to documentos_url }
-      format.json { head :no_content }
-    end
+    respond_with(@documento)
   end
 
   private

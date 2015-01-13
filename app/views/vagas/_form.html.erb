@@ -132,7 +132,14 @@
           </tr>
           <tr>
             <td></td>
-            <td width="250" colspan="4"><%= f.check_box :veiculo_proprio, :style => "margin-top: -2px;" %> Veiculo Proprio</td>
+            <td width="250" colspan="4">
+              <%= f.check_box :veiculo_proprio, :style => "margin-top: -2px;" %> Veiculo Próprio
+              <div class="veiculo"  style="display:none">
+                <%= f.radio_button :tipo_veiculo, 0, :style => "margin-top: -2px;" %> Carro
+                <%= f.radio_button :tipo_veiculo, 1, :style => "margin-top: -2px;" %> Moto
+                <%= f.radio_button :tipo_veiculo, 2, :style => "margin-top: -2px;" %> Carro e Moto
+              </div>
+            </td>
           </tr>
 
           <tr height="30">
@@ -246,7 +253,18 @@
 <% end %>
 
 <script type="text/javascript">
+
+  $('#vaga_veiculo_proprio').click(function() {
+    $(".veiculo").toggle(this.checked);
+  });
+
 $(document).ready(function() {
+
+    //teste veiculo
+    if($('#vaga_veiculo_proprio').is(':checked')){
+      $(".veiculo").css('display','block');
+    };
+
   $("#vaga_empresa_id").focus();
   $("#vaga_empresa_id").blur(function(){
       $.each([ <%= @dias_semanas.map  { |t| t.id }.join(', ') %> ], function( index, value ) {

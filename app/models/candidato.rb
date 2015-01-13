@@ -12,11 +12,16 @@ class Candidato < ActiveRecord::Base
 	validates_uniqueness_of    :rg
 	validates_presence_of :rg, :nome, :sexo, :email_01, :cep, :endereco, :state_id, :city_id, :turno_ids
 	validates_presence_of :filhos_qtd, :filhos_cacula, if: :filhos?
+	validates_presence_of :tipo_veiculo, if: :carro?
 
 	has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "80x80>" }, :default_url => "http://www.placehold.it/80x80/EFEFEF/AAAAAA"
   	validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
  	def filhos?
+    	self.filhos == true
+  	end
+
+ 	def carro?
     	self.filhos == true
   	end
 

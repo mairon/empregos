@@ -1,4 +1,5 @@
 class CandidatosCargosController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_candidatos_cargo, only: [:show, :edit, :update, :destroy]
 
   def index

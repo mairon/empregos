@@ -2,65 +2,39 @@ class CargosController < ApplicationController
   before_action :authenticate_user!
 
   before_action :set_cargo, only: [:show, :edit, :update, :destroy]
-
-  # GET /cargos
-  # GET /cargos.json
+  respond_to :html
+  
   def index
     @cargos = Cargo.all
+    respond_with(@cargos)
   end
 
-  # GET /cargos/1
-  # GET /cargos/1.json
   def show
+    respond_with(@cargo)
   end
 
-  # GET /cargos/new
   def new
     @cargo = Cargo.new
+    respond_with(@cargo)
   end
 
-  # GET /cargos/1/edit
   def edit
   end
 
-  # POST /cargos
-  # POST /cargos.json
   def create
     @cargo = Cargo.new(cargo_params)
-
-    respond_to do |format|
-      if @cargo.save
-        format.html { redirect_to @cargo, notice: 'Cargo was successfully created.' }
-        format.json { render :show, status: :created, location: @cargo }
-      else
-        format.html { render :new }
-        format.json { render json: @cargo.errors, status: :unprocessable_entity }
-      end
-    end
+    @cargo.save
+    respond_with(@cargo)
   end
 
-  # PATCH/PUT /cargos/1
-  # PATCH/PUT /cargos/1.json
   def update
-    respond_to do |format|
-      if @cargo.update(cargo_params)
-        format.html { redirect_to @cargo, notice: 'Cargo was successfully updated.' }
-        format.json { render :show, status: :ok, location: @cargo }
-      else
-        format.html { render :edit }
-        format.json { render json: @cargo.errors, status: :unprocessable_entity }
-      end
-    end
+    @cargo.update(cargo_params)
+    respond_with(@cargo)
   end
 
-  # DELETE /cargos/1
-  # DELETE /cargos/1.json
   def destroy
     @cargo.destroy
-    respond_to do |format|
-      format.html { redirect_to cargos_url, notice: 'Cargo was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    respond_with(@cargo)
   end
 
   private

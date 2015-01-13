@@ -4,6 +4,7 @@ class FormacaosController < ApplicationController
 
   def index
     @formacaos = Formacao.all
+    respond_with(@formacaos)
   end
 
   def show
