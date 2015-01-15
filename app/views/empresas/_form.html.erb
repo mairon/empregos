@@ -19,7 +19,7 @@
         <table>
           <tr>
             <td align="right">CNPJ:</td>
-            <td><%= f.text_field :cnpj, size: 30, class: 'cnpj' %><span class="f_req">*</span></td>
+            <td><%= f.text_field :cnpj, size: 30, autofocus: true %></td>
 
             <td align="right"> Razão Social:</td>
             <td><%= f.text_field :razao_social, size: 50, maxlength: 100 %><span class="f_req">*</span></td>
@@ -39,7 +39,7 @@
           <tr>
             <td width="175" align="right">Unidade:</td>
             <td>
-              <%= f.radio_button :unidade, 0 %> Matriz
+              <%= f.radio_button :unidade, 0, checked: true %> Matriz
               <%= f.radio_button :unidade, 1 %> Filial
             </td>
           </tr>
@@ -51,13 +51,13 @@
         <table>
           <tr>
             <td align="right" width="115">CEP:</td>
-            <td><%= f.text_field :cep, size: 10, class: 'cep' %><span class="f_req">*</span></td>
+            <td><%= f.text_field :cep, size: 10, class: 'cep' %></td>
             <td align="right">Endereço:</td>
             <td><%= f.text_field :endereco, size: 35, maxlength: 50, placeholder: 'Ex. Rua Augusta jardin'  %><span class="f_req">*</span></td>
             <td align="right">Nº:</td>
-            <td><%= f.text_field :numero, size: 5 %><span class="f_req">*</span></td>
+            <td><%= f.text_field :numero, size: 5 %></td>
             <td align="right">Bairro:</td>
-            <td><%= f.text_field :bairro, size: 20, maxlength: 44 %><span class="f_req">*</span></td>
+            <td><%= f.text_field :bairro, size: 20, maxlength: 44 %></td>
 
           </tr>
           <tr>
@@ -145,7 +145,7 @@
           <table>
             <tr>
               <td align="right">CEP:</td>
-              <td><%= f.text_field :entrev_cep, size: 10, class: 'cep' %><span class="f_req">*</span></td>
+              <td><%= f.text_field :entrev_cep, size: 10, class: 'cep' %></td>
               <td align="right">Endereço:</td>
               <td><%= f.text_field :entrev_endereco, size: 35, maxlength: 100, placeholder: 'Ex. Rua Augusta jardin' %><span class="f_req">*</span></td>
               <td align="right">Nº:</td>
@@ -297,7 +297,7 @@ $(document).ready(function () {
 $("#new_empresa").validate({
 debug: true,
 rules: {
-"empresa[cnpj]": {required: true, cnpj: true, remote:"/check_empresa"},
+//"empresa[cnpj]": {required: true, cnpj: true, remote:"/check_empresa"},
 },submitHandler:function(form) {
       form.submit();
     }

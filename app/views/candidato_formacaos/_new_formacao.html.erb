@@ -27,10 +27,13 @@
       <td colspan="4">
         <%= f.radio_button :status, 0, :style => "margin-top: -2px;" %> Concluído
         <%= f.radio_button :status, 1, :style => "margin-top: -2px;" %> Cursando
-        <%= f.radio_button :status, 2, :style => "margin-top: -2px;" %> Trancado
+        <%= f.radio_button :status, 2, :style => "margin-top: -2px;" %> Trancad        
       </td>
     </tr>
-
+    <tr>
+      <td align="right">Período: </td>
+      <td><%= f.select :cursando_periodo, 1..12 %></td>
+    </tr>
     <tr height="30">
       <td align="right">Periodo Início:</td>
       <td colspan="4">

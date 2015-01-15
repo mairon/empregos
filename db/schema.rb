@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150113003522) do
+ActiveRecord::Schema.define(version: 20150115015036) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,11 +62,12 @@ ActiveRecord::Schema.define(version: 20150113003522) do
     t.integer  "inicio_ano"
     t.integer  "final_mes"
     t.integer  "final_ano"
-    t.string   "instituicao",  limit: 255
+    t.string   "instituicao",      limit: 255
     t.integer  "pais_id"
     t.integer  "estado_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "cursando_periodo"
   end
 
   create_table "candidato_idiomas", force: :cascade do |t|

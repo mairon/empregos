@@ -18,9 +18,16 @@
             <h5 class="heading">DE UMA MANEIRA GERAL, OS FUNCIONARIOS DE SUA EMPRESA PRECISAM:</h5>
             <table>
               <tr>
+                <td>
+                <label class="checkbox" >
+                  <input type="checkbox" name="dias_semana" id="marca_todos" onclick="marcarTodos(this.checked);"><b> <span id="acao"> Marcar Todos </b></span>
+                  </label>
+                  <% if params["action"] == 'edit' %>
+                    <input type="hidden" name="count_dias" id="count_dias" value="<%= @empresa.dias_semanas_empresa_perfils.count %>">
+                  <% end %>
+                </td>
                 <% @dias_semanas.each do |c| %>
                   <td>
-                    <label class="checkbox" >
                       <%= check_box_tag "empresa_perfil[dias_semana_ids][]", c.id, @empresa_perfil.dias_semanas.include?(c) %> <%= c.nome %>
                     </label>
                   </td>
@@ -89,3 +96,28 @@
     <% end %>
 
 
+<script type="text/javascript">
+  $(document).ready(function() {
+
+    if($('#count_dias').val() == '7'){
+        $("#marca_todos").attr('checked','checked');
+        document.getElementById('acao').innerHTML = 'Desmarcar Todos';
+    };
+  });
+
+    function marcarTodos(marcar){
+        var itens = document.getElementsByName('empresa_perfil[dias_semana_ids][]');
+
+        if(marcar){
+            document.getElementById('acao').innerHTML = 'Desmarcar Todos';
+        }else{
+            document.getElementById('acao').innerHTML = 'Marcar Todos';
+        }
+
+        var i = 0;
+        for(i=0; i<itens.length;i++){
+            itens[i].checked = marcar;
+        }
+
+    }
+</script>

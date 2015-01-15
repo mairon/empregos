@@ -41,6 +41,6 @@ class CandidatoFormacaosController < ApplicationController
     end
 
     def candidato_formacao_params
-      params.require(:candidato_formacao).permit(:candidato_id, :formacao_id, :curso_id, :status, :inicio_mes, :inicio_ano, :final_mes, :final_ano, :instituicao, :pais_id, :estado_id)
+      params.require(:candidato_formacao).permit(:candidato_id, :cursando_periodo, :formacao_id, :curso_id, :status, :inicio_mes, :inicio_ano, :final_mes, :final_ano, :instituicao, :pais_id, :estado_id)
     end
 end
