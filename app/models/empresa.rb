@@ -2,11 +2,10 @@ class Empresa < ActiveRecord::Base
 	has_one :empresa_perfil, dependent: :destroy
 	belongs_to :city
 	belongs_to :state
-	validates :razao_social, :ramo_id, :nome_fantasia,
+	validates  	:ramo_id, :nome_fantasia,
 	          :unidade, :endereco, :state_id, :city_id,
-	          :fone01, :responsavel, :fone_resp, :endero_entrevista,
-	          :entrev_endereco, :entrev_state_id, :entrev_city_id,
-	          :responsavel, presence: true
+	          :fone01, :responsavel, :endero_entrevista,
+	          :entrev_endereco, :entrev_state_id, :entrev_city_id, presence: true
 
 	validates_uniqueness_of :razao_social
 	validates_format_of :email_receb, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
