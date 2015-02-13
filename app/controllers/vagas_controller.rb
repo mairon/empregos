@@ -12,6 +12,7 @@ class VagasController < ApplicationController
   # GET /vagas/1
   # GET /vagas/1.json
   def show
+    @candidatos = CandidatosCargo.where("cargo_id = ?", @vaga.cargo_id)
   end
 
   # GET /vagas/new

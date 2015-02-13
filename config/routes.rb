@@ -73,11 +73,12 @@ Rails.application.routes.draw do
 
   resources :empresa_perfils
 
-  root 'home#index'
+  root 'pages#index'
   get 'check_email', to: 'users#check_email', as: "users/check_email"
   get 'check_empresa', to: 'empresas#check_empresa', as: "check_empresa"
 
   get 'main', to: 'main#index'
+
   namespace :admin do
     get '/painel', to: 'painel#index'
     resources :cities

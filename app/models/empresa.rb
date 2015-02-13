@@ -1,5 +1,6 @@
 class Empresa < ActiveRecord::Base
 	has_one :empresa_perfil, dependent: :destroy
+	has_many :vagas, dependent: :destroy
 	belongs_to :city
 	belongs_to :state
 	validates  	:ramo_id, :nome_fantasia,

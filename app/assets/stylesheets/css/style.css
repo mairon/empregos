@@ -705,14 +705,14 @@
 		}
 		
 		@media (max-width: 979px) {
-			#maincontainer {background: #fff}
+			#maincontainer {background: #fff;border:1px solid red}
 			.row > [class*="span"],.navbar-fixed-top {margin:0 !important}
 			.navbar-fixed-top .container-fluid {padding:0 !important}
 			.navbar .brand {width:auto;line-height:18px;margin:3px 0 6px 34px}
 			.navbar .user_menu {padding-top:5px}
 			.navbar .user_menu .dropdown-menu {margin:8px 10px 0 0}
 			.navbar .user_menu > li > a {padding:0 10px 0 0}
-			.navbar-inner {position:relative;z-index:990;min-height:28px}
+			.navbar-inner {position:relative;z-index:990;min-height:28px;}
 			.nav-collapse a {color:#fff !important}
 			.nav-collapse .dropdown-menu li {padding:0}
 			.nav-collapse .dropdown-menu li a {font-weight:400}

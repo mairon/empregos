@@ -1,4 +1,22 @@
-<p id="notice"><%= notice %></p>
+<div class="row-fluid">
+  <div class="span12">
 
-<%= link_to 'Edit', edit_vaga_path(@vaga) %> |
-<%= link_to 'Back', vagas_path %>
+		<table class="table table table-striped">
+			<thead>
+		    <tr>
+		      <th>Código</th>
+		      <th>Candidato</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  <% @candidatos.each do |c| %>
+		    <tr>
+		      <td width='50'><%= c.id.to_s.rjust(6,'0') %></td>
+		      <td width='300'><%= c.candidato.nome %></td>
+		    </tr>
+		  <% end %>
+		  </tbody>
+		</table>
+
+	</div>
+</div>

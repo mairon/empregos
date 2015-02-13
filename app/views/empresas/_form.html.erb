@@ -62,7 +62,7 @@
           </tr>
           <tr>
             <td align="right">Complemento:</td>
-            <td colspan="3"><%= f.text_field :complemento, size: 58, maxlength: 100 %></td>
+            <td colspan="3"><%= f.text_field :complemento, size: 57, maxlength: 100 %></td>
             <td align="right">Região:</td>
             <td colspan="3"><%= f.text_field :regiao, size: 35, maxlength: 100, placeholder: 'Ex. vila A' %></td>
           </tr>
@@ -72,10 +72,14 @@
               <%= f.collection_select :state_id, State.select('id,name').order('2'),:id, :name,{prompt: 'Selecione o Estado'} %><span class="f_req">*</span>
             </td>
             <td align="right">Cidade:</td>
-            <td  colspan="3">
+            <td colspan="3">
               <%= f.collection_select :city_id, City.select('id,name').order('2'),:id, :name,{prompt: 'Selecione a Cidade'} %><span class="f_req">*</span>
             </td>
           </tr>
+          <tr>
+            <td align="right">Ponto de Refêrencia:</td>
+            <td colspan="8"><%= f.text_area :ponto_referencia, rows: 3, cols: 101 %></td>
+          </tr> 
         </table>
       </div>
 

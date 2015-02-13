@@ -129,7 +129,7 @@
             <div id="contentwrapper">
                 <div class="main_content">
 								 	<% flash.each do |name, msg| %>
-								    <%= content_tag :div, msg, :id => "flash#{name}" %>
+								    <%= content_tag :div, msg, id: "flash#{name}", class: "alert alert-info" %>
 								  <% end %>
 									<%= yield %>
                 </div>

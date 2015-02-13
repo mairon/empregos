@@ -35,7 +35,7 @@
             <tr>
               <td width="40">
                 <%= link_to 'Editar', edit_empresa_path(empresa) %> |
-                <%= link_to 'Remover', empresa, method: :delete, data: { confirm: 'Deseja realmente remover o registro?' } %> |
+                <%= link_to 'Remover', empresa, method: :delete, data: { confirm: 'Deseja realmente remover o registro ele irá remover todas as vagas criadas por esta empresa?' } %> |
                 <%= link_to 'Perfil', empresa_path(empresa) %>
               </td>
               <td width='100'><%= empresa.id.to_s.rjust(6,'0') %></td>

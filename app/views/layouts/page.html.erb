@@ -6,8 +6,37 @@
   <%= stylesheet_link_tag    "page", media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-	<%= notice %>
-	<%= yield %>
+<body class="gebo-fixed">
+	<div class="clearfix">
+		<!-- header -->
+    <header>
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="brand" href="/"><%= image_tag('logo_topo.png') %></a>
+                    <ul class="nav user_menu pull-right">
+                    		<li>
+	                    	<%= form_for("user", :url => user_session_path) do |f| %>
+												  <%= f.text_field :email, autocomplete: "off", placeholder: 'E-mail' %>
+												  <%= f.password_field :password , autocomplete: "off", placeholder: 'Senha' %>
+												  <%= f.submit 'Entrar', class: 'sign_in', data: { disable_with: "Aguarde..." } %>
+												<% end %> 
+											</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- main content -->
+    <div id="contentwrapper">
+      <div class="main_content">
+        <% if notice %>
+				  <div class="alert alert-info"><%= notice %></div>
+        <% end %>
+				<%= yield %>
+      </div>
+    </div>
+	</div>
 </body>
 </html>
