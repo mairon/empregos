@@ -46,10 +46,10 @@
                 <%= link_to '', edit_vaga_path(vaga), class: "icon-pencil" %>
               </td>
               <td width='50'><%= vaga.id.to_s.rjust(6,'0') %></td>
-              <td width='300'><%= vaga.empresa.nome_fantasia %></td>
-              <td width='200'><%= vaga.cargo.nome %></td>
+              <td width='300'><%= vaga.nome_fantasia %></td>
+              <td width='200'><%= vaga.carg %></td>
               <td width='5' align="center"><%= vaga.numero_vagas %></td>
-              <td width='5' align="center"><span class="label label-success"> <%= link_to CandidatosCargo.where("cargo_id = ?", vaga.cargo_id).count(:id), vaga_path(vaga), class: "candidatos"  %> </span></td>
+              <td width='5' align="center"><span class="label label-success"> <%= link_to vaga.candidatos_com_perfil, vaga_path(vaga), class: "candidatos"  %> </span></td>
             </tr>
           <% end %>
           </tbody>

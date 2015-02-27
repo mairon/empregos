@@ -6,7 +6,37 @@ class VagasController < ApplicationController
   # GET /vagas
   # GET /vagas.json
   def index
-    @vagas = Vaga.all
+    sql = "SELECT V.ID,
+                   E.NOME_FANTASIA,
+                   CG.NOME AS CARG,
+                   V.NUMERO_VAGAS,
+              (SELECT COUNT(C.ID)
+              FROM CANDIDATOS C
+              LEFT JOIN CANDIDATOS_TIPO_VAGAS CTV
+              ON C.ID = CTV.CANDIDATO_ID
+
+              LEFT JOIN CANDIDATOS_CARGOS CC
+              ON C.ID = CC.CANDIDATO_ID
+
+              LEFT JOIN CANDIDATOS_TURNOS CT
+              ON C.ID = CT.CANDIDATO_ID
+              
+              WHERE CC.CARGO_ID = V.CARGO_ID 
+              AND CTV.TIPO_VAGA_ID = V.TIPO_VAGA_ID
+              AND CT.TURNO_ID = V.TURNO_ID
+              AND C.SEXO = V.SEXO
+              AND C.ESTADO_CIVIL = V.ESTADO_CIVIL
+              AND C.VEICULO_PROPRIO = V.VEICULO_PROPRIO
+              AND C.FUMANTE = V.NAO_FUMANTE
+              AND C.PNE = V.PNE) AS CANDIDATOS_COM_PERFIL
+            FROM VAGAS V
+            LEFT JOIN EMPRESAS E
+            ON E.ID = V.EMPRESA_ID  
+
+            LEFT JOIN CARGOS CG
+            ON CG.ID = V.CARGO_ID
+            "
+    @vagas = Vaga.find_by_sql(sql)
   end
 
   # GET /vagas/1
