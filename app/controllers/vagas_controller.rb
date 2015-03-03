@@ -10,25 +10,14 @@ class VagasController < ApplicationController
                    E.NOME_FANTASIA,
                    CG.NOME AS CARG,
                    V.NUMERO_VAGAS,
-              (SELECT COUNT(C.ID)
-              FROM CANDIDATOS C
-              LEFT JOIN CANDIDATOS_TIPO_VAGAS CTV
-              ON C.ID = CTV.CANDIDATO_ID
-
-              LEFT JOIN CANDIDATOS_CARGOS CC
-              ON C.ID = CC.CANDIDATO_ID
-
-              LEFT JOIN CANDIDATOS_TURNOS CT
-              ON C.ID = CT.CANDIDATO_ID
-              
-              WHERE CC.CARGO_ID = V.CARGO_ID 
-              AND CTV.TIPO_VAGA_ID = V.TIPO_VAGA_ID
-              AND CT.TURNO_ID = V.TURNO_ID
-              AND C.SEXO = V.SEXO
-              AND C.ESTADO_CIVIL = V.ESTADO_CIVIL
-              AND C.VEICULO_PROPRIO = V.VEICULO_PROPRIO
-              AND C.FUMANTE = V.NAO_FUMANTE
-              AND C.PNE = V.PNE) AS CANDIDATOS_COM_PERFIL
+                   V.ESTADO_CIVIL,
+                   V.VEICULO_PROPRIO,
+                   V.NAO_FUMANTE,
+                   V.PNE,
+                   V.CARGO_ID,
+                   V.TIPO_VAGA_ID,
+                   V.TURNO_ID,
+                   V.SEXO
             FROM VAGAS V
             LEFT JOIN EMPRESAS E
             ON E.ID = V.EMPRESA_ID  
@@ -42,7 +31,33 @@ class VagasController < ApplicationController
   # GET /vagas/1
   # GET /vagas/1.json
   def show
-    @candidatos = CandidatosCargo.where("cargo_id = ?", @vaga.cargo_id)
+
+    estado_civil = "AND C.ESTADO_CIVIL = #{@vaga.estado_civil.to_i}" unless @vaga.estado_civil.to_i == 2 
+    veiculo = "AND C.VEICULO_PROPRIO = #{@vaga.veiculo_proprio}" if @vaga.veiculo_proprio.to_s == 't' 
+    fumante = "AND C.FUMANTE = #{@vaga.nao_fumante}" if @vaga.nao_fumante.to_s == 't' 
+    pne = "AND C.PNE = #{@vaga.pne}" if @vaga.pne.to_s == 't' 
+    sql = "SELECT C.ID,
+                  C.NOME
+                  FROM CANDIDATOS C
+                  LEFT JOIN CANDIDATOS_TIPO_VAGAS CTV
+                  ON C.ID = CTV.CANDIDATO_ID
+
+                  LEFT JOIN CANDIDATOS_CARGOS CC
+                  ON C.ID = CC.CANDIDATO_ID
+
+                  LEFT JOIN CANDIDATOS_TURNOS CT
+                  ON C.ID = CT.CANDIDATO_ID
+                  
+                  WHERE CC.CARGO_ID = #{@vaga.cargo_id}
+                  AND CTV.TIPO_VAGA_ID = #{@vaga.tipo_vaga_id}
+                  AND CT.TURNO_ID = #{@vaga.turno_id}
+                  AND C.SEXO = #{@vaga.sexo}
+                  #{estado_civil}
+                  #{veiculo}
+                  #{fumante}
+                  #{pne}" 
+
+    @candidatos = Candidato.find_by_sql(sql)
   end
 
   # GET /vagas/new

@@ -12,7 +12,7 @@
 		  <% @candidatos.each do |c| %>
 		    <tr>
 		      <td width='50'><%= c.id.to_s.rjust(6,'0') %></td>
-		      <td width='300'><%= c.candidato.nome %></td>
+		      <td width='300'><%= c.nome %></td>
 		    </tr>
 		  <% end %>
 		  </tbody>

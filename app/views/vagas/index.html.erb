@@ -49,7 +49,33 @@
               <td width='300'><%= vaga.nome_fantasia %></td>
               <td width='200'><%= vaga.carg %></td>
               <td width='5' align="center"><%= vaga.numero_vagas %></td>
-              <td width='5' align="center"><span class="label label-success"> <%= link_to vaga.candidatos_com_perfil, vaga_path(vaga), class: "candidatos"  %> </span></td>
+              <% estado_civil = "AND C.ESTADO_CIVIL = #{vaga.estado_civil.to_i}" unless vaga.estado_civil.to_i == 2 %>
+              <% veiculo = "AND C.VEICULO_PROPRIO = #{vaga.veiculo_proprio}" if vaga.veiculo_proprio.to_s == 't' %>
+              <% fumante = "AND C.FUMANTE = #{vaga.nao_fumante}" if vaga.nao_fumante.to_s == 't' %>
+              <% pne = "AND C.PNE = #{vaga.pne}" if vaga.pne.to_s == 't' %>
+              <% sql = "SELECT COUNT(C.ID) AS CANDIDATOS_COM_PERFIL
+              FROM CANDIDATOS C
+              LEFT JOIN CANDIDATOS_TIPO_VAGAS CTV
+              ON C.ID = CTV.CANDIDATO_ID
+
+              LEFT JOIN CANDIDATOS_CARGOS CC
+              ON C.ID = CC.CANDIDATO_ID
+
+              LEFT JOIN CANDIDATOS_TURNOS CT
+              ON C.ID = CT.CANDIDATO_ID
+              
+              WHERE CC.CARGO_ID = #{vaga.cargo_id}
+              AND CTV.TIPO_VAGA_ID = #{vaga.tipo_vaga_id}
+              AND CT.TURNO_ID = #{vaga.turno_id}
+              AND C.SEXO = #{vaga.sexo}
+              #{estado_civil}
+              #{veiculo}
+              #{fumante}
+              #{pne}" 
+              count_candidato = Candidato.count_by_sql(sql)
+              %>
+
+              <td width='5' align="center"><span class="label label-success"> <%= link_to count_candidato[0], vaga_path(vaga), class: "candidatos"  %> </span></td>
             </tr>
           <% end %>
           </tbody>
