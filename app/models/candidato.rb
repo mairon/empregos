@@ -22,7 +22,7 @@ class Candidato < ActiveRecord::Base
   	end
 
  	def carro?
-    	self.filhos == true
+    	self.veiculo_proprio == true
   	end
 
 end
