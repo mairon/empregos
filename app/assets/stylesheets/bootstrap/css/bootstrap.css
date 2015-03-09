@@ -1761,6 +1761,10 @@ table .span24 {
   background-image: url("/assets/glyphicons-halflings-white.png");
 }
 
+.icon-orange {
+  background-image: url("/assets/glyphicons-halflings-orange.png");
+}
+
 .icon-glass {
   background-position: 0      0;
 }

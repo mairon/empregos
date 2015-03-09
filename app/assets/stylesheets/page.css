@@ -9,7 +9,200 @@
  */
 
 
-body{background-color: #e9eaed};
+body{background-color: #e9eaed; display: table;}
 .contentwrapper{background-color: #e9eaed}
-.sign_in{margin-top: 8px;}
+.sign_in{margin-top: 8px; margin-right: 12px;}
 form{margin: 0;}
+
+.segundo_top{
+	display: table;
+}
+
+.cadastro{
+	display: table;
+	float: left;
+}
+
+.cadastro h2{
+	background-color: #1d88b3;
+	font-size: 10px;
+	color: #fff;
+	text-align: center;
+	margin-bottom: 15px;
+}
+.banner{
+	display: table;
+	float: right;
+	margin-left: 20px;
+	margin-bottom: 20px;
+}
+
+.img{
+	width: 100%;
+
+}
+
+.tab-content{
+	background-color: #fff;
+}
+.tab-pane{
+	width:300px;
+	height: 200px;
+	background-color: #fff;
+}
+span.add-on{
+	color: #de7d00;
+}
+.cnt_b .button{
+	
+	text-align: right;
+}
+
+.cnt_b input[type="submit"]{
+	background-color: #de7d00;
+	border: #de7d00;
+	padding: 5px;
+	color: #fff;
+	border-radius: 2px
+}
+
+.find_page{
+	display: table;
+	margin: 0 auto;
+	font-style: 400;
+	font-size: 14px;
+
+
+}
+ .title_search{
+ 	margin-top: 10px;
+ 	float: left;
+ 	margin-right: 10px;
+}
+
+.find_page .input_search{
+	float: right;
+	margin-right: 103px;
+	height: 50px;
+	display: table;
+	z-index: 9;
+	position: relative;
+}
+
+.find_page .button_search{
+	float: right;
+	position: relative;
+	margin-top: -48px;
+	z-index: 4;
+	text-align: right;
+}
+
+.find_page input[type="search"]{
+	float: right;
+	height: 35px;
+	width: 720px;
+	border-radius: 16px;
+	border: 0px;	
+	
+}
+
+.find_page input[type="submit"]{
+	background-color: #de7d00; 
+	height: 42px;
+	width: 200px;
+	text-align: right;
+	padding-right: 25px;
+	border-radius: 16px;
+	color: #fff;
+	border: 0px;	
+}
+
+menu {
+	background-color: #1d88b3;
+	display: table;
+	width: 96%;
+}
+
+menu li{
+	list-style: none;
+	float: left;
+	color: #fff;
+	font-weight: 300;
+	padding:10px 15px 10px 15px;
+}
+
+menu li a{
+	color: #fff;
+	font-weight: 300;
+}
+
+menu li a:hover{
+	color: #de7d00;
+	font-weight: 300;
+}
+
+article{
+  width: 32%;
+  float:left;
+  margin-bottom: 20px;
+
+}
+
+article.list_ultimas_vagas{
+	margin-right: 18px;
+}
+
+article.list_ultimos_curriculoas{
+	margin-left: 19px;
+}
+
+article  h2{
+	background-color: #1d88b3;
+	font-size: 10px;
+	color: #fff;
+	text-align: center;
+	margin-bottom: 15px;
+}
+
+nav{
+	background-color: #fff;
+	padding: 0px;
+}
+
+nav ul{
+	padding: 0px;
+	margin: 0px;
+}
+
+nav li{
+	margin: 0px;
+	font-weight: 300;
+	list-style: none;
+	padding: 10px;
+}
+
+nav li{
+	margin: 0px;
+	font-weight: 300;
+	list-style: none;
+	padding: 10px;
+	border-bottom: 1px solid #e9eaed;
+	border-top: 1px solid #fff;
+}
+
+section.info{	
+	display: table;
+	background-color: #fff;
+	border-radius: 10px;
+}
+
+
+footer{
+	display: table;
+	width: 100%;
+	border:1px solid red;
+	height: 15px;
+	padding: 0px;
+	margin: 0px;
+
+}

@@ -1,5 +1,6 @@
 //= require jquery
 //= require js/jquery.min
+//= require bootstrap/js/bootstrap.min
 //= require js/jquery.debouncedresize.min
 //= require js/jquery.actual.min
 //= require js/jquery.cookie.min
