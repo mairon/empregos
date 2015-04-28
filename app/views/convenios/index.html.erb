@@ -20,7 +20,7 @@
     <div class="row-fluid">
       <div class="span12">
       <%= link_to 'Novo', new_convenio_path, :class => "btn" %>
-        <table class="table table-striped table-bordered dTableR" id="dt_a">
+        <table class="table table-striped table-bordered dTableR" id="dt_c">
           <thead>
             <tr>
               <th></th>
@@ -29,10 +29,10 @@
           </thead>
           <tbody>
           <% @convenios.each do |convenio| %>
-            <tr>
-              <td width="40">
-              <%= link_to 'Editar', edit_convenio_path(convenio) %> |
-              <%= link_to 'Remover', convenio, method: :delete, data: { confirm: 'Deseja realmente remover o registro?' } %></td>
+              <td width="15">
+                <%= link_to '', convenio, method: :delete, data: { confirm: 'Deseja realmente remover o registro?' }, class: "icon-trash" %>
+                <%= link_to '', edit_convenio_path(convenio), class: "icon-pencil" %>
+              </td>
               <td width='100'><%= convenio.nome %></td>
             </tr>
           <% end %>

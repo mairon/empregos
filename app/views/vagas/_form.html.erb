@@ -1,4 +1,4 @@
-Ï<div class="row-fluid">
+<div class="row-fluid">
   <div class="span12">
     <%= form_for(@vaga, html:  {class: "form-horizontal"}) do |f| %>
       <% if @vaga.errors.any? %>
@@ -12,6 +12,12 @@
           </ul>
         </div>
       <% end %>
+      <% if params[:action] == 'new' %>        
+        <div class="alert alert-info">
+          <a class="close" data-dismiss="alert">×</a>
+          <strong>Obs:</strong> Quanto mais critérios de seleção forem marcados, mais rigorosa e eficiente será a busca, consequentemente menor será a quantidade de candidatos que se encaixam no perfil, caso não encontre nenhum candidato adequando ao perfil marcado, altere alguns dados marcados para localizar candidatos.
+        </div>
+      <% end %>
       <h3 class="heading">NOVA VAGA</h3>
       <div class="control-group formSep">
           <table>
@@ -22,7 +28,7 @@
           </table>
       </div>
 
-      <h5 class="heading">A CONTRATAÇAO SERA PARA TRABALHAR:</h5>
+      <h5 class="heading">A CONTRATAÇÃO SERÁ PARA TRABALHAR:</h5>
       <div class="control-group formSep">
         <table>
           <tr>
@@ -33,7 +39,7 @@
                   <td>
                     <%= f.collection_select :tipo_vaga_id, TipoVaga.select('id,nome').order('2'),:id, :nome, {prompt: 'Selecione o tipo de vaga'},{onblur: "select_tipo()"} %><span class="f_req">*</span>
                   </td>
-                  <td align="right">Cargo:</td>
+                  <td align="right">Função/Cargo:</td>
                   <td><%= f.collection_select :cargo_id, Cargo.select('id,nome').order('2'),:id, :nome, {prompt: 'Selecione o cargo'} %><span class="f_req">*</span></td>
                   <td style ="padding-left: 15px;">
                     Numero de Vagas: <%= f.number_field :numero_vagas, style: "width: 35px;" %> <span class="f_req">*</span>
@@ -89,9 +95,9 @@
           <table>
             <tr>
               <td width="120"><%= f.radio_button :estagio_cursando, 0, :style => "margin-top: -2px;" %> Ensino médio</td>
-              <td width="120"><%= f.radio_button :estagio_cursando, 1, :style => "margin-top: -2px;" %> Ensino Tecnico</td>
-              <td width="120"><%= f.radio_button :estagio_cursando, 2, :style => "margin-top: -2px;" %> Nivel Superior</td>
-              <td width="300">Curso:<%= f.collection_select :curso_id, Curso.select('id,nome').order('2'),:id, :nome,{prompt: 'Selecione o curso'} %><span class="f_req">*</span></td>
+              <td width="120"><%= f.radio_button :estagio_cursando, 1, :style => "margin-top: -2px;" %> Ensino Técnico</td>
+              <td width="120"><%= f.radio_button :estagio_cursando, 2, :style => "margin-top: -2px;" %> Nível Superior</td>
+              <td width="350">Curso:<%= f.collection_select :curso_id, Curso.select('id,nome').order('2'),:id, :nome,{prompt: 'Selecione o curso'} %><span class="f_req">*</span></td>
               <td width="100">Período:<%= f.select :cursando_periodo, 1..12 %></td>
             </tr>
           </table>
@@ -125,10 +131,11 @@
             <%= f.radio_button :cnh, 1, :style => "margin-top: -2px;" %> B
             <%= f.radio_button :cnh, 2, :style => "margin-top: -2px;" %> C
             <%= f.radio_button :cnh, 3, :style => "margin-top: -2px;" %> D
-            <%= f.radio_button :cnh, 4, :style => "margin-top: -2px;" %> AB
-            <%= f.radio_button :cnh, 5, :style => "margin-top: -2px;" %> AC
-            <%= f.radio_button :cnh, 6, :style => "margin-top: -2px;" %> AD
-            <%= f.radio_button :cnh, 7, :style => "margin-top: -2px;" %> AE</td>
+            <%= f.radio_button :cnh, 4, :style => "margin-top: -2px;" %> E
+            <%= f.radio_button :cnh, 5, :style => "margin-top: -2px;" %> AB
+            <%= f.radio_button :cnh, 6, :style => "margin-top: -2px;" %> AC
+            <%= f.radio_button :cnh, 7, :style => "margin-top: -2px;" %> AD
+            <%= f.radio_button :cnh, 8, :style => "margin-top: -2px;" %> AE</td>
           </tr>
           <tr>
             <td></td>
@@ -155,6 +162,28 @@
           <%= f.fields_for :idiomas_vagas do |builder| %>
               <%= render "idiomas_fields", :f => builder %>
           <% end %>
+        </table>
+      </div>
+
+      <div class="control-group formSep">
+        <h5 class="heading">OUTRAS OBRIGAÇÕES</h5>
+        <table>
+            <tr>
+              <td align="right"></td>
+              <td>
+                <%= f.check_box :mora_perto_empresa, :style => "margin-top: -2px;" %>
+                Morar próximo da empresa
+              </td>
+            </tr>
+            <tr>
+              <td align="right">Filhos maiores de:</td>
+              <td>
+                <%= f.select :filhos_maores, 1..12 %>
+                <%= f.radio_button :filhos_mes_anos, 0, :style => "margin-top: -2px;" %> Meses
+                <%= f.radio_button :filhos_mes_anos, 1, :style => "margin-top: -2px;" %> Anos
+
+              </td>
+            </tr>
         </table>
       </div>
 
@@ -198,7 +227,7 @@
             <td width="350">
               <%= f.radio_button :experiencia, 2, :style => "margin-top: -2px;" %> Com experiência minima de :<%= f.select :experiencia_qtd, 1..12 %>
               <%= f.radio_button :experiencia_mes_ano, 0, :style => "margin-top: -2px;" %> Mes
-              <%= f.radio_button :experiencia_mes_ano, 0, :style => "margin-top: -2px;" %> Ano
+              <%= f.radio_button :experiencia_mes_ano, 1, :style => "margin-top: -2px;" %> Ano
             </td>
           </tr>
         </table>
@@ -244,7 +273,18 @@
           </tr>
         </table>
       </div>
-
+      <div class="control-group formSep">
+        <h5 class="heading">DESCREVA NESTE ESPAÇO O CONHECIMENTO E HABILIDADE DESEJÁVEL QUE O CANDIDATO DEVE TER PARA EXERCER O CARGO:</h5>
+        <table>
+            <tr>
+              <td align="right"></td>
+              <td>
+                <%= f.text_area :obs, rows: 10, cols: 60, maxlength: 500, placeholder: 'Máximo 500 caracteres.' %>
+                
+              </td>
+            </tr>
+        </table>
+      </div>
   </div>
   <div class="actions">
     <%= f.submit'Salvar', data: { disable_with: "Aguarde..." }, class: "btn btn-gebo" %> <%= link_to 'Sair', vagas_path, :class => "btn" %>

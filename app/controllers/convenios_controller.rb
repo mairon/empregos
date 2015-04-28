@@ -2,20 +2,19 @@ class ConveniosController < ApplicationController
   before_action :authenticate_user!  
 
   before_action :set_convenio, only: [:show, :edit, :update, :destroy]
-  respond_to :html
 
   def index
-    @convenios = Convenio.all
-    respond_with(@convenios)
+    @convenios = Convenio.order('nome')
   end
 
   def show
-    respond_with(@convenio)
+  end
+
+  def visualizacao
   end
 
   def new
     @convenio = Convenio.new
-    respond_with(@convenio)
   end
 
   def edit
@@ -23,18 +22,25 @@ class ConveniosController < ApplicationController
 
   def create
     @convenio = Convenio.new(convenio_params)
-    @convenio.save
-    respond_with(@convenio)
+
+    if @convenio.save
+      redirect_to convenios_url
+    else
+      render :new
+    end
   end
 
   def update
-    @convenio.update(convenio_params)
-    respond_with(@convenio)
+    if @convenio.update(convenio_params)
+      redirect_to convenios_url
+    else
+      render :edit
+    end
   end
 
   def destroy
     @convenio.destroy
-    respond_with(@convenio)
+      redirect_to convenios_url
   end
 
   private

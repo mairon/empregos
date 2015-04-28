@@ -1,21 +1,37 @@
 <%= form_for(@nacionalidade) do |f| %>
-  <% if @nacionalidade.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@nacionalidade.errors.count, "error") %> prohibited this nacionalidade from being saved:</h2>
+<% if @nacionalidade.errors.any? %>
+    <div class="alert alert-error">
+      <a class="close" data-dismiss="alert">×</a>
+      <h2><%= pluralize(@nacionalidade.errors.count, "erros") %> encontrados:</h2>
 
       <ul>
-      <% @nacionalidade.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+      <% @nacionalidade.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :nome %><br>
-    <%= f.text_field :nome %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<div class="row-fluid">
+    <div class="chat_box">
+      <div class="row-fluid">
+        <div class="well chat_content">
+            <table>
+              <tr>
+                  <td align="right">Nome:</td>
+                  <td><%= f.text_field :nome, :placeholder => 'Máximo 50 Caracteres', :maxlength => 50, autofocus: true %><span class="f_req">*</span></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+                  <%= f.submit :value => " Salvar ", :disable_with => "Aguarde...", :class => "btn" %>
+                  <%= link_to 'Voltar', nacionalidades_path, :class => "btn" %>
+                </td>
+              </tr>
+            </table>
+
+        </div>
+      </div>
+    </div>
+</div>
 <% end %>

@@ -1,21 +1,20 @@
 class NacionalidadesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!  
 
   before_action :set_nacionalidade, only: [:show, :edit, :update, :destroy]
-  respond_to :html
 
   def index
-    @nacionalidades = Nacionalidade.all
-    respond_with(@nacionalidades)
+    @nacionalidades = Nacionalidade.order('nome')
   end
 
   def show
-    respond_with(@nacionalidade)
+  end
+
+  def visualizacao
   end
 
   def new
     @nacionalidade = Nacionalidade.new
-    respond_with(@nacionalidade)
   end
 
   def edit
@@ -23,18 +22,25 @@ class NacionalidadesController < ApplicationController
 
   def create
     @nacionalidade = Nacionalidade.new(nacionalidade_params)
-    @nacionalidade.save
-    respond_with(@nacionalidade)
+
+    if @nacionalidade.save
+      redirect_to nacionalidades_url
+    else
+      render :new
+    end
   end
 
   def update
-    @nacionalidade.update(nacionalidade_params)
-    respond_with(@nacionalidade)
+    if @nacionalidade.update(nacionalidade_params)
+      redirect_to nacionalidades_url
+    else
+      render :edit
+    end
   end
 
   def destroy
     @nacionalidade.destroy
-    respond_with(@nacionalidade)
+      redirect_to nacionalidades_url
   end
 
   private

@@ -2,20 +2,19 @@ class IdiomasController < ApplicationController
   before_action :authenticate_user!  
 
   before_action :set_idioma, only: [:show, :edit, :update, :destroy]
-  respond_to :html
 
   def index
-    @idiomas = Idioma.all
-    respond_with(@idiomas)
+    @idiomas = Idioma.order('id desc')
   end
 
   def show
-    respond_with(@idioma)
+  end
+
+  def visualizacao
   end
 
   def new
     @idioma = Idioma.new
-    respond_with(@idioma)
   end
 
   def edit
@@ -23,20 +22,27 @@ class IdiomasController < ApplicationController
 
   def create
     @idioma = Idioma.new(idioma_params)
-    @idioma.save
-    respond_with(@idioma)
+
+    if @idioma.save
+      redirect_to idiomas_url
+    else
+      render :new
+    end
   end
 
   def update
-    @idioma.update(idioma_params)
-    respond_with(@idioma)
+    if @idioma.update(idioma_params)
+      redirect_to idiomas_url
+    else
+      render :edit
+    end
   end
 
   def destroy
     @idioma.destroy
-    respond_with(@idioma)
+      redirect_to idiomas_url
   end
-
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_idioma

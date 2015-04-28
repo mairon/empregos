@@ -20,22 +20,24 @@
     <div class="row-fluid">
       <div class="span12">
       <%= link_to 'Novo', new_admin_ramo_path, :class => "btn" %>
-        <table class="table table-striped table-bordered dTableR" id="dt_a">
+        <table class="table table-striped table-bordered dTableR" id="dt_c">
           <thead>
             <tr>
               <th></th>
-              <th>Nome</th>
               <th>Código</th>
+              <th>Nome</th>
             </tr>
           </thead>
           <tbody>
           <% @ramos.each do |state| %>
             <tr>
-              <td width="40">
-              <%= link_to 'Editar', edit_admin_ramo_path(state) %> |
-              <%= link_to 'Remover', [:admin, state], method: :delete, data: { confirm: 'Deseja realmente remover o registro?' } %></td>
+              
+              <td width="15">
+                <%= link_to '',[:admin, state], method: :delete, data: { confirm: 'Deseja realmente remover o registro?' }, class: "icon-trash" %>
+                <%= link_to '', edit_admin_ramo_path(state), class: "icon-pencil" %>
+              </td>
+              <td width='100'><%= state.id.to_s.rjust(6,'0') %></td>
               <td width='100'><%= state.nome %></td>
-              <td width='100'><%= state.codigo %></td>
             </tr>
           <% end %>
           </tbody>

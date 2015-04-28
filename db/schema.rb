@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150213005808) do
+ActiveRecord::Schema.define(version: 20150428034920) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -130,6 +130,7 @@ ActiveRecord::Schema.define(version: 20150213005808) do
     t.string   "gra_pare_recado",        limit: 150
     t.integer  "turno_id"
     t.integer  "tipo_veiculo"
+    t.text     "obs"
   end
 
   create_table "candidatos_cargos", force: :cascade do |t|
@@ -444,6 +445,10 @@ ActiveRecord::Schema.define(version: 20150213005808) do
     t.integer  "tipo_vaga_id"
     t.integer  "divulga_salario"
     t.integer  "tipo_veiculo"
+    t.boolean  "mora_perto_empresa"
+    t.integer  "filhos_maores"
+    t.integer  "filhos_mes_anos"
+    t.text     "obs"
   end
 
 end

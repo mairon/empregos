@@ -3,20 +3,18 @@ class CursosController < ApplicationController
 
   before_action :set_curso, only: [:show, :edit, :update, :destroy]
 
-  respond_to :html
-
   def index
-    @cursos = Curso.all
-    respond_with(@cursos)
+    @cursos = Curso.order('id desc')
   end
 
   def show
-    respond_with(@curso)
+  end
+
+  def visualizacao
   end
 
   def new
     @curso = Curso.new
-    respond_with(@curso)
   end
 
   def edit
@@ -24,18 +22,25 @@ class CursosController < ApplicationController
 
   def create
     @curso = Curso.new(curso_params)
-    @curso.save
-    respond_with(@curso)
+
+    if @curso.save
+      redirect_to cursos_url
+    else
+      render :new
+    end
   end
 
   def update
-    @curso.update(curso_params)
-    respond_with(@curso)
+    if @curso.update(curso_params)
+      redirect_to cursos_url
+    else
+      render :edit
+    end
   end
 
   def destroy
     @curso.destroy
-    respond_with(@curso)
+      redirect_to cursos_url
   end
 
   private

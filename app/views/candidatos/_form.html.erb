@@ -342,6 +342,19 @@
         </table>
       </div>
 
+      <div class="control-group formSep">
+        <h5 class="heading">DESCREVA ALGO SOBRE VOCÊ COMO PROFISSIONAL:</h5>
+        <table>
+            <tr>
+              <td align="right"></td>
+              <td>
+                <%= f.text_area :obs, rows: 10, cols: 60, maxlength: 500, placeholder: 'Máximo 500 caracteres.' %>
+                
+              </td>
+            </tr>
+        </table>
+      </div>
+
       <div class="actions">
         <%= f.submit 'Seguir', data: { disable_with: "Aguarde..." }, class: "btn btn-gebo" %>
       </div>

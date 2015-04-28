@@ -6,7 +6,7 @@ class Admin::RamosController < ApplicationController
   # GET /admin/ramos
   # GET /admin/ramos.json
   def index
-    @ramos = Ramo.all
+    @ramos = Ramo.order('nome')
   end
 
   # GET /admin/ramos/1

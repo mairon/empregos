@@ -1,21 +1,20 @@
 class CargosController < ApplicationController  
-  before_action :authenticate_user!
+  before_action :authenticate_user!  
 
   before_action :set_cargo, only: [:show, :edit, :update, :destroy]
-  respond_to :html
-  
+
   def index
-    @cargos = Cargo.all
-    respond_with(@cargos)
+    @cargos = Cargo.order('id desc')
   end
 
   def show
-    respond_with(@cargo)
+  end
+
+  def visualizacao
   end
 
   def new
     @cargo = Cargo.new
-    respond_with(@cargo)
   end
 
   def edit
@@ -23,20 +22,27 @@ class CargosController < ApplicationController
 
   def create
     @cargo = Cargo.new(cargo_params)
-    @cargo.save
-    respond_with(@cargo)
+
+    if @cargo.save
+      redirect_to cargos_url
+    else
+      render :new
+    end
   end
 
   def update
-    @cargo.update(cargo_params)
-    respond_with(@cargo)
+    if @cargo.update(cargo_params)
+      redirect_to cargos_url
+    else
+      render :edit
+    end
   end
 
   def destroy
     @cargo.destroy
-    respond_with(@cargo)
+      redirect_to cargos_url
   end
-
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_cargo
