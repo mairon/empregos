@@ -30,7 +30,6 @@
 //= require lib/multiselect/js/jquery.multi-select.min
 //= require lib/chosen/chosen.jquery.min
 
-
 $(document).ready(function() {
   $('.pre-selected-options').multiSelect({cssClass:"full_width"});
   $(".cep").mask("99999-999");
@@ -56,6 +55,13 @@ $(document).ready(function() {
   $(".money").maskMoney({thousands:".", decimal:","});
   //* show all elements & remove preloader
   setTimeout('$("html").removeClass("js")',1000);
-
+  gebo_chosen.init();
 });
-
+//* enhanced select elements
+gebo_chosen = {
+  init: function(){
+    $(".chzn_a").chosen({
+      allow_single_deselect: true
+    });
+  }
+};

@@ -143,11 +143,11 @@
           <tr>
             <td align="right">Estado:</td>
             <td colspan="3">
-              <%= f.collection_select :state_id, State.select('id,name').order('2'),:id, :name,{prompt: 'Selecione o Estado'} %><span class="f_req">*</span>
+              <%= f.collection_select :state_id, State.select('id,name').order('2'),:id, :name,{prompt: 'Selecione o Estado'}, {class: "chzn_a"} %><span class="f_req">*</span>
             </td>
             <td align="right">Cidade:</td>
             <td  colspan="3">
-              <%= f.collection_select :city_id, City.select('id,name').order('2'),:id, :name,{prompt: 'Selecione a Cidade'} %><span class="f_req">*</span>
+              <%= f.collection_select :city_id, City.select('id,name').order('2'),:id, :name,{prompt: 'Selecione a Cidade'}, {class: "chzn_a"} %><span class="f_req">*</span>
             </td>
           </tr>
         </table>
@@ -160,7 +160,7 @@
         <table>
           <tr>
             <td align="right" width="115">Nacionalidade:</td>
-            <td  colspan="4"><%= f.collection_select :nacionalidade_id, Nacionalidade.select('id,nome').order('2'),:id, :nome,{prompt: 'Selecione a Nacionalidade'} %><span class="f_req">*</span></td>
+            <td  colspan="4"><%= f.collection_select :nacionalidade_id, Nacionalidade.select('id,nome').order('2'),:id, :nome,{prompt: 'Selecione a Nacionalidade'}, {class: "chzn_a"} %><span class="f_req">*</span></td>
             
           </tr>
 
@@ -177,10 +177,11 @@
             <%= f.radio_button :cnh, 1, :style => "margin-top: -2px;" %> B
             <%= f.radio_button :cnh, 2, :style => "margin-top: -2px;" %> C
             <%= f.radio_button :cnh, 3, :style => "margin-top: -2px;" %> D
-            <%= f.radio_button :cnh, 4, :style => "margin-top: -2px;" %> AB
-            <%= f.radio_button :cnh, 5, :style => "margin-top: -2px;" %> AC
-            <%= f.radio_button :cnh, 6, :style => "margin-top: -2px;" %> AD
-            <%= f.radio_button :cnh, 7, :style => "margin-top: -2px;" %> AE</td>
+            <%= f.radio_button :cnh, 4, :style => "margin-top: -2px;" %> E
+            <%= f.radio_button :cnh, 5, :style => "margin-top: -2px;" %> AB
+            <%= f.radio_button :cnh, 6, :style => "margin-top: -2px;" %> AC
+            <%= f.radio_button :cnh, 7, :style => "margin-top: -2px;" %> AD
+            <%= f.radio_button :cnh, 8, :style => "margin-top: -2px;" %> AE</td>
           </tr>
           <tr>
             <td></td>
@@ -305,7 +306,7 @@
                 <fieldset>
                   <legend>Pediodo de Trabalho</legend>
                   <br>
-                  <%= f.collection_select :turno_ids, Turno.all, :id, :nome, {}, {:multiple => true, class: "pre-selected-options"} %>
+                  <%= f.collection_select :turno_ids, Turno.order('2'), :id, :nome, {}, {:multiple => true, class: "pre-selected-options"} %>
                 </fieldset>
               </td>
             </tr>
@@ -328,14 +329,14 @@
             <td>
               <fieldset>
                 <legend>Qual o tipo de vaga que procura?</legend>
-                <%= f.collection_select :tipo_vaga_ids, TipoVaga.all, :id, :nome, {}, {:multiple => true, class: "pre-selected-options"} %>
+                <%= f.collection_select :tipo_vaga_ids, TipoVaga.order('2'), :id, :nome, {}, {:multiple => true, class: "pre-selected-options"} %>
               </fieldset>
             </td>
             <td></td>
             <td>
               <fieldset>
                 <legend>Em quais áreas ?</legend>
-                <%= f.collection_select :cargo_ids, Cargo.all, :id, :nome, {}, {:multiple => true, class: "pre-selected-options"} %>
+                <%= f.collection_select :cargo_ids, Cargo.order('2'), :id, :nome, {}, {:multiple => true, class: "pre-selected-options"} %>
               </fieldset>
             </td>
           </tr>

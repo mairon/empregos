@@ -23,7 +23,7 @@
           <table>
             <tr>
               <td align="right">Empresa: <div class="result"></div></td>
-              <td><%= f.collection_select :empresa_id, Empresa.select('id,razao_social').order('2'),:id, :razao_social,{prompt: 'Selecione a Empresa'} %><span class="f_req">*</span></td>
+              <td><%= f.collection_select :empresa_id, Empresa.select('id,razao_social').order('2'),:id, :razao_social,{prompt: 'Selecione a Empresa'}, {class: "chzn_a"} %><span class="f_req">*</span></td>
             </tr>
           </table>
       </div>
@@ -37,10 +37,10 @@
               <table>
                 <tr>
                   <td>
-                    <%= f.collection_select :tipo_vaga_id, TipoVaga.select('id,nome').order('2'),:id, :nome, {prompt: 'Selecione o tipo de vaga'},{onblur: "select_tipo()"} %><span class="f_req">*</span>
+                    <%= f.collection_select :tipo_vaga_id, TipoVaga.select('id,nome').order('2'),:id, :nome, {prompt: 'Selecione o tipo de vaga'},{ class: "chzn_a", onblur: "select_tipo()"} %><span class="f_req">*</span>
                   </td>
                   <td align="right">Função/Cargo:</td>
-                  <td><%= f.collection_select :cargo_id, Cargo.select('id,nome').order('2'),:id, :nome, {prompt: 'Selecione o cargo'} %><span class="f_req">*</span></td>
+                  <td><%= f.collection_select :cargo_id, Cargo.select('id,nome').order('2'),:id, :nome, {prompt: 'Selecione o cargo'}, {class: "chzn_a"} %><span class="f_req">*</span></td>
                   <td style ="padding-left: 15px;">
                     Numero de Vagas: <%= f.number_field :numero_vagas, style: "width: 35px;" %> <span class="f_req">*</span>
                   </td>
@@ -63,7 +63,7 @@
           <table>
             <tr>
               <td height="35" align="right">Pediodo de Trabalho:</td>
-              <td colspan="4"><%= f.collection_select :turno_id, Turno.select('id,nome').order('1'),:id, :nome,{prompt: 'Selecione Pediodo de Trabalho'} %><span class="f_req">*</span></td>
+              <td colspan="4"><%= f.collection_select :turno_id, Turno.select('id,nome').order('2'),:id, :nome,{prompt: 'Selecione Pediodo de Trabalho'}, {class: "chzn_a"} %><span class="f_req">*</span></td>
             </tr>
             <tr>
               <td align="right"> Complemento - Horário específico: </td> 
